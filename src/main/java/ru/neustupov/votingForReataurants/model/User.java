@@ -2,9 +2,10 @@ package ru.neustupov.votingForReataurants.model;
 
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
-public class User extends AbstractNamedEntity{
+public class User extends AbstractNamedEntity {
 
     private String email;
 
@@ -15,6 +16,8 @@ public class User extends AbstractNamedEntity{
     private Date registered = new Date();
 
     private Set<Role> roles;
+
+    private Map<Integer, LocalDateTime> votes;
 
     public User() {
     }
@@ -38,5 +41,49 @@ public class User extends AbstractNamedEntity{
 
     public void setRoles(Collection<Role> roles) {
         this.roles = CollectionUtils.isEmpty(roles) ? Collections.emptySet() : EnumSet.copyOf(roles);
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public Map<Integer, LocalDateTime> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(Map<Integer, LocalDateTime> votes) {
+        this.votes = votes;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getRegistered() {
+        return registered;
+    }
+
+    public void setRegistered(Date registered) {
+        this.registered = registered;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
