@@ -1,4 +1,4 @@
-package ru.neustupov.votingForReataurants.model;
+package ru.neustupov.votingForRestaurants.model;
 
 import org.hibernate.Hibernate;
 import org.springframework.data.domain.Persistable;

@@ -1,4 +1,4 @@
-package ru.neustupov.votingForReataurants.model;
+package ru.neustupov.votingForRestaurants.model;
 
 public enum Role {
     ROLE_USER,

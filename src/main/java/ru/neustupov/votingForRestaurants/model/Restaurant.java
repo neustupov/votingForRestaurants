@@ -1,4 +1,4 @@
-package ru.neustupov.votingForReataurants.model;
+package ru.neustupov.votingForRestaurants.model;
 
 import java.time.LocalDateTime;
 import java.util.Map;

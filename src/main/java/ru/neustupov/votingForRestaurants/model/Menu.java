@@ -1,9 +1,9 @@
-package ru.neustupov.votingForReataurants.model;
+package ru.neustupov.votingForRestaurants.model;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
-public class Menu extends AbstractBaseEntity {
+public class Menu {
 
     private LocalDateTime addDate;
 
@@ -13,11 +13,6 @@ public class Menu extends AbstractBaseEntity {
     }
 
     public Menu(LocalDateTime addDate) {
-        this.addDate = addDate;
-    }
-
-    public Menu(Integer id, LocalDateTime addDate) {
-        super(id);
         this.addDate = addDate;
     }
 
