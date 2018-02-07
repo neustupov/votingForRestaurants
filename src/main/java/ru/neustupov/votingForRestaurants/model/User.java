@@ -2,9 +2,13 @@ package ru.neustupov.votingForRestaurants.model;
 
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.*;
 
+@Entity
+@Table(name = "users")
 public class User extends AbstractNamedEntity {
 
     private String email;
