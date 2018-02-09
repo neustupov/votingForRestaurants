@@ -11,7 +11,7 @@ import java.util.*;
 @Table(name = "users")
 public class User extends AbstractNamedEntity {
 
-    private String email;
+    private String name;
 
     private String password;
 
@@ -26,17 +26,16 @@ public class User extends AbstractNamedEntity {
     public User() {
     }
 
-    public User(String email, String password, boolean enabled, Date registered, Set<Role> roles) {
-        this.email = email;
+    public User(String name, String password, boolean enabled, Date registered, Set<Role> roles) {
+        this.name = name;
         this.password = password;
         this.enabled = enabled;
         this.registered = registered;
         setRoles(roles);
     }
 
-    public User(Integer id, String name, String email, String password, boolean enabled, Date registered, Set<Role> roles) {
+    public User(Integer id, String name, String password, boolean enabled, Date registered, Set<Role> roles) {
         super(id, name);
-        this.email = email;
         this.password = password;
         this.enabled = enabled;
         this.registered = registered;
@@ -59,12 +58,12 @@ public class User extends AbstractNamedEntity {
         this.votes = votes;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
