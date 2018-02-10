@@ -1,30 +1,12 @@
-DROP TABLE user_roles
-IF EXISTS;
-DROP TABLE users
-IF EXISTS;
-DROP TABLE votes
-IF EXISTS;
-DROP TABLE restaurants
-IF EXISTS;
-DROP TABLE menus
-IF EXISTS;
-DROP TABLE meals
-IF EXISTS;
-DROP SEQUENCE global_seq
-IF EXISTS;
+DROP TABLE user_roles IF EXISTS;
+DROP TABLE users IF EXISTS;
+DROP TABLE votes IF EXISTS;
+DROP TABLE restaurants IF EXISTS;
+DROP TABLE menus IF EXISTS;
+DROP TABLE meals IF EXISTS;
+DROP SEQUENCE global_seq IF EXISTS;
 
-CREATE SEQUENCE GLOBAL_SEQ
-  AS INTEGER
-    START WITH 100000;
-
-CREATE TABLE user_roles
-(
-  user_id INTEGER NOT NULL,
-  role    VARCHAR(255),
-  CONSTRAINT user_roles_idx UNIQUE (user_id, role),
-  FOREIGN KEY (user_id) REFERENCES USERS (id)
-    ON DELETE CASCADE
-);
+/*CREATE SEQUENCE GLOBAL_SEQ AS INTEGER START WITH 100000;*/
 
 CREATE TABLE users
 (
@@ -35,18 +17,13 @@ CREATE TABLE users
   enabled    BOOLEAN DEFAULT TRUE    NOT NULL
 );
 
-CREATE TABLE votes
+CREATE TABLE user_roles
 (
-  user_id    INTEGER      NOT NULL,
-  date_time  TIMESTAMP    NOT NULL,
-  restaurant VARCHAR(255) NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES USERS (id)
-    ON DELETE CASCADE,
-  FOREIGN KEY (restaurant) REFERENCES restaurants (id)
-    ON DELETE CASCADE
+  user_id INTEGER NOT NULL,
+  role    VARCHAR(255),
+  CONSTRAINT user_roles_idx UNIQUE (user_id, role),
+  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX votes_unique_user_datetime_restaurant_idx
-  ON votes (user_id, date_time, restaurant);
 
 CREATE TABLE restaurants
 (
@@ -55,22 +32,29 @@ CREATE TABLE restaurants
   menu INTEGER      NOT NULL
 );
 
+CREATE TABLE votes
+(
+  user_id    INTEGER      NOT NULL,
+  date_time  TIMESTAMP DEFAULT now() NOT NULL,
+  restaurant INTEGER NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+  /*FOREIGN KEY (restaurant) REFERENCES restaurants (id) ON DELETE CASCADE*/
+);
+/*CREATE UNIQUE INDEX votes_unique_user_datetime_restaurant_idx ON votes (user_id, date_time, restaurant);*/
+
 CREATE TABLE menus
 (
-  id        INTEGER      NOT NULL,
-  date_time TIMESTAMP    NOT NULL,
-  meal      VARCHAR(255) NOT NULL,
-  FOREIGN KEY (id) REFERENCES restaurants (menu)
-    ON DELETE CASCADE
+  id       INTEGER      NOT NULL,
+  date_time TIMESTAMP DEFAULT now() NOT NULL,
+  meal      VARCHAR(255) NOT NULL
+  /*FOREIGN KEY (id) REFERENCES restaurants (menu) ON DELETE CASCADE*/
 );
-CREATE UNIQUE INDEX menus_unique_id_datetime_idx
-  ON menus (id, date_time);
+/*CREATE UNIQUE INDEX menus_unique_id_datetime_idx ON menus (id, date_time);*/
 
 CREATE TABLE meals
 (
   id    INTEGER      NOT NULL,
   name  VARCHAR(255) NOT NULL,
-  price INT          NOT NULL,
-  FOREIGN KEY (id) REFERENCES menus (meal)
-    ON DELETE CASCADE
+  price INT          NOT NULL
+  /*FOREIGN KEY (id) REFERENCES menus (meal) ON DELETE CASCADE*/
 );
