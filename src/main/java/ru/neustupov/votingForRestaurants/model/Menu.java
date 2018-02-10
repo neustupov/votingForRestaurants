@@ -5,7 +5,11 @@ import java.util.Set;
 
 public class Menu {
 
+    private Integer idRest;
+
     private LocalDateTime addDate;
+
+    private Integer mealID;
 
     private Set<Meal> meals;
 
@@ -30,5 +34,21 @@ public class Menu {
 
     public void setMeals(Set<Meal> meals) {
         this.meals = meals;
+    }
+
+    public Integer getIdRest() {
+        return idRest;
+    }
+
+    public void setIdRest(Integer id_rest) {
+        this.idRest = idRest;
+    }
+
+    public Integer getMealID() {
+        return mealID;
+    }
+
+    public void setMealID(Integer mealID) {
+        this.mealID = mealID;
     }
 }

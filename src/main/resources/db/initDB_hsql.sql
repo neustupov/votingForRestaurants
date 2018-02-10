@@ -1,12 +1,12 @@
 DROP TABLE user_roles IF EXISTS;
-DROP TABLE users IF EXISTS;
 DROP TABLE votes IF EXISTS;
-DROP TABLE restaurants IF EXISTS;
-DROP TABLE menus IF EXISTS;
+DROP TABLE users IF EXISTS;
 DROP TABLE meals IF EXISTS;
+DROP TABLE menus IF EXISTS;
+DROP TABLE restaurants IF EXISTS;
 DROP SEQUENCE global_seq IF EXISTS;
 
-/*CREATE SEQUENCE GLOBAL_SEQ AS INTEGER START WITH 100000;*/
+CREATE SEQUENCE GLOBAL_SEQ AS INTEGER START WITH 100000;
 
 CREATE TABLE users
 (
@@ -28,8 +28,7 @@ CREATE TABLE user_roles
 CREATE TABLE restaurants
 (
   id   INTEGER      NOT NULL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  menu INTEGER      NOT NULL
+  name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE votes
@@ -37,24 +36,24 @@ CREATE TABLE votes
   user_id    INTEGER      NOT NULL,
   date_time  TIMESTAMP DEFAULT now() NOT NULL,
   restaurant INTEGER NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
-  /*FOREIGN KEY (restaurant) REFERENCES restaurants (id) ON DELETE CASCADE*/
+  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+  FOREIGN KEY (restaurant) REFERENCES restaurants (id) ON DELETE CASCADE,
+  CONSTRAINT votes_unique_user_datetime_restaurant_idx UNIQUE (user_id, date_time, restaurant)
 );
-/*CREATE UNIQUE INDEX votes_unique_user_datetime_restaurant_idx ON votes (user_id, date_time, restaurant);*/
 
 CREATE TABLE menus
 (
-  id       INTEGER      NOT NULL,
-  date_time TIMESTAMP DEFAULT now() NOT NULL,
-  meal      VARCHAR(255) NOT NULL
-  /*FOREIGN KEY (id) REFERENCES restaurants (menu) ON DELETE CASCADE*/
+  id_rest       INTEGER      NOT NULL,
+  date_time     TIMESTAMP DEFAULT now() NOT NULL,
+  meal_id       INTEGER NOT NULL PRIMARY KEY ,
+  FOREIGN KEY (id_rest) REFERENCES restaurants (id) ON DELETE CASCADE,
+  CONSTRAINT menus_unique_id_datetime_idx UNIQUE (id_rest, date_time)
 );
-/*CREATE UNIQUE INDEX menus_unique_id_datetime_idx ON menus (id, date_time);*/
 
 CREATE TABLE meals
 (
   id    INTEGER      NOT NULL,
   name  VARCHAR(255) NOT NULL,
-  price INT          NOT NULL
-  /*FOREIGN KEY (id) REFERENCES menus (meal) ON DELETE CASCADE*/
+  price INT          NOT NULL,
+  FOREIGN KEY (id) REFERENCES menus (meal_id) ON DELETE CASCADE
 );
