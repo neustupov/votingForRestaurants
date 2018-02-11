@@ -2,17 +2,29 @@ package ru.neustupov.votingForRestaurants.model;
 
 import org.springframework.util.CollectionUtils;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.*;
 
+@NamedQueries({
+        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id")
+})
 @Entity
 @Table(name = "users")
 public class User extends AbstractNamedEntity {
 
+    public static final String DELETE = "User.delete";
+
+    @Column(name = "name", nullable = false)
+    @NotBlank
+    @Size(max = 100)
     private String name;
 
+    @Column(name = "password", nullable = false)
+    @NotBlank
+    @Size(min = 5, max = 64)
     private String password;
 
     private boolean enabled = true;
