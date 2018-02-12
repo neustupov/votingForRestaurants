@@ -34,7 +34,7 @@ public class User extends AbstractNamedEntity {
     private Set<Role> roles;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private Map<LocalDateTime, Restaurant> votes;
+    private Set<Vote> votes;
 
     public User() {
     }
@@ -61,11 +61,11 @@ public class User extends AbstractNamedEntity {
         return roles;
     }
 
-    public Map<LocalDateTime, Restaurant> getVotes() {
+    public Set<Vote> getVotes() {
         return votes;
     }
 
-    public void setVotes(Map<LocalDateTime, Restaurant> votes) {
+    public void setVotes(Set<Vote> votes) {
         this.votes = votes;
     }
 
