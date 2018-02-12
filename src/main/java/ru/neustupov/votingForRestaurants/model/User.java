@@ -4,6 +4,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -17,39 +18,37 @@ public class User extends AbstractNamedEntity {
 
     public static final String DELETE = "User.delete";
 
-    @Column(name = "name", nullable = false)
-    @NotBlank
-    @Size(max = 100)
-    private String name;
-
     @Column(name = "password", nullable = false)
     @NotBlank
     @Size(min = 5, max = 64)
     private String password;
 
-    private boolean enabled = true;
-
+    @Column(name = "registered", columnDefinition = "timestamp default now()")
+    @NotNull
     private Date registered = new Date();
 
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    private Map<Integer, LocalDateTime> votes;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Map<LocalDateTime, Restaurant> votes;
 
     public User() {
     }
 
-    public User(String name, String password, boolean enabled, Date registered, Set<Role> roles) {
+    public User(String name, String password, Date registered, Set<Role> roles) {
         this.name = name;
         this.password = password;
-        this.enabled = enabled;
         this.registered = registered;
         setRoles(roles);
     }
 
-    public User(Integer id, String name, String password, boolean enabled, Date registered, Set<Role> roles) {
+    public User(Integer id, String name, String password, Date registered, Set<Role> roles) {
         super(id, name);
         this.password = password;
-        this.enabled = enabled;
         this.registered = registered;
         setRoles(roles);
     }
@@ -62,11 +61,11 @@ public class User extends AbstractNamedEntity {
         return roles;
     }
 
-    public Map<Integer, LocalDateTime> getVotes() {
+    public Map<LocalDateTime, Restaurant> getVotes() {
         return votes;
     }
 
-    public void setVotes(Map<Integer, LocalDateTime> votes) {
+    public void setVotes(Map<LocalDateTime, Restaurant> votes) {
         this.votes = votes;
     }
 
@@ -92,13 +91,5 @@ public class User extends AbstractNamedEntity {
 
     public void setRegistered(Date registered) {
         this.registered = registered;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 }

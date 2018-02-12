@@ -14,7 +14,7 @@ CREATE TABLE users
   name       VARCHAR(255)            NOT NULL,
   password   VARCHAR(255)            NOT NULL,
   registered TIMESTAMP DEFAULT now() NOT NULL,
-  enabled    BOOLEAN DEFAULT TRUE    NOT NULL
+  CONSTRAINT user_name_idx UNIQUE (name)
 );
 
 CREATE TABLE user_roles
@@ -33,6 +33,7 @@ CREATE TABLE restaurants
 
 CREATE TABLE votes
 (
+  id         INTEGER NOT NULL,
   user_id    INTEGER      NOT NULL,
   date_time  TIMESTAMP DEFAULT now() NOT NULL,
   restaurant INTEGER NOT NULL,
