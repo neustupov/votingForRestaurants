@@ -1,14 +1,21 @@
 package ru.neustupov.votingForRestaurants.model;
 
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
+@NamedQueries({
+        @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant r WHERE r.id=:id")
+})
+@Entity
+@Table(name = "restaurants")
 public class Restaurant extends AbstractNamedEntity{
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    public static final String DELETE = "Restaurant.delete";
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     private Set<Menu> menu;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     private Set<Vote> votes;
 
     public Restaurant() {

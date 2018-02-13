@@ -44,10 +44,9 @@ CREATE TABLE votes
 
 CREATE TABLE menus
 (
-  id            INTEGER NOT NULL,
+  id            INTEGER NOT NULL PRIMARY KEY,
   id_rest       INTEGER      NOT NULL,
   add_date     TIMESTAMP DEFAULT now() NOT NULL,
-  meal_id       INTEGER NOT NULL PRIMARY KEY ,
   FOREIGN KEY (id_rest) REFERENCES restaurants (id) ON DELETE CASCADE,
   CONSTRAINT menus_unique_id_datetime_idx UNIQUE (id_rest, add_date)
 );
