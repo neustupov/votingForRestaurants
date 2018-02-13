@@ -3,7 +3,7 @@ package ru.neustupov.votingForRestaurants.model;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-public class Menu {
+public class Menu extends AbstractBaseEntity{
 
     private Integer idRest;
 

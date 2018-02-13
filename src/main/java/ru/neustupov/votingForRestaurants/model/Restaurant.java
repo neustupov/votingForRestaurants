@@ -1,14 +1,15 @@
 package ru.neustupov.votingForRestaurants.model;
 
-import java.time.LocalDateTime;
-import java.util.Map;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.Set;
 
-public class Restaurant extends AbstractNamedEntity {
+public class Restaurant extends AbstractNamedEntity{
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<Menu> menu;
 
-    private Map<Integer, LocalDateTime> votes;
+    private Set<Vote> votes;
 
     public Restaurant() {
     }
@@ -25,11 +26,11 @@ public class Restaurant extends AbstractNamedEntity {
         this.menu = menu;
     }
 
-    public Map<Integer, LocalDateTime> getVotes() {
+    public Set<Vote> getVotes() {
         return votes;
     }
 
-    public void setVotes(Map<Integer, LocalDateTime> votes) {
+    public void setVotes(Set<Vote> votes) {
         this.votes = votes;
     }
 }
