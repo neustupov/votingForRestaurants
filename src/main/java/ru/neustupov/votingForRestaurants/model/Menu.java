@@ -25,6 +25,7 @@ public class Menu extends AbstractBaseEntity{
     @NotNull
     private LocalDateTime addDate;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu")
     private Set<Meal> meals;
 
     @ManyToOne(fetch = FetchType.LAZY)

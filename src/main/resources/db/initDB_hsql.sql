@@ -54,7 +54,8 @@ CREATE TABLE menus
 CREATE TABLE meals
 (
   id    INTEGER      NOT NULL,
+  id_menu INTEGER NOT NULL,
   name  VARCHAR(255) NOT NULL,
   price INT          NOT NULL,
-  FOREIGN KEY (id) REFERENCES menus (meal_id) ON DELETE CASCADE
+  FOREIGN KEY (id_menu) REFERENCES menus (id) ON DELETE CASCADE
 );
