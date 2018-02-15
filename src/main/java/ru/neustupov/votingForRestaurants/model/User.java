@@ -9,14 +9,9 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.*;
 
-@NamedQueries({
-        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id")
-})
 @Entity
 @Table(name = "users")
 public class User extends AbstractNamedEntity {
-
-    public static final String DELETE = "User.delete";
 
     @Column(name = "password", nullable = false)
     @NotBlank

@@ -8,14 +8,9 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@NamedQueries({
-        @NamedQuery(name = Menu.DELETE, query = "DELETE FROM Menu m WHERE m.id=:id")
-})
 @Entity
 @Table(name = "menus")
 public class Menu extends AbstractBaseEntity{
-
-    public static final String DELETE = "Menu.delete";
 
     @Column(name = "id_rest")
     @NotNull

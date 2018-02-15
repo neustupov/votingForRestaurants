@@ -7,14 +7,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-@NamedQueries({
-        @NamedQuery(name = Vote.DELETE, query = "DELETE FROM Vote v WHERE v.id=:id")
-})
 @Entity
 @Table(name = "votes")
 public class Vote extends AbstractBaseEntity {
-
-    public static final String DELETE = "Vote.delete";
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
