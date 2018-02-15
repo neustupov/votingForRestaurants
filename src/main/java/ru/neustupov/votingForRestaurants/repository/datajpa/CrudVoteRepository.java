@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.votingForRestaurants.model.Vote;
 
+import javax.persistence.NamedEntityGraphs;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,4 +35,12 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer>{
     @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT v FROM Vote v WHERE v.id=?1")
     Vote getWithRestaurant(int id);
+
+    @EntityGraph(attributePaths = {"user"}, type = EntityGraph.EntityGraphType.LOAD)
+    @Query("SELECT v FROM Vote v WHERE v.id=?1")
+    Vote getWithUser(int id);
+
+    @EntityGraph(attributePaths = {"restaurant","user"}, type = EntityGraph.EntityGraphType.LOAD)
+    @Query("SELECT v FROM Vote v WHERE v.id=?1")
+    Vote getWithRestaurantAndUser(int id);
 }
