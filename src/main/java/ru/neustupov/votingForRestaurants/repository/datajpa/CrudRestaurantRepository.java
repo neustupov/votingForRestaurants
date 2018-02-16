@@ -33,13 +33,13 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
     //    https://stackoverflow.com/a/46013654/548473
     @EntityGraph(attributePaths = {"votes"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT r FROM Restaurant r WHERE r.id=?1")
-    Vote getWithVotes(int id);
+    Restaurant getWithVotes(int id);
 
     @EntityGraph(attributePaths = {"menus"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT r FROM Restaurant r WHERE r.id=?1")
-    Vote getWithMenus(int id);
+    Restaurant getWithMenus(int id);
 
     @EntityGraph(attributePaths = {"votes","menus"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT r FROM Restaurant r WHERE r.id=?1")
-    Vote getWithVotesAndMenus(int id);
+    Restaurant getWithVotesAndMenus(int id);
 }
