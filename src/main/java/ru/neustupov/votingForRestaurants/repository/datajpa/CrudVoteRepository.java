@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.votingForRestaurants.model.Vote;
 
-import javax.persistence.NamedEntityGraphs;
 import java.util.List;
 import java.util.Optional;
 
