@@ -1,5 +1,7 @@
 package ru.neustupov.votingForRestaurants.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.neustupov.votingForRestaurants.model.Vote;
 import ru.neustupov.votingForRestaurants.repository.VoteRepository;
@@ -9,12 +11,14 @@ import java.util.List;
 
 import static ru.neustupov.votingForRestaurants.util.ValidationUtil.checkNotFoundWithId;
 
+@Service
 public class VoteServiceImpl implements VoteService{
 
     private final VoteRepository repository;
 
-    public VoteServiceImpl(VoteRepository voteRepository){
-        this.repository = voteRepository;
+    @Autowired
+    public VoteServiceImpl(VoteRepository repository){
+        this.repository = repository;
     }
 
     @Override
