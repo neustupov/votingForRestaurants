@@ -2,11 +2,14 @@ package ru.neustupov.votingForRestaurants.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import ru.neustupov.votingForRestaurants.model.Restaurant;
 import ru.neustupov.votingForRestaurants.repository.RestaurantRepository;
 import ru.neustupov.votingForRestaurants.util.exception.NotFoundException;
 
 import java.util.List;
+
+import static ru.neustupov.votingForRestaurants.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService{
@@ -20,36 +23,43 @@ public class RestaurantServiceImpl implements RestaurantService{
 
     @Override
     public Restaurant create(Restaurant restaurant) {
-        return null;
+        Assert.notNull(restaurant, "restaurant must not be null");
+        return repository.save(restaurant);
     }
 
     @Override
     public void delete(int id) throws NotFoundException {
-
+        checkNotFoundWithId(repository.delete(id), id);
     }
 
     @Override
     public Restaurant get(int id) throws NotFoundException {
-        return null;
+        return checkNotFoundWithId(repository.get(id), id);
     }
 
     @Override
     public void update(Restaurant restaurant) {
-
+        Assert.notNull(restaurant, "restaurant must not be null");
+        checkNotFoundWithId(repository.save(restaurant), restaurant.getId());
     }
 
     @Override
     public List<Restaurant> getAll() {
-        return null;
+        return repository.getAll();
     }
 
     @Override
     public Restaurant getWithMenus(int id) {
-        return null;
+        return checkNotFoundWithId(repository.getWithMenus(id), id);
     }
 
     @Override
     public Restaurant getWithVotes(int id) {
-        return null;
+        return checkNotFoundWithId(repository.getWithVotes(id), id);
+    }
+
+    @Override
+    public Restaurant getWithMenusAndVotes(int id) {
+        return checkNotFoundWithId(repository.getWithVotesAndMenus(id), id);
     }
 }

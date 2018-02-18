@@ -20,4 +20,6 @@ public interface RestaurantService {
     Restaurant getWithMenus(int id);
 
     Restaurant getWithVotes(int id);
+
+    Restaurant getWithMenusAndVotes(int id);
 }
