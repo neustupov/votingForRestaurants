@@ -19,8 +19,8 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
-    public boolean delete(int id) {
-        return crudVoteRepository.delete(id) != 0;
+    public boolean delete(int id, int userId, int restId) {
+        return crudVoteRepository.delete(id, userId, restId) != 0;
     }
 
     @Override
