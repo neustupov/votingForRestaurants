@@ -29,6 +29,8 @@ public interface CrudMenuRepository extends JpaRepository<Menu, Integer>{
     @Override
     List<Menu> findAll(Sort sort);
 
+    List<Menu> findAllByIdRest(int idRest);
+
     //    https://stackoverflow.com/a/46013654/548473
     @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT m FROM Menu m WHERE m.id=?1")

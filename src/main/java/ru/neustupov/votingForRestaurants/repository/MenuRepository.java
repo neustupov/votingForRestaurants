@@ -14,6 +14,8 @@ public interface MenuRepository {
     // null if not found
     Menu get(int id);
 
+    List<Menu> getAllByRestId(int restId);
+
     List<Menu> getAll();
 
     default Menu getWithRestaurant(int id) {

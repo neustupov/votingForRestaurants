@@ -9,13 +9,15 @@ public interface MenuService {
 
     Menu create(Menu menu);
 
-    void delete(int id) throws NotFoundException;
+    void delete(int id, int restId) throws NotFoundException;
 
     Menu get(int id) throws NotFoundException;
 
     void update(Menu menu);
 
     List<Menu> getAll();
+
+    List<Menu> getAllByIdRest(int idRest);
 
     Menu getWithMeals(int id);
 

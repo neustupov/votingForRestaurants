@@ -9,7 +9,7 @@ public interface MealService {
 
     Meal create(Meal meal);
 
-    void delete(int id) throws NotFoundException;
+    void delete(int id, int menuId) throws NotFoundException;
 
     Meal get(int id) throws NotFoundException;
 

@@ -9,7 +9,7 @@ public interface VoteService {
 
     Vote create(Vote vote);
 
-    void delete(int id) throws NotFoundException;
+    void delete(int id, int userId, int restId) throws NotFoundException;
 
     Vote get(int id) throws NotFoundException;
 

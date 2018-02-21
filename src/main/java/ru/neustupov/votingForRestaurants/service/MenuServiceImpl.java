@@ -12,13 +12,13 @@ import java.util.List;
 import static ru.neustupov.votingForRestaurants.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
-public class MenuServiceImpl implements MenuService{
+public class MenuServiceImpl implements MenuService {
 
     private final MenuRepository repository;
 
 
     @Autowired
-    public MenuServiceImpl(MenuRepository repository){
+    public MenuServiceImpl(MenuRepository repository) {
         this.repository = repository;
     }
 
@@ -29,8 +29,8 @@ public class MenuServiceImpl implements MenuService{
     }
 
     @Override
-    public void delete(int id) throws NotFoundException {
-        checkNotFoundWithId(repository.delete(id), id);
+    public void delete(int id, int restId) throws NotFoundException {
+        checkNotFoundWithId(repository.delete(id, restId), id);
     }
 
     @Override
@@ -47,6 +47,11 @@ public class MenuServiceImpl implements MenuService{
     @Override
     public List<Menu> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public List<Menu> getAllByIdRest(int idRest) {
+        return repository.getByRestId(idRest);
     }
 
     @Override

@@ -8,7 +8,7 @@ import ru.neustupov.votingForRestaurants.repository.MenuRepository;
 import java.util.List;
 
 @Repository
-public class DataJpaMenuRepositoryImpl implements MenuRepository{
+public class DataJpaMenuRepositoryImpl implements MenuRepository {
 
     @Autowired
     private CrudMenuRepository crudMenuRepository;
@@ -31,6 +31,11 @@ public class DataJpaMenuRepositoryImpl implements MenuRepository{
     @Override
     public List<Menu> getAll() {
         return crudMenuRepository.findAll();
+    }
+
+    @Override
+    public List<Menu> getAllByRestId(int restId) {
+        return crudMenuRepository.findAllByIdRest(restId);
     }
 
     @Override

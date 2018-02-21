@@ -34,6 +34,11 @@ public class DataJpaMealRepositoryImpl implements MealRepository{
     }
 
     @Override
+    public List<Meal> getAllByIdMenu(int idMenu) {
+        return crudMealRepository.findAllByIdMenu(idMenu);
+    }
+
+    @Override
     public Meal getWithMenu(int id) {
         return crudMealRepository.getWithMenu(id);
     }
