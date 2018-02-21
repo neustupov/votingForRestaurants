@@ -19,8 +19,8 @@ public class DataJpaMenuRepositoryImpl implements MenuRepository{
     }
 
     @Override
-    public boolean delete(int id) {
-        return crudMenuRepository.delete(id) != 0;
+    public boolean delete(int id, int restId) {
+        return crudMenuRepository.delete(id, restId) != 0;
     }
 
     @Override

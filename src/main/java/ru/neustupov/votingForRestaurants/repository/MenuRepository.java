@@ -9,7 +9,7 @@ public interface MenuRepository {
     Menu save(Menu menu);
 
     // false if not found
-    boolean delete(int id);
+    boolean delete(int id, int restId);
 
     // null if not found
     Menu get(int id);
