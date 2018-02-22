@@ -30,6 +30,8 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer>{
     @Override
     List<Vote> findAll(Sort sort);
 
+    List<Vote> findAllByRestaurantId(int restId);
+
     //    https://stackoverflow.com/a/46013654/548473
     @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT v FROM Vote v WHERE v.id=?1")

@@ -16,6 +16,8 @@ public interface VoteRepository {
 
     List<Vote> getAll();
 
+    List<Vote> getAllByRest(int restId);
+
     default Vote getWithRestaurant(int id){
         throw new UnsupportedOperationException();
     }
