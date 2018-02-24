@@ -32,6 +32,17 @@ public class Menu extends AbstractBaseEntity{
     public Menu() {
     }
 
+    public Menu(@NotNull Integer idRest, @NotNull LocalDateTime addDate) {
+        this.idRest = idRest;
+        this.addDate = addDate;
+    }
+
+    public Menu(Integer id, @NotNull Integer idRest, @NotNull LocalDateTime addDate) {
+        super(id);
+        this.idRest = idRest;
+        this.addDate = addDate;
+    }
+
     public Menu(LocalDateTime addDate) {
         this.addDate = addDate;
     }
@@ -50,6 +61,14 @@ public class Menu extends AbstractBaseEntity{
 
     public void setMeals(Set<Meal> meals) {
         this.meals = meals;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public Integer getIdRest() {
