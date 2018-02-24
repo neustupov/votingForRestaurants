@@ -51,7 +51,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public List<Menu> getAllByIdRest(int idRest) {
-        return repository.getByRestId(idRest);
+        return repository.getAllByRestId(idRest);
     }
 
     @Override
