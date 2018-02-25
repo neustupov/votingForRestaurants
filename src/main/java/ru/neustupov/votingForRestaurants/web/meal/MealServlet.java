@@ -1,4 +1,4 @@
-package ru.neustupov.votingForRestaurants.web;
+package ru.neustupov.votingForRestaurants.web.meal;
 
 import org.slf4j.Logger;
 import ru.neustupov.votingForRestaurants.model.Meal;
