@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface MenuRepository {
 
-    Menu save(Menu menu);
+    Menu save(Menu menu, int restId);
 
     // false if not found
     boolean delete(int id, int restId);
 
     // null if not found
-    Menu get(int id);
+    Menu get(int id, int restId);
 
     List<Menu> getAllByRestId(int restId);
 
