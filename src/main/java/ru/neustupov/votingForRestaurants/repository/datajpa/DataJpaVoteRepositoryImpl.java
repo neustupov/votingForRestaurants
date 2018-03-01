@@ -13,24 +13,31 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     @Autowired
     private CrudVoteRepository crudVoteRepository;
 
+    @Autowired
+    private CrudUserRepository crudUserRepository;
+
     @Override
-    public Vote save(Vote vote) {
+    public Vote save(Vote vote, int userId) {
+        if (!vote.isNew() && get(vote.getId(), userId) == null) {
+            return null;
+        }
+        vote.setUser(crudUserRepository.getOne(userId));
         return crudVoteRepository.save(vote);
     }
 
     @Override
-    public boolean delete(int id, int userId, int restId) {
-        return crudVoteRepository.delete(id, userId, restId) != 0;
+    public boolean delete(int id, int userId) {
+        return crudVoteRepository.delete(id, userId) != 0;
     }
 
     @Override
-    public Vote get(int id) {
-        return crudVoteRepository.findById(id).orElse(null);
+    public Vote get(int id, int userId) {
+        return crudVoteRepository.findById(id).filter(vote -> vote.getUser().getId() == userId).orElse(null);
     }
 
     @Override
-    public List<Vote> getAll() {
-        return crudVoteRepository.findAll();
+    public List<Vote> getAllByUser(int userId) {
+        return crudVoteRepository.findAllByUserId(userId);
     }
 
     @Override
@@ -39,17 +46,17 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
-    public Vote getWithRestaurant(int id) {
-        return crudVoteRepository.getWithRestaurant(id);
+    public Vote getWithRestaurant(int id, int restId) {
+        return crudVoteRepository.getWithRestaurant(id, restId);
     }
 
     @Override
-    public Vote getWithUser(int id) {
-        return crudVoteRepository.getWithUser(id);
+    public Vote getWithUser(int id, int userId) {
+        return crudVoteRepository.getWithUser(id, userId);
     }
 
     @Override
-    public Vote getWithRestaurantAndUser(int id) {
-        return crudVoteRepository.getWithRestaurantAndUser(id);
+    public Vote getWithRestaurantAndUser(int id, int restId, int userId) {
+        return crudVoteRepository.getWithRestaurantAndUser(id, restId, userId);
     }
 }
