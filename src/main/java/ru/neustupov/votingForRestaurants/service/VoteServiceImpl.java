@@ -22,44 +22,50 @@ public class VoteServiceImpl implements VoteService{
     }
 
     @Override
-    public Vote create(Vote vote) {
+    public Vote create(Vote vote, int userId) {
         Assert.notNull(vote, "vote must not be null");
-        return repository.save(vote);
+        return repository.save(vote, userId);
     }
 
     @Override
-    public void delete(int id, int userId, int idRest) throws NotFoundException {
-        checkNotFoundWithId(repository.delete(id, userId, idRest), id);
+    public void delete(int id, int userId) throws NotFoundException {
+        checkNotFoundWithId(repository.delete(id, userId), id);
     }
 
     @Override
-    public Vote get(int id) throws NotFoundException {
-        return checkNotFoundWithId(repository.get(id), id);
+    public Vote get(int id, int userId) throws NotFoundException {
+        return checkNotFoundWithId(repository.get(id, userId), id);
     }
 
     @Override
-    public void update(Vote vote) {
+    public void update(Vote vote, int userId) {
         Assert.notNull(vote, "vote must not be null");
-        checkNotFoundWithId(repository.save(vote), vote.getId());
+        checkNotFoundWithId(repository.save(vote, userId), vote.getId());
     }
 
     @Override
-    public List<Vote> getAll() {
-        return repository.getAll();
+    public List<Vote> getAllByUser(int userId) {
+        return repository.getAllByUser(userId);
     }
 
     @Override
-    public Vote getWithUser(int id) {
-        return checkNotFoundWithId(repository.getWithUser(id), id);
+    public List<Vote> getAllByRest(int restId) {
+        return repository.getAllByRest(restId);
     }
 
     @Override
-    public Vote getWithRestaurant(int id) {
-        return checkNotFoundWithId(repository.getWithRestaurant(id), id);
+    public Vote getWithUser(int id, int userId) {
+        return checkNotFoundWithId(
+                repository.getWithUser(id, userId), id);
     }
 
     @Override
-    public Vote getWithUserAndRestaurant(int id) {
-        return checkNotFoundWithId(repository.getWithRestaurantAndUser(id), id);
+    public Vote getWithRestaurant(int id, int restId) {
+        return checkNotFoundWithId(repository.getWithRestaurant(id, restId), id);
+    }
+
+    @Override
+    public Vote getWithRestaurantAndUser(int id, int restId, int userId) {
+        return checkNotFoundWithId(repository.getWithRestaurantAndUser(id, restId, userId), id);
     }
 }
