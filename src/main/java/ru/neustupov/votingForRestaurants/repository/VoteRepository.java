@@ -6,25 +6,25 @@ import java.util.List;
 
 public interface VoteRepository {
 
-    Vote save(Vote vote);
+    Vote save(Vote vote, int userId);
 
     // false if not found
-    boolean delete(int id, int userId, int restId);
+    boolean delete(int id, int userId);
 
     // null if not found
-    Vote get(int id);
+    Vote get(int id, int userId);
 
-    List<Vote> getAll();
+    List<Vote> getAllByUser(int userId);
 
     List<Vote> getAllByRest(int restId);
 
-    default Vote getWithRestaurant(int id){
+    default Vote getWithRestaurant(int id, int restId){
         throw new UnsupportedOperationException();
     }
 
-    default Vote getWithUser(int id){
+    default Vote getWithUser(int id, int userId){
         throw new UnsupportedOperationException();
     }
 
-    default Vote getWithRestaurantAndUser(int id){throw new UnsupportedOperationException();}
+    default Vote getWithRestaurantAndUser(int id, int restId, int userId){throw new UnsupportedOperationException();}
 }
