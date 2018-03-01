@@ -17,8 +17,8 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer>{
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM Vote v WHERE v.id=:id AND v.user.id=:userId AND v.restaurant.id=:restId")
-    int delete(@Param("id") int id, @Param("userId") int userId, @Param("restId") int restId);
+    @Query("DELETE FROM Vote v WHERE v.id=:id AND v.user.id=:userId")
+    int delete(@Param("id") int id, @Param("userId") int userId);
 
     @Override
     @Transactional
@@ -27,21 +27,20 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer>{
     @Override
     Optional<Vote> findById(Integer id);
 
-    @Override
-    List<Vote> findAll(Sort sort);
+    List<Vote> findAllByUserId(int userId);
 
     List<Vote> findAllByRestaurantId(int restId);
 
     //    https://stackoverflow.com/a/46013654/548473
     @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT v FROM Vote v WHERE v.id=?1")
-    Vote getWithRestaurant(int id);
+    Vote getWithRestaurant(int id, int restId);
 
     @EntityGraph(attributePaths = {"user"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT v FROM Vote v WHERE v.id=?1")
-    Vote getWithUser(int id);
+    Vote getWithUser(int id, int userId);
 
     @EntityGraph(attributePaths = {"restaurant","user"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT v FROM Vote v WHERE v.id=?1")
-    Vote getWithRestaurantAndUser(int id);
+    Vote getWithRestaurantAndUser(int id, int restId, int userId);
 }
