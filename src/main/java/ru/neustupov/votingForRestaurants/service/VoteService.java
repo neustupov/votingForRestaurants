@@ -7,19 +7,21 @@ import java.util.List;
 
 public interface VoteService {
 
-    Vote create(Vote vote);
+    Vote create(Vote vote, int userId);
 
-    void delete(int id, int userId, int restId) throws NotFoundException;
+    void delete(int id, int userId) throws NotFoundException;
 
-    Vote get(int id) throws NotFoundException;
+    Vote get(int id, int userId) throws NotFoundException;
 
-    void update(Vote vote);
+    void update(Vote vote, int userId);
 
-    List<Vote> getAll();
+    List<Vote> getAllByUser(int userId);
 
-    Vote getWithUser(int id);
+    List<Vote> getAllByRest(int restId);
 
-    Vote getWithRestaurant(int id);
+    Vote getWithUser(int id, int userId);
 
-    Vote getWithUserAndRestaurant(int id);
+    Vote getWithRestaurant(int id, int restId);
+
+    Vote getWithRestaurantAndUser(int id, int restId, int userId);
 }
