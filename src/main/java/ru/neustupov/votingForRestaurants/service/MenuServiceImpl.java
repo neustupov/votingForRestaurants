@@ -23,9 +23,9 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Menu create(Menu menu) {
+    public Menu create(Menu menu, int restId) {
         Assert.notNull(menu, "menu must not be null");
-        return repository.save(menu);
+        return repository.save(menu, restId);
     }
 
     @Override
@@ -34,14 +34,14 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Menu get(int id) throws NotFoundException {
-        return checkNotFoundWithId(repository.get(id), id);
+    public Menu get(int id, int restId) throws NotFoundException {
+        return checkNotFoundWithId(repository.get(id, restId), id);
     }
 
     @Override
-    public void update(Menu menu) {
+    public void update(Menu menu, int restId) {
         Assert.notNull(menu, "menu must not be null");
-        checkNotFoundWithId(repository.save(menu), menu.getId());
+        checkNotFoundWithId(repository.save(menu, restId), menu.getId());
     }
 
     @Override
