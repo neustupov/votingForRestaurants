@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface MenuService {
 
-    Menu create(Menu menu);
+    Menu create(Menu menu, int restId);
 
     void delete(int id, int restId) throws NotFoundException;
 
-    Menu get(int id) throws NotFoundException;
+    Menu get(int id, int restId) throws NotFoundException;
 
-    void update(Menu menu);
+    void update(Menu menu, int restId);
 
     List<Menu> getAll();
 
