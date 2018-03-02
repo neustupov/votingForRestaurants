@@ -14,7 +14,7 @@ public class DataJpaMenuRepositoryImpl implements MenuRepository {
     private CrudMenuRepository crudMenuRepository;
 
     @Override
-    public Menu save(Menu menu) {
+    public Menu save(Menu menu, int restId) {
         return crudMenuRepository.save(menu);
     }
 
@@ -24,7 +24,7 @@ public class DataJpaMenuRepositoryImpl implements MenuRepository {
     }
 
     @Override
-    public Menu get(int id) {
+    public Menu get(int id, int restId) {
         return crudMenuRepository.findById(id).orElse(null);
     }
 
