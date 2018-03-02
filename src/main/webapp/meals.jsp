@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>Show All Meals</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <table border=1>
