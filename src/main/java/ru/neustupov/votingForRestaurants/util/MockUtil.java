@@ -1,6 +1,7 @@
 package ru.neustupov.votingForRestaurants.util;
 
 import ru.neustupov.votingForRestaurants.model.Meal;
+import ru.neustupov.votingForRestaurants.model.Restaurant;
 import ru.neustupov.votingForRestaurants.model.Vote;
 
 import java.time.LocalDateTime;
@@ -19,5 +20,11 @@ public class MockUtil {
     public static final List<Vote> VOTES = Arrays.asList(
             new Vote(0, LocalDateTime.of(2015, Month.MAY, 30, 10, 0)),
             new Vote(1, LocalDateTime.of(2015, Month.JULY, 10, 11, 0))
+    );
+
+    public static final List<Restaurant> RESTAURANTS = Arrays.asList(
+            new Restaurant(0, "Topaz"),
+            new Restaurant(1,"Gruzia"),
+            new Restaurant(2, "Afonja")
     );
 }
