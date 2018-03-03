@@ -16,18 +16,15 @@ public interface CrudMenuRepository extends JpaRepository<Menu, Integer>{
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM Menu m WHERE m.id=:id AND m.idRest=:restId")
+    @Query("DELETE FROM Menu m WHERE m.id=:id AND m.restId=:restId")
     int delete(@Param("id") int id, @Param("restId") int restId);
 
     @Override
     @Transactional
     Menu save(Menu user);
 
-    @Override
-    Optional<Menu> findById(Integer id);
-
-    @Override
-    List<Menu> findAll(Sort sort);
+    @Query("SELECT m FROM Menu m WHERE m.id=:id AND m.restId=:restId")
+    Optional<Menu> get(@Param("id") int id,@Param("restId") int restId);
 
     List<Menu> findAllByIdRest(int idRest);
 
