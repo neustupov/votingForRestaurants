@@ -21,7 +21,7 @@
             <td><c:out value="${restaurant.id}"/></td>
             <td><c:out value="${restaurant.name}"/></td>
             <td><a href="menus?action=all&id=${restaurant.id}">Show the menu</a></td>
-            <td><a href="votes?action=create&id=${restaurant.id}">Show the menu</a></td>
+            <td><a href="votes?action=create">Votes for this Restaurant</a></td>
         </tr>
     </c:forEach>
 </table>
