@@ -14,9 +14,7 @@ public interface MenuRepository {
     // null if not found
     Menu get(int id, int restId);
 
-    List<Menu> getAllByRestId(int restId);
-
-    List<Menu> getAll();
+    List<Menu> getAll(int restId);
 
     default Menu getWithRestaurant(int id) {
         throw new UnsupportedOperationException();
