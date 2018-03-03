@@ -45,4 +45,14 @@
         <servlet-name>restaurantServlet</servlet-name>
         <url-pattern>/restaurants</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>menuServlet</servlet-name>
+        <servlet-class>ru.neustupov.votingForRestaurants.web.menu.MenuServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>menuServlet</servlet-name>
+        <url-pattern>/menus</url-pattern>
+    </servlet-mapping>
 </web-app>
