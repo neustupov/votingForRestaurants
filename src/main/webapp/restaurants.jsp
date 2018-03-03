@@ -5,25 +5,25 @@
 <html>
 <head>
     <title>Show All Restaurants</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<table border=1>
+<table border="1" cellpadding="8" cellspacing="0">
     <thead>
     <tr>
         <th>Id</th>
         <th>Name</th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
-    <tbody>
     <c:forEach items="${restaurantsList}" var="restaurant">
         <tr>
             <td><c:out value="${restaurant.id}"/></td>
             <td><c:out value="${restaurant.name}"/></td>
+            <td><a href="menus?action=all&id=${restaurant.id}">Show the menu</a></td>
+            <td><a href="votes?action=create&id=${restaurant.id}">Show the menu</a></td>
         </tr>
     </c:forEach>
-    </tbody>
 </table>
-<h3><a href="index.html">Home</a></h3>
 </body>
 </html>
