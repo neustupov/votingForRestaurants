@@ -16,7 +16,6 @@ public class MenuServiceImpl implements MenuService {
 
     private final MenuRepository repository;
 
-
     @Autowired
     public MenuServiceImpl(MenuRepository repository) {
         this.repository = repository;
@@ -45,13 +44,8 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<Menu> getAll() {
-        return repository.getAll();
-    }
-
-    @Override
-    public List<Menu> getAllByIdRest(int idRest) {
-        return repository.getAllByRestId(idRest);
+    public List<Menu> getAll(int idRest) {
+        return repository.getAll(idRest);
     }
 
     @Override
