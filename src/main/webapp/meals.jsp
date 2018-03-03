@@ -5,10 +5,9 @@
 <html>
 <head>
     <title>Show All Meals</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<table border=1>
+<table border="1" cellpadding="8" cellspacing="0">
     <thead>
     <tr>
         <th>Id</th>
@@ -28,6 +27,6 @@
     </c:forEach>
     </tbody>
 </table>
-<h3><a href="index.html">Home</a></h3>
+<h3><a href="menus?action=all&id=${restId}">Back to Menus</a></h3>
 </body>
 </html>
