@@ -25,16 +25,11 @@ public class DataJpaMenuRepositoryImpl implements MenuRepository {
 
     @Override
     public Menu get(int id, int restId) {
-        return crudMenuRepository.findById(id).orElse(null);
+        return crudMenuRepository.get(id, restId).orElse(null);
     }
 
     @Override
-    public List<Menu> getAll() {
-        return crudMenuRepository.findAll();
-    }
-
-    @Override
-    public List<Menu> getAllByRestId(int restId) {
+    public List<Menu> getAll(int restId) {
         return crudMenuRepository.findAllByIdRest(restId);
     }
 
