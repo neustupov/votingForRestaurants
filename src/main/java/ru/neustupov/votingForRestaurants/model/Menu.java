@@ -14,7 +14,7 @@ public class Menu extends AbstractBaseEntity{
 
     @Column(name = "id_rest")
     @NotNull
-    private Integer idRest;
+    private Integer restId;
 
     @Column(name = "add_date", columnDefinition = "timestamp default now()")
     @NotNull
@@ -32,14 +32,14 @@ public class Menu extends AbstractBaseEntity{
     public Menu() {
     }
 
-    public Menu(@NotNull Integer idRest, @NotNull LocalDateTime addDate) {
-        this.idRest = idRest;
+    public Menu(@NotNull Integer restId, @NotNull LocalDateTime addDate) {
+        this.restId = restId;
         this.addDate = addDate;
     }
 
-    public Menu(Integer id, @NotNull Integer idRest, @NotNull LocalDateTime addDate) {
+    public Menu(Integer id, @NotNull Integer restId, @NotNull LocalDateTime addDate) {
         super(id);
-        this.idRest = idRest;
+        this.restId = restId;
         this.addDate = addDate;
     }
 
@@ -71,11 +71,11 @@ public class Menu extends AbstractBaseEntity{
         this.restaurant = restaurant;
     }
 
-    public Integer getIdRest() {
-        return idRest;
+    public Integer getRestId() {
+        return restId;
     }
 
-    public void setIdRest(Integer id_rest) {
-        this.idRest = idRest;
+    public void setRestId(Integer id_rest) {
+        this.restId = restId;
     }
 }
