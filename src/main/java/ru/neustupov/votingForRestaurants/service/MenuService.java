@@ -15,9 +15,7 @@ public interface MenuService {
 
     void update(Menu menu, int restId);
 
-    List<Menu> getAll();
-
-    List<Menu> getAllByIdRest(int idRest);
+    List<Menu> getAll(int restId);
 
     Menu getWithMeals(int id);
 
