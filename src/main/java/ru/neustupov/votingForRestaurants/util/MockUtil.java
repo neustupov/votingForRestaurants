@@ -1,6 +1,7 @@
 package ru.neustupov.votingForRestaurants.util;
 
 import ru.neustupov.votingForRestaurants.model.Meal;
+import ru.neustupov.votingForRestaurants.model.Menu;
 import ru.neustupov.votingForRestaurants.model.Restaurant;
 import ru.neustupov.votingForRestaurants.model.Vote;
 
@@ -26,5 +27,12 @@ public class MockUtil {
             new Restaurant(0, "Topaz"),
             new Restaurant(1,"Gruzia"),
             new Restaurant(2, "Afonja")
+    );
+
+    public static final List<Menu> MENUS = Arrays.asList(
+            new Menu(0, 0, LocalDateTime.of(2015, Month.MAY, 29, 10, 0)),
+            new Menu(1, 0, LocalDateTime.of(2015, Month.MAY, 30, 10, 0)),
+            new Menu(2, 1, LocalDateTime.of(2015, Month.MAY, 29, 10, 0)),
+            new Menu(3, 2, LocalDateTime.of(2015, Month.MAY, 29, 10, 0))
     );
 }
