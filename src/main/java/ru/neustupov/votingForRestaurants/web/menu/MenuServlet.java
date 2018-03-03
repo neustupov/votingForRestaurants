@@ -27,25 +27,13 @@ public class MenuServlet extends HttpServlet{
         String action = request.getParameter("action");
 
         switch (action == null ? "all" : action) {
-            /*case "delete":
-                int id = getId(request);
-                mealController.delete(id);
-                response.sendRedirect("meals");
-                break;
-            case "create":
-            case "update":
-                final Meal meal = "create".equals(action) ?
-                        new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 1000) :
-                        mealController.get(getId(request));
-                request.setAttribute("meal", meal);
-                request.getRequestDispatcher("/mealForm.jsp").forward(request, response);
-                break;*/
             case "all":
             default:
                 Integer restId = Integer.parseInt(request.getParameter("id"));
                 List<Menu> filteredMenus = menus.stream()
                         .filter(menu -> (menu.getRestId() == restId))
                         .collect(Collectors.toList());
+                request.setAttribute("restId", restId);
                 request.setAttribute("menusList", filteredMenus);
                 request.getRequestDispatcher("/menus.jsp").forward(request, response);
                 break;
