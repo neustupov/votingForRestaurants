@@ -19,11 +19,6 @@ public class InMemoryVoteRepository implements VoteRepository{
     private Map<Integer, Map<Integer, Vote>> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
 
-    {
-        MockUtil.VOTES.forEach(vote -> save(vote, USER_ID));
-    }
-
-
     @Override
     public Vote save(Vote vote, int userId) {
         Map<Integer, Vote> votes = repository.computeIfAbsent(userId, ConcurrentHashMap::new);
