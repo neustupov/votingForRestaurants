@@ -2,6 +2,7 @@ package ru.neustupov.votingForRestaurants.repository.datajpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.votingForRestaurants.model.Meal;
 import ru.neustupov.votingForRestaurants.repository.MealRepository;
 
@@ -13,29 +14,26 @@ public class DataJpaMealRepositoryImpl implements MealRepository{
     @Autowired
     private CrudMealRepository crudMealRepository;
 
+    @Transactional
     @Override
-    public Meal save(Meal meal) {
+    public Meal save(Meal meal, int menuId) {
         return crudMealRepository.save(meal);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id, int menuId) {
         return crudMealRepository.delete(id, menuId) != 0;
     }
 
     @Override
-    public Meal get(int id) {
-        return crudMealRepository.findById(id).orElse(null);
+    public Meal get(int id, int menuId) {
+        return crudMealRepository.get(id, menuId).orElse(null);
     }
 
     @Override
-    public List<Meal> getAll() {
-        return crudMealRepository.findAll();
-    }
-
-    @Override
-    public List<Meal> getAllByIdMenu(int idMenu) {
-        return crudMealRepository.findAllByIdMenu(idMenu);
+    public List<Meal> getAll(int menuId) {
+        return crudMealRepository.getAll(menuId);
     }
 
     @Override
