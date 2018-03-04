@@ -1,8 +1,8 @@
 package ru.neustupov.votingForRestaurants.web.restaurant;
 
 import org.slf4j.Logger;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.neustupov.votingForRestaurants.model.Restaurant;
 
 import javax.servlet.ServletConfig;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -20,20 +19,13 @@ public class RestaurantServlet extends HttpServlet {
 
     private static final Logger log = getLogger(RestaurantServlet.class);
 
-    private ConfigurableApplicationContext springContext;
     private RestaurantRestController restController;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml");
-        restController = springContext.getBean(RestaurantRestController.class);
-    }
-
-    @Override
-    public void destroy() {
-        springContext.close();
-        super.destroy();
+        WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(this.getServletContext());
+        restController = ctx.getBean(RestaurantRestController.class);
     }
 
     @Override
