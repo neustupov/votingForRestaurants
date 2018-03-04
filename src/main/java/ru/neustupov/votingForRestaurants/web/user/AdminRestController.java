@@ -25,7 +25,6 @@ public class AdminRestController {
     }
 
     public List<User> getAll() {
-        log.info("getAll");
         return service.getAll();
     }
 
