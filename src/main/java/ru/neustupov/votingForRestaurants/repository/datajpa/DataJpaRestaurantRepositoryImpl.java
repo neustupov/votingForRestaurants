@@ -2,6 +2,7 @@ package ru.neustupov.votingForRestaurants.repository.datajpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.votingForRestaurants.model.Restaurant;
 import ru.neustupov.votingForRestaurants.repository.RestaurantRepository;
 
@@ -13,11 +14,13 @@ public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository{
     @Autowired
     private CrudRestaurantRepository crudRestaurantRepository;
 
+    @Transactional
     @Override
     public Restaurant save(Restaurant restaurant) {
         return crudRestaurantRepository.save(restaurant);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         return crudRestaurantRepository.delete(id) != 0;
