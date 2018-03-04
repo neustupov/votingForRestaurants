@@ -21,7 +21,7 @@
         <tr>
             <td><c:out value="${meal.id}"/></td>
             <td><c:out value="${meal.name}"/></td>
-            <td><c:out value="${meal.idMenu}"/></td>
+            <td><c:out value="${meal.menuId}"/></td>
             <td><c:out value="${meal.price}"/></td>
         </tr>
     </c:forEach>
