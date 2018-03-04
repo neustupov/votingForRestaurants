@@ -4,12 +4,8 @@ import org.springframework.stereotype.Repository;
 import ru.neustupov.votingForRestaurants.model.Role;
 import ru.neustupov.votingForRestaurants.model.User;
 import ru.neustupov.votingForRestaurants.repository.UserRepository;
-import sun.util.calendar.LocalGregorianCalendar;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
