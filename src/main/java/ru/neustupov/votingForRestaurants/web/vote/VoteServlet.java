@@ -1,8 +1,8 @@
 package ru.neustupov.votingForRestaurants.web.vote;
 
 import org.slf4j.Logger;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.neustupov.votingForRestaurants.AuthorizedUser;
 import ru.neustupov.votingForRestaurants.model.Restaurant;
 import ru.neustupov.votingForRestaurants.model.User;
@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -26,7 +25,6 @@ public class VoteServlet extends HttpServlet {
 
     private static final Logger log = getLogger(VoteServlet.class);
 
-    private ConfigurableApplicationContext springContext;
     private RestaurantRestController restaurantRestController;
     private VoteRestController voteRestController;
     private AdminRestController adminRestController;
@@ -34,16 +32,10 @@ public class VoteServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml");
-        restaurantRestController = springContext.getBean(RestaurantRestController.class);
-        voteRestController = springContext.getBean(VoteRestController.class);
-        adminRestController = springContext.getBean(AdminRestController.class);
-    }
-
-    @Override
-    public void destroy() {
-        springContext.close();
-        super.destroy();
+        WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(this.getServletContext());
+        restaurantRestController = ctx.getBean(RestaurantRestController.class);
+        voteRestController = ctx.getBean(VoteRestController.class);
+        adminRestController = ctx.getBean(AdminRestController.class);
     }
 
     @Override
@@ -60,15 +52,8 @@ public class VoteServlet extends HttpServlet {
                         Integer.parseInt(request.getParameter("restId")));
                 Vote vote = new Vote(user, LocalDateTime.now(), restaurant);
                 voteRestController.create(vote);
-                /*request.setAttribute("restaurantsList", restaurantList);
-                request.getRequestDispatcher("/restaurants.jsp").forward(request, response);*/
                 response.sendRedirect("restaurants");
-                break;/*
-            case "all":
-            default:
-                request.setAttribute("votes", voteRestController.getAll());
-                request.getRequestDispatcher("/votes.jsp").forward(request, response);
-                break;*/
+                break;
         }
     }
 
