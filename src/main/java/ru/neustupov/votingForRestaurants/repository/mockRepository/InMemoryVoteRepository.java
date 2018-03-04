@@ -1,9 +1,14 @@
 package ru.neustupov.votingForRestaurants.repository.mockRepository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+import ru.neustupov.votingForRestaurants.AuthorizedUser;
 import ru.neustupov.votingForRestaurants.model.Vote;
 import ru.neustupov.votingForRestaurants.repository.VoteRepository;
-import ru.neustupov.votingForRestaurants.util.MockUtil;
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -12,12 +17,20 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static ru.neustupov.votingForRestaurants.repository.mockRepository.InMemoryUserRepository.USER_ID;
-
+@Repository
 public class InMemoryVoteRepository implements VoteRepository{
+
+    private static final Logger log = LoggerFactory.getLogger(InMemoryVoteRepository.class);
 
     private Map<Integer, Map<Integer, Vote>> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
+
+    {
+        save(new Vote(LocalDateTime.of(2015, Month.MAY, 30, 10, 0)),
+                AuthorizedUser.id());
+        save(new Vote(LocalDateTime.of(2015, Month.JULY, 10, 11, 0)),
+                AuthorizedUser.id());
+    }
 
     @Override
     public Vote save(Vote vote, int userId) {
@@ -25,6 +38,7 @@ public class InMemoryVoteRepository implements VoteRepository{
         if (vote.isNew()) {
             vote.setId(counter.incrementAndGet());
             votes.put(vote.getId(), vote);
+            log.info("create {} for user {} in InMemoryRepository", vote, userId);
             return vote;
         }
         return votes.computeIfPresent(vote.getId(), (id, oldVote) -> vote);
@@ -72,6 +86,6 @@ public class InMemoryVoteRepository implements VoteRepository{
         return votes == null ?
                 Stream.empty() :
                 votes.values().stream()
-                        .sorted(Comparator.comparing(Vote::getDateTime).reversed());
+                        .sorted(Comparator.comparing(Vote::getDateTime));
     }
 }
