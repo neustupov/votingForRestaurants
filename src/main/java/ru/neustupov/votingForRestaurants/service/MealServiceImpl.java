@@ -22,9 +22,9 @@ public class MealServiceImpl implements MealService{
     }
 
     @Override
-    public Meal create(Meal meal) {
+    public Meal create(Meal meal, int menuId) {
         Assert.notNull(meal, "meal must not be null");
-        return repository.save(meal);
+        return repository.save(meal, menuId);
     }
 
     @Override
@@ -33,19 +33,19 @@ public class MealServiceImpl implements MealService{
     }
 
     @Override
-    public Meal get(int id) throws NotFoundException {
-        return checkNotFoundWithId(repository.get(id), id);
+    public Meal get(int id, int menuId) throws NotFoundException {
+        return checkNotFoundWithId(repository.get(id, menuId), id);
     }
 
     @Override
-    public void update(Meal meal) {
+    public void update(Meal meal, int menuId) {
         Assert.notNull(meal, "meal must not be null");
-        checkNotFoundWithId(repository.save(meal), meal.getId());
+        checkNotFoundWithId(repository.save(meal, menuId), meal.getId());
     }
 
     @Override
-    public List<Meal> getAll() {
-        return repository.getAll();
+    public List<Meal> getAll(int menuId) {
+        return repository.getAll(menuId);
     }
 
     @Override
