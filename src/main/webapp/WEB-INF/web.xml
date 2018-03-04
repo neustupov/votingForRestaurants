@@ -6,6 +6,17 @@
 
     <display-name>Voting For Restaurant</display-name>
 
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:spring/spring-app.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>mealServlet</servlet-name>
         <servlet-class>ru.neustupov.votingForRestaurants.web.meal.MealServlet</servlet-class>
