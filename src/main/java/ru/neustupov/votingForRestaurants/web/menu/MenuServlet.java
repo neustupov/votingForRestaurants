@@ -1,8 +1,8 @@
 package ru.neustupov.votingForRestaurants.web.menu;
 
 import org.slf4j.Logger;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.neustupov.votingForRestaurants.model.Menu;
 
 import javax.servlet.ServletConfig;
@@ -19,20 +19,13 @@ public class MenuServlet extends HttpServlet{
 
     private static final Logger log = getLogger(MenuServlet.class);
 
-    private ConfigurableApplicationContext springContext;
     private MenuRestController restController;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml");
-        restController = springContext.getBean(MenuRestController.class);
-    }
-
-    @Override
-    public void destroy() {
-        springContext.close();
-        super.destroy();
+        WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(this.getServletContext());
+        restController = ctx.getBean(MenuRestController.class);
     }
 
     @Override
