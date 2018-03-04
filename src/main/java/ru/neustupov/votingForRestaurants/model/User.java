@@ -86,4 +86,16 @@ public class User extends AbstractNamedEntity {
     public void setRegistered(Date registered) {
         this.registered = registered;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", id=" + id +
+                ", registered=" + registered +
+                ", roles=" + roles +
+                ", votes=" + votes +
+                '}';
+    }
 }
