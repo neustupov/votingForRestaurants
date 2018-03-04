@@ -35,7 +35,7 @@ public class MenuRestController {
     }
 
     public List<Menu> getAll(int restId) {
-        log.info("getAll for restaurant {}", restId);
+        log.info("getAll menus for restaurant {}", restId);
         return service.getAll(restId);
     }
 
