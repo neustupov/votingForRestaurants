@@ -16,20 +16,18 @@ public interface CrudMealRepository extends JpaRepository<Meal, Integer>{
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM Meal m WHERE m.id=:id AND m.idMenu=:menuId")
+    @Query("DELETE FROM Meal m WHERE m.id=:id AND m.menuId=:menuId")
     int delete(@Param("id") int id, @Param("menuId") int menuId);
 
     @Override
     @Transactional
     Meal save(Meal user);
 
-    @Override
-    Optional<Meal> findById(Integer id);
+    @Query("SELECT m FROM Meal m WHERE m.id=:id AND m.menuId=:menuId")
+    Optional<Meal> get(@Param("id") int id, @Param("menuId") int menuId);
 
-    @Override
-    List<Meal> findAll(Sort sort);
-
-    List<Meal> findAllByIdMenu(int idMenu);
+    @Query("SELECT m FROM Meal m WHERE m.menuId=:menuId")
+    List<Meal> getAll(@Param("menuId") int menuId);
 
     //    https://stackoverflow.com/a/46013654/548473
     @EntityGraph(attributePaths = {"menu"}, type = EntityGraph.EntityGraphType.LOAD)
