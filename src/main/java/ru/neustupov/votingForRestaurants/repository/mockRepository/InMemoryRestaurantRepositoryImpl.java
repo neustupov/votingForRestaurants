@@ -3,7 +3,6 @@ package ru.neustupov.votingForRestaurants.repository.mockRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.votingForRestaurants.model.Restaurant;
 import ru.neustupov.votingForRestaurants.repository.RestaurantRepository;
 
