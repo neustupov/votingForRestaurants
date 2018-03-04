@@ -12,7 +12,7 @@ public class Meal extends AbstractNamedEntity {
 
     @Column(name = "id_menu")
     @NotNull
-    private Integer idMenu;
+    private Integer menuId;
 
     @Column(name = "price")
     @NotNull
@@ -27,23 +27,29 @@ public class Meal extends AbstractNamedEntity {
     public Meal() {
     }
 
-    public Meal(@NotNull Integer idMenu, @NotNull Integer price) {
-        this.idMenu = idMenu;
+    public Meal(@NotNull Integer menuId, @NotNull Integer price) {
+        this.menuId = menuId;
         this.price = price;
     }
 
-    public Meal(Integer id, String name, @NotNull Integer idMenu, @NotNull Integer price) {
+    public Meal(Integer menuId, String name, Integer price){
+        super(null, name);
+        this.menuId = menuId;
+        this.price = price;
+    }
+
+    public Meal(Integer id, String name, @NotNull Integer menuId, @NotNull Integer price) {
         super(id, name);
-        this.idMenu = idMenu;
+        this.menuId = menuId;
         this.price = price;
     }
 
-    public Integer getIdMenu() {
-        return idMenu;
+    public Integer getMenuId() {
+        return menuId;
     }
 
-    public void setIdMenu(Integer idMenu) {
-        this.idMenu = idMenu;
+    public void setMenuId(Integer menuId) {
+        this.menuId = menuId;
     }
 
     public Integer getPrice() {
