@@ -32,7 +32,6 @@ public class RestaurantRestController {
     }
 
     public void update(Restaurant restaurant, int id) {
-        int userId = AuthorizedUser.id();
         log.info("update {} with id = {}", restaurant, id);
         assureIdConsistent(restaurant, id);
         service.update(restaurant);
@@ -49,7 +48,8 @@ public class RestaurantRestController {
     }
 
     public List<Restaurant> getAll() {
-        log.info("getAll");
+        int userId = AuthorizedUser.id();
+        log.info("getAll restaurants for user{}", userId);
         return service.getAll();
     }
 }
