@@ -14,6 +14,11 @@ public class Restaurant extends AbstractNamedEntity{
     private Set<Vote> votes;
 
     public Restaurant() {
+        super(null, null);
+    }
+
+    public Restaurant(String name){
+        super(null, name);
     }
 
     public Restaurant(Integer id, String name) {
@@ -34,5 +39,15 @@ public class Restaurant extends AbstractNamedEntity{
 
     public void setVotes(Set<Vote> votes) {
         this.votes = votes;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "menus=" + menus +
+                ", votes=" + votes +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
