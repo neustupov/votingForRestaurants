@@ -29,18 +29,51 @@ public class MealServlet extends HttpServlet {
     }
 
     @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
+        int restId = Integer.parseInt(request.getParameter("restId"));
+        int menuId = Integer.parseInt(request.getParameter("menuId"));
+        if (action == null) {
+            Meal meal = new Meal(Integer.parseInt(request.getParameter("menuId")),
+                    request.getParameter("name"),
+                    Integer.parseInt(request.getParameter("price")));
+
+            if (request.getParameter("id").isEmpty()) {
+                restController.create(meal, Integer.parseInt(request.getParameter("menuId")));
+            } else {
+                restController.update(meal, Integer.parseInt(request.getParameter("menuId")));
+            }
+            request.setAttribute("menuId", menuId);
+            request.setAttribute("restId", restId);
+            request.setAttribute("mealsList", restController.getAll(Integer.parseInt(request.getParameter("menuId"))));
+            request.getRequestDispatcher("/meals.jsp").forward(request, response);
+        }
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("redirect to meals");
 
         String action = request.getParameter("action");
 
         switch (action == null ? "all" : action) {
+            case "create":
+            case "update":
+                final Meal meal = "create".equals(action) ?
+                        new Meal() :
+                        restController.get(Integer.parseInt(request.getParameter("id")), Integer.parseInt(request.getParameter("menuId")));
+                request.setAttribute("meal", meal);
+                request.setAttribute("menuId", Integer.parseInt(request.getParameter("menuId")));
+                request.setAttribute("restId", Integer.parseInt(request.getParameter("restId")));
+                request.getRequestDispatcher("/mealForm.jsp").forward(request, response);
+                break;
             case "all":
             default:
                 Integer restId = Integer.parseInt(request.getParameter("restId"));
-                Integer menuId = Integer.parseInt(request.getParameter("id"));
-                List<Meal> meals = restController.getAll(menuId);
+                List<Meal> meals = restController.getAll(Integer.parseInt(request.getParameter("menuId")));
                 request.setAttribute("restId", restId);
+                request.setAttribute("menuId", Integer.parseInt(request.getParameter("menuId")));
                 request.setAttribute("mealsList", meals);
                 request.getRequestDispatcher("/meals.jsp").forward(request, response);
                 break;
