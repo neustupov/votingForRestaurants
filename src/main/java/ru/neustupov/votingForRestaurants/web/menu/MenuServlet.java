@@ -52,7 +52,7 @@ public class MenuServlet extends HttpServlet{
                 break;
             case "all":
             default:
-                request.setAttribute("restId", Integer.parseInt(request.getParameter("restId")));
+                request.setAttribute("restId", restId);
                 request.setAttribute("menusList", restController.getAll(restId));
                 request.getRequestDispatcher("/menus.jsp").forward(request, response);
                 break;
