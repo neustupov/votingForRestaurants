@@ -6,13 +6,16 @@
 <head>
     <title>Show All Meals</title>
 </head>
+<hr/>
+<a href="meals?action=create&menuId=${menuId}&restId=${restId}">Add Meal</a>
+<hr/>
 <body>
 <table border="1" cellpadding="8" cellspacing="0">
     <thead>
     <tr>
         <th>Id</th>
         <th>Name</th>
-        <th>IdMenu</th>
+        <th>MenuId</th>
         <th>Price</th>
     </tr>
     </thead>
