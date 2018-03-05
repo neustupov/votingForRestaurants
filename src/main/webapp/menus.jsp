@@ -7,6 +7,9 @@
     <title>Show Menus</title>
 </head>
 <body>
+<hr/>
+<a href="menus?action=create&restId=${restId}">Add Menu</a>
+<hr/>
 <table border="1" cellpadding="8" cellspacing="0">
     <thead>
     <tr>
