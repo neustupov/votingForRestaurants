@@ -51,6 +51,11 @@ public class RestaurantServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         switch (action == null ? "all" : action) {
+            case "delete":
+                int restIdd = Integer.parseInt(request.getParameter("restId"));
+                restController.delete(restIdd);
+                response.sendRedirect("restaurants");
+                break;
             case "create":
             case "update":
                 final Restaurant restaurant = "create".equals(action) ?
