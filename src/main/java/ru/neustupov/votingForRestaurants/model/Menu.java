@@ -79,4 +79,15 @@ public class Menu extends AbstractBaseEntity{
     public void setRestId(Integer id_rest) {
         this.restId = restId;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "restId=" + restId +
+                ", addDate=" + addDate +
+                ", id=" + id +
+                ", meals=" + meals +
+                ", restaurant=" + restaurant +
+                '}';
+    }
 }
