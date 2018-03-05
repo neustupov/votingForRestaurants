@@ -27,6 +27,6 @@
     </c:forEach>
     </tbody>
 </table>
-<h3><a href="menus?action=all&id=${restId}">Back to Menus</a></h3>
+<h3><a href="menus?action=all&restId=${restId}">Back to Menus</a></h3>
 </body>
 </html>
