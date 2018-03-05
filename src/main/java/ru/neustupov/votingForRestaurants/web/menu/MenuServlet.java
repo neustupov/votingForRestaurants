@@ -3,6 +3,7 @@ package ru.neustupov.votingForRestaurants.web.menu;
 import org.slf4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+import ru.neustupov.votingForRestaurants.model.Meal;
 import ru.neustupov.votingForRestaurants.model.Menu;
 
 import javax.servlet.ServletConfig;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -33,14 +36,24 @@ public class MenuServlet extends HttpServlet{
         log.debug("redirect to menu");
 
         String action = request.getParameter("action");
+        int restId = Integer.parseInt(request.getParameter("restId"));
 
         switch (action == null ? "all" : action) {
+            case "create":
+                final Menu menu = new Menu(restId,
+                        LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+                restController.create(menu, restId);
+                request.setAttribute("restId", restId);
+                request.setAttribute("menusList", restController.getAll(restId));
+                request.getRequestDispatcher("/menus.jsp").forward(request, response);
+                break;
+            case "update":
+                int id = Integer.parseInt(request.getParameter("id"));
+                break;
             case "all":
             default:
-                Integer restId = Integer.parseInt(request.getParameter("id"));
-                List<Menu> menus = restController.getAll(restId);
-                request.setAttribute("restId", restId);
-                request.setAttribute("menusList", menus);
+                request.setAttribute("restId", Integer.parseInt(request.getParameter("restId")));
+                request.setAttribute("menusList", restController.getAll(restId));
                 request.getRequestDispatcher("/menus.jsp").forward(request, response);
                 break;
         }
