@@ -29,7 +29,7 @@ public class InMemoryMenuRepositoryImpl implements MenuRepository {
                 1);
         save(new Menu(1, LocalDateTime.of(2015, Month.MAY, 30, 10, 0)),
                 1);
-        save(new Menu(2, LocalDateTime.of(2015, Month.MAY, 29, 10, 0)),
+        save(new Menu(4, LocalDateTime.of(2015, Month.MAY, 29, 10, 0)),
                 4);
     }
 
