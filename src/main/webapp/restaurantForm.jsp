@@ -13,7 +13,7 @@
     <hr>
     <jsp:useBean id="restaurant" type="ru.neustupov.votingForRestaurants.model.Restaurant" scope="request"/>
     <form method="post" action="restaurants">
-        <input type="hidden" name="id" value="${restaurant.id}">
+        <input type="hidden" name="restId" value="${restaurant.id}">
         <dl>
             <dt>Name:</dt>
             <dd><input type="text" value="${restaurant.name}" size=40 name="name" required></dd>
