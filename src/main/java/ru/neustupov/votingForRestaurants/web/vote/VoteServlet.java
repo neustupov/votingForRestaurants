@@ -23,8 +23,6 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public class VoteServlet extends HttpServlet {
 
-    private static final Logger log = getLogger(VoteServlet.class);
-
     private RestaurantRestController restaurantRestController;
     private VoteRestController voteRestController;
     private AdminRestController adminRestController;
@@ -53,6 +51,11 @@ public class VoteServlet extends HttpServlet {
                 Vote vote = new Vote(user, LocalDateTime.now(), restaurant);
                 voteRestController.create(vote);
                 response.sendRedirect("restaurants");
+                break;
+            case "all":
+            default:
+                request.setAttribute("votesList", voteRestController.getAll());
+                request.getRequestDispatcher("/votes.jsp").forward(request, response);
                 break;
         }
     }
