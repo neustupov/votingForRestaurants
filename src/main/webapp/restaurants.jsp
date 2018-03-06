@@ -15,6 +15,7 @@
     <tr>
         <th>Id</th>
         <th>Name</th>
+        <th>Total votes</th>
         <th></th>
         <th></th>
     </tr>
@@ -23,9 +24,11 @@
         <tr>
             <td><c:out value="${restaurant.id}"/></td>
             <td><c:out value="${restaurant.name}"/></td>
-            <td><a href="menus?action=all&restId=${restaurant.id}">Show the menu</a></td>
-            <td><a href="restaurants?action=delete&restId=${restaurant.id}">Delete the Restaurant</a></td>
-            <td><a href="votes?action=create&restId=${restaurant.id}">Votes for this Restaurant</a></td>
+            <td></td>
+            <td><a href="menus?action=all&restId=${restaurant.id}">Show the menus</a></td>
+            <td><a href="restaurants?action=delete&restId=${restaurant.id}">Delete</a></td>
+            <td><a href="restaurants?action=update&restId=${restaurant.id}">Update</a></td>
+            <td><a href="votes?action=create&restId=${restaurant.id}">Vote</a></td>
         </tr>
     </c:forEach>
 </table>
