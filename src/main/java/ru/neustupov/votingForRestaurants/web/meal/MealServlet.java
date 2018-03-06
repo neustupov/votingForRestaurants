@@ -35,14 +35,14 @@ public class MealServlet extends HttpServlet {
         int restId = Integer.parseInt(request.getParameter("restId"));
         int menuId = Integer.parseInt(request.getParameter("menuId"));
         if (action == null) {
-            Meal meal = new Meal(Integer.parseInt(request.getParameter("menuId")),
+            Meal meal = new Meal(menuId,
                     request.getParameter("name"),
                     Integer.parseInt(request.getParameter("price")));
 
-            if (request.getParameter("id").isEmpty()) {
-                restController.create(meal, Integer.parseInt(request.getParameter("menuId")));
+            if (request.getParameter("mealId").isEmpty()) {
+                restController.create(meal, menuId);
             } else {
-                restController.update(meal, Integer.parseInt(request.getParameter("menuId")));
+                restController.update(meal, Integer.parseInt(request.getParameter("mealId")), menuId);
             }
             request.setAttribute("menuId", menuId);
             request.setAttribute("restId", restId);
@@ -58,11 +58,20 @@ public class MealServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         switch (action == null ? "all" : action) {
+            case "delete":
+                int mealId = Integer.parseInt(request.getParameter("mealId"));
+                restController.delete(mealId, Integer.parseInt(request.getParameter("menuId")));
+                request.setAttribute("restId", Integer.parseInt(request.getParameter("restId")));
+                request.setAttribute("menuId", Integer.parseInt(request.getParameter("menuId")));
+                request.setAttribute("mealsList", restController.getAll(Integer.parseInt(request.getParameter("menuId"))));
+                request.getRequestDispatcher("/meals.jsp").forward(request, response);
+                break;
             case "create":
             case "update":
                 final Meal meal = "create".equals(action) ?
                         new Meal() :
-                        restController.get(Integer.parseInt(request.getParameter("id")), Integer.parseInt(request.getParameter("menuId")));
+                        restController.get(Integer.parseInt(request.getParameter("mealId")),
+                                Integer.parseInt(request.getParameter("menuId")));
                 request.setAttribute("meal", meal);
                 request.setAttribute("menuId", Integer.parseInt(request.getParameter("menuId")));
                 request.setAttribute("restId", Integer.parseInt(request.getParameter("restId")));
