@@ -39,8 +39,8 @@ public class MealRestController {
         return service.get(id, menuId);
     }
 
-    public void update(Meal meal, int menuId){
-        assureIdConsistent(meal, menuId);
+    public void update(Meal meal, int mealId, int menuId){
+        assureIdConsistent(meal, mealId);
         log.info("update {} for menu {}", meal, menuId);
         service.update(meal, menuId);
     }
