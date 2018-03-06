@@ -25,6 +25,7 @@
             <td><c:out value="${menu.restId}"/></td>
             <td><c:out value="${menu.addDate}"/></td>
             <td><a href="meals?action=all&menuId=${menu.id}&restId=${restId}">Show the meal</a></td>
+            <td><a href="menus?action=delete&menuId=${menu.id}&restId=${restId}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
