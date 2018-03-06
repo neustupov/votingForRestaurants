@@ -35,7 +35,7 @@ public class RestaurantServlet extends HttpServlet {
         if (action == null) {
             Restaurant restaurant = new Restaurant(request.getParameter("name"));
 
-            if (request.getParameter("id").isEmpty()) {
+            if (request.getParameter("restId").isEmpty()) {
                 restController.create(restaurant);
             } else {
                 restController.update(restaurant, getId(request));
@@ -73,7 +73,7 @@ public class RestaurantServlet extends HttpServlet {
     }
 
     private int getId(HttpServletRequest request) {
-        String paramId = Objects.requireNonNull(request.getParameter("id"));
+        String paramId = Objects.requireNonNull(request.getParameter("restId"));
         return Integer.parseInt(paramId);
     }
 }
