@@ -26,6 +26,9 @@
             <td><c:out value="${meal.name}"/></td>
             <td><c:out value="${meal.menuId}"/></td>
             <td><c:out value="${meal.price}"/></td>
+            <td><a href="meals?action=delete&mealId=${meal.id}&menuId=${menuId}&restId=${restId}">Delete this meal</a>
+            </td>
+            <td><a href="meals?action=update&mealId=${meal.id}&menuId=${menuId}&restId=${restId}">Update</a></td>
         </tr>
     </c:forEach>
     </tbody>
