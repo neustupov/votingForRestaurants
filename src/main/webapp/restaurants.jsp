@@ -9,6 +9,7 @@
 <body>
 <hr/>
 <a href="restaurants?action=create">Add Restaurant</a>
+<a href="votes?action=all">View all votes</a>
 <hr/>
 <table border="1" cellpadding="8" cellspacing="0">
     <thead>
@@ -24,7 +25,6 @@
         <tr>
             <td><c:out value="${restaurant.id}"/></td>
             <td><c:out value="${restaurant.name}"/></td>
-            <td></td>
             <td><a href="menus?action=all&restId=${restaurant.id}">Show the menus</a></td>
             <td><a href="restaurants?action=delete&restId=${restaurant.id}">Delete</a></td>
             <td><a href="restaurants?action=update&restId=${restaurant.id}">Update</a></td>
