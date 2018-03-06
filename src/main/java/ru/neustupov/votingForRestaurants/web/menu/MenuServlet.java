@@ -39,6 +39,13 @@ public class MenuServlet extends HttpServlet{
         int restId = Integer.parseInt(request.getParameter("restId"));
 
         switch (action == null ? "all" : action) {
+            case "delete":
+                int menuId = Integer.parseInt(request.getParameter("menuId"));
+                restController.delete(menuId, restId);
+                request.setAttribute("restId", restId);
+                request.setAttribute("menusList", restController.getAll(restId));
+                request.getRequestDispatcher("/menus.jsp").forward(request, response);
+                break;
             case "create":
                 final Menu menu = new Menu(restId,
                         LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
