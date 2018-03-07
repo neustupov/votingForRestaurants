@@ -1,4 +1,4 @@
-package ru.neustupov.votingForRestaurants.repository.mockRepository;
+package ru.neustupov.votingForRestaurants.repository.mock;
 
 import org.springframework.stereotype.Repository;
 import ru.neustupov.votingForRestaurants.model.Meal;

@@ -1,4 +1,4 @@
-package ru.neustupov.votingForRestaurants.repository.mockRepository;
+package ru.neustupov.votingForRestaurants.repository.mock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Repository
-public class InMemoryRestaurantRepositoryImpl implements RestaurantRepository{
+public class InMemoryRestaurantRepositoryImpl implements RestaurantRepository {
 
     private static final Logger log = LoggerFactory.getLogger(InMemoryRestaurantRepositoryImpl.class);
 

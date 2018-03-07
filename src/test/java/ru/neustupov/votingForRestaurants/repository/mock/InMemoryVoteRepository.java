@@ -1,4 +1,4 @@
-package ru.neustupov.votingForRestaurants.repository.mockRepository;
+package ru.neustupov.votingForRestaurants.repository.mock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Repository
-public class InMemoryVoteRepository implements VoteRepository{
+public class InMemoryVoteRepository implements VoteRepository {
 
     private static final Logger log = LoggerFactory.getLogger(InMemoryVoteRepository.class);
 

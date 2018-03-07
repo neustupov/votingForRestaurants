@@ -1,28 +1,28 @@
-package ru.neustupov.votingForRestaurants.repository.mockRepository;
+package ru.neustupov.votingForRestaurants.repository.mock;
 
 import org.springframework.stereotype.Repository;
-import ru.neustupov.votingForRestaurants.model.Role;
+import ru.neustupov.votingForRestaurants.UserTestData;
 import ru.neustupov.votingForRestaurants.model.User;
 import ru.neustupov.votingForRestaurants.repository.UserRepository;
 
-import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import static ru.neustupov.votingForRestaurants.UserTestData.*;
+
 @Repository
 public class InMemoryUserRepository implements UserRepository{
-
-    public static final int USER_ID = 1;
-    public static final int ADMIN_ID = 2;
 
     private Map<Integer, User> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
 
+    public void init()
     {
-        repository.put(1, new User(USER_ID, "User", "123", Date.from(Instant.now()),  EnumSet.of(Role.ROLE_USER)));
-        repository.put(2, new User(ADMIN_ID, "Admin", "456", Date.from(Instant.now()), EnumSet.allOf(Role.class)));
+        repository.clear();
+        repository.put(USER_ID, USER);
+        repository.put(ADMIN_ID, ADMIN);
     }
 
     @Override
