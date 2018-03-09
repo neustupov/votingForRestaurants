@@ -13,6 +13,10 @@ public class Restaurant extends AbstractNamedEntity{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     private Set<Vote> votes;
 
+    public Restaurant(Restaurant r){
+        this(r.getId(), r.getName());
+    }
+
     public Restaurant() {
         super(null, null);
     }
