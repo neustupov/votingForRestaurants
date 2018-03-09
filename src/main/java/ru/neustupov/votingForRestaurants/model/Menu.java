@@ -32,6 +32,10 @@ public class Menu extends AbstractBaseEntity{
     public Menu() {
     }
 
+    public Menu(Menu m){
+        this(m.getId(), m.getRestId(), m.getAddDate());
+    }
+
     public Menu(@NotNull Integer restId, @NotNull LocalDateTime addDate) {
         super(null);
         this.restId = restId;
