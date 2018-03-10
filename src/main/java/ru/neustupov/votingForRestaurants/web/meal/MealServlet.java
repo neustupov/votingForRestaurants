@@ -35,7 +35,7 @@ public class MealServlet extends HttpServlet {
         int restId = Integer.parseInt(request.getParameter("restId"));
         int menuId = Integer.parseInt(request.getParameter("menuId"));
         if (action == null) {
-            Meal meal = new Meal(menuId,
+            Meal meal = new Meal(
                     request.getParameter("name"),
                     Integer.parseInt(request.getParameter("price")));
 
