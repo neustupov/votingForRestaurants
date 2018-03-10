@@ -9,14 +9,21 @@ import ru.neustupov.votingForRestaurants.repository.MealRepository;
 import java.util.List;
 
 @Repository
-public class DataJpaMealRepositoryImpl implements MealRepository{
+public class DataJpaMealRepositoryImpl implements MealRepository {
 
     @Autowired
     private CrudMealRepository crudMealRepository;
 
+    @Autowired
+    private CrudMenuRepository crudMenuRepository;
+
     @Transactional
     @Override
     public Meal save(Meal meal, int menuId) {
+        if (!meal.isNew() && get(meal.getId(), menuId) == null) {
+            return null;
+        }
+        meal.setMenu(crudMenuRepository.getOne(menuId));
         return crudMealRepository.save(meal);
     }
 
