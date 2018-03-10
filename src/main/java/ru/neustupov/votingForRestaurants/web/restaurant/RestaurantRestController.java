@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import ru.neustupov.votingForRestaurants.AuthorizedUser;
 import ru.neustupov.votingForRestaurants.model.Restaurant;
 import ru.neustupov.votingForRestaurants.service.RestaurantService;
+import ru.neustupov.votingForRestaurants.service.VoteService;
+import ru.neustupov.votingForRestaurants.to.RestaurantWithVotes;
+import ru.neustupov.votingForRestaurants.util.RestaurantsUtil;
 
 import java.util.List;
 
@@ -20,9 +23,12 @@ public class RestaurantRestController {
 
     private RestaurantService service;
 
+    private VoteService voteService;
+
     @Autowired
-    public RestaurantRestController(RestaurantService service){
+    public RestaurantRestController(RestaurantService service, VoteService voteService){
         this.service = service;
+        this.voteService = voteService;
     }
 
     public Restaurant create(Restaurant restaurant) {
@@ -47,9 +53,9 @@ public class RestaurantRestController {
         return service.get(id);
     }
 
-    public List<Restaurant> getAll() {
+    public List<RestaurantWithVotes> getAll() {
         int userId = AuthorizedUser.id();
         log.info("getAll restaurants for user{}", userId);
-        return service.getAll();
+        return RestaurantsUtil.getWithVotes(service.getAll(),voteService.getAll());
     }
 }

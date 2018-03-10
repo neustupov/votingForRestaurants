@@ -19,17 +19,19 @@
         <th>Total votes</th>
         <th></th>
         <th></th>
+        <th></th>
     </tr>
     </thead>
     <c:forEach items="${restaurantsList}" var="restaurant">
-        <tr>
-            <td><c:out value="${restaurant.id}"/></td>
-            <td><c:out value="${restaurant.name}"/></td>
-            <td><a href="menus?action=all&restId=${restaurant.id}">Show the menus</a></td>
-            <td><a href="restaurants?action=delete&restId=${restaurant.id}">Delete</a></td>
-            <td><a href="restaurants?action=update&restId=${restaurant.id}">Update</a></td>
-            <td><a href="votes?action=create&restId=${restaurant.id}">Vote</a></td>
-        </tr>
+    <tr>
+        <td><c:out value="${restaurant.id}"/></td>
+        <td><c:out value="${restaurant.name}"/></td>
+        <td><c:out value="${restaurant.numberOfVotes}"/>
+        <td><a href="menus?action=all&restId=${restaurant.id}">Show the menus</a></td>
+        <td><a href="restaurants?action=delete&restId=${restaurant.id}">Delete</a></td>
+        <td><a href="restaurants?action=update&restId=${restaurant.id}">Update</a></td>
+        <td><a href="votes?action=create&restId=${restaurant.id}">Vote</a></td>
+    </tr>
     </c:forEach>
 </table>
 </body>

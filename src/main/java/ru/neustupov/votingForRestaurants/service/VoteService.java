@@ -15,6 +15,8 @@ public interface VoteService {
 
     void update(Vote vote, int userId);
 
+    List<Vote> getAll();
+
     List<Vote> getAllByUser(int userId);
 
     List<Vote> getAllByRest(int restId);

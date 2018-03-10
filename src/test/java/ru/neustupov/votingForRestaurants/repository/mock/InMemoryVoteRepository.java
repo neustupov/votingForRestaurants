@@ -57,6 +57,11 @@ public class InMemoryVoteRepository implements VoteRepository {
     }
 
     @Override
+    public List<Vote> getAll() {
+        return null;
+    }
+
+    @Override
     public List<Vote> getAllByUser(int userId) {
         return getAllAsStreamForUserId(userId).collect(Collectors.toList());
     }

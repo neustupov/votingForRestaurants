@@ -14,6 +14,8 @@ public interface VoteRepository {
     // null if not found
     Vote get(int id, int userId);
 
+    List<Vote> getAll();
+
     List<Vote> getAllByUser(int userId);
 
     List<Vote> getAllByRest(int restId);

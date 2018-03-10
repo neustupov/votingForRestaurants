@@ -27,10 +27,15 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     Optional<Vote> findById(Integer id);
 
     @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
+    @Query("SELECT v FROM Vote v")
+    List<Vote> getAll();
+
+    @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT v FROM Vote v WHERE v.user.id=:userId")
     List<Vote> getAllByUserId(@Param("userId") int userId);
 
-    List<Vote> findAllByRestaurantId(int restId);
+    @Query("SELECT v FROM Vote v WHERE v.restaurant.id=:restId")
+    List<Vote> getAllByRestaurantId(@Param("restId") int restId);
 
     //    https://stackoverflow.com/a/46013654/548473
     @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)

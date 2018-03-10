@@ -38,9 +38,15 @@ public class VoteRestController {
     }
 
     public List<Vote> getAll() {
-        int userId = AuthorizedUser.id();
-        log.info("getAll for user {}", userId);
-        return service.getAllByUser(userId);
+        /*int userId = AuthorizedUser.id();*/
+        /*log.info("getAll for user {}", userId);*/
+        log.info("getAll votes");
+        return service.getAll();
+    }
+
+    public List<Vote> getAllByRest(int restId){
+        log.info("getAllByRest {}", restId);
+        return service.getAllByRest(restId);
     }
 
     public Vote create(Vote vote) {
