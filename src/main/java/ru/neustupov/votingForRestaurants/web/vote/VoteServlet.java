@@ -1,6 +1,5 @@
 package ru.neustupov.votingForRestaurants.web.vote;
 
-import org.slf4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.neustupov.votingForRestaurants.AuthorizedUser;
@@ -18,8 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Objects;
-
-import static org.slf4j.LoggerFactory.getLogger;
 
 public class VoteServlet extends HttpServlet {
 
@@ -39,13 +36,12 @@ public class VoteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        User user = adminRestController.get(AuthorizedUser.id());
-
         String action = request.getParameter("action");
 
         switch (action == null ? "all" : action) {
             case "create":
             case "update":
+                User user = adminRestController.get(AuthorizedUser.id());
                 Restaurant restaurant = restaurantRestController.get(
                         Integer.parseInt(request.getParameter("restId")));
                 Vote vote = new Vote(user, LocalDateTime.now(), restaurant);
