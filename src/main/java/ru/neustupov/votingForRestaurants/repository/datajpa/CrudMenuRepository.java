@@ -11,21 +11,22 @@ import ru.neustupov.votingForRestaurants.model.Menu;
 import java.util.List;
 import java.util.Optional;
 
-public interface CrudMenuRepository extends JpaRepository<Menu, Integer>{
+public interface CrudMenuRepository extends JpaRepository<Menu, Integer> {
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM Menu m WHERE m.id=:id AND m.restId=:restId")
+    @Query("DELETE FROM Menu m WHERE m.id=:id AND m.restaurant.id=:restId")
     int delete(@Param("id") int id, @Param("restId") int restId);
 
     @Override
     @Transactional
-    Menu save(Menu user);
+    Menu save(Menu menu);
 
-    @Query("SELECT m FROM Menu m WHERE m.id=:id AND m.restId=:restId")
-    Optional<Menu> get(@Param("id") int id,@Param("restId") int restId);
+    @Query("SELECT m FROM Menu m WHERE m.id=:id AND m.restaurant.id=:restId")
+    Optional<Menu> get(@Param("id") int id, @Param("restId") int restId);
 
-    List<Menu> findAllByIdRest(int idRest);
+    @Query("SELECT m FROM Menu m WHERE m.restaurant.id=:restId")
+    List<Menu> getAll(@Param("restId") int restId);
 
     //    https://stackoverflow.com/a/46013654/548473
     @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
@@ -36,7 +37,7 @@ public interface CrudMenuRepository extends JpaRepository<Menu, Integer>{
     @Query("SELECT m FROM Menu m WHERE m.id=?1")
     Menu getWithMeals(int id);
 
-    @EntityGraph(attributePaths = {"restaurant","meals"}, type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(attributePaths = {"restaurant", "meals"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT m FROM Menu m WHERE m.id=?1")
     Menu getWithRestaurantAndMeals(int id);
 }
