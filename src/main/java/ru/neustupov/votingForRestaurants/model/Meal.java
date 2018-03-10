@@ -10,10 +10,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "meals")
 public class Meal extends AbstractNamedEntity {
 
-    @Column(name = "id_menu")
-    @NotNull
-    private Integer menuId;
-
     @Column(name = "price")
     @NotNull
     private Integer price;
@@ -27,33 +23,22 @@ public class Meal extends AbstractNamedEntity {
     public Meal() {
     }
 
-    public Meal(Meal m){
-        this(m.getId(), m.getMenuId(), m.getName(), m.getPrice());
+    public Meal(Meal m) {
+        this(m.getId(), m.getName(), m.getPrice());
     }
 
-    public Meal(@NotNull Integer menuId, @NotNull Integer price) {
-        this.menuId = menuId;
+    public Meal(@NotNull Integer price) {
         this.price = price;
     }
 
-    public Meal(Integer menuId, String name, Integer price){
-        super(null, name);
-        this.menuId = menuId;
-        this.price = price;
-    }
-
-    public Meal(Integer id, @NotNull Integer menuId, String name, @NotNull Integer price) {
+    public Meal(int id, String name, int price) {
         super(id, name);
-        this.menuId = menuId;
         this.price = price;
     }
 
-    public Integer getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(Integer menuId) {
-        this.menuId = menuId;
+    public Meal(@NotNull String name, @NotNull Integer price) {
+        super(null, name);
+        this.price = price;
     }
 
     public Integer getPrice() {
@@ -62,5 +47,23 @@ public class Meal extends AbstractNamedEntity {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "price=" + price +
+                ", name='" + name + '\'' +
+                ", menu=" + menu +
+                ", id=" + id +
+                '}';
     }
 }
