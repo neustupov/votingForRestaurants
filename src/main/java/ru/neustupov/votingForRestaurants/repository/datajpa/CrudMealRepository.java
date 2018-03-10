@@ -11,21 +11,21 @@ import ru.neustupov.votingForRestaurants.model.Meal;
 import java.util.List;
 import java.util.Optional;
 
-public interface CrudMealRepository extends JpaRepository<Meal, Integer>{
+public interface CrudMealRepository extends JpaRepository<Meal, Integer> {
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM Meal m WHERE m.id=:id AND m.menuId=:menuId")
+    @Query("DELETE FROM Meal m WHERE m.id=:id AND m.menu.id=:menuId")
     int delete(@Param("id") int id, @Param("menuId") int menuId);
 
     @Override
     @Transactional
-    Meal save(Meal user);
+    Meal save(Meal meal);
 
-    @Query("SELECT m FROM Meal m WHERE m.id=:id AND m.menuId=:menuId")
+    @Query("SELECT m FROM Meal m WHERE m.id=:id AND m.menu.id=:menuId")
     Optional<Meal> get(@Param("id") int id, @Param("menuId") int menuId);
 
-    @Query("SELECT m FROM Meal m WHERE m.menuId=:menuId")
+    @Query("SELECT m FROM Meal m WHERE m.menu.id=:menuId")
     List<Meal> getAll(@Param("menuId") int menuId);
 
     //    https://stackoverflow.com/a/46013654/548473
