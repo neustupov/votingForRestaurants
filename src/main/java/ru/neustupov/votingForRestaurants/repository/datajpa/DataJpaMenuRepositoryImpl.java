@@ -2,6 +2,7 @@ package ru.neustupov.votingForRestaurants.repository.datajpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.votingForRestaurants.model.Menu;
 import ru.neustupov.votingForRestaurants.repository.MenuRepository;
 
@@ -13,11 +14,20 @@ public class DataJpaMenuRepositoryImpl implements MenuRepository {
     @Autowired
     private CrudMenuRepository crudMenuRepository;
 
+    @Autowired
+    private CrudRestaurantRepository crudRestaurantRepository;
+
+    @Transactional
     @Override
     public Menu save(Menu menu, int restId) {
+        if (!menu.isNew() && get(menu.getId(), restId) == null) {
+            return null;
+        }
+        menu.setRestaurant(crudRestaurantRepository.getOne(restId));
         return crudMenuRepository.save(menu);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id, int restId) {
         return crudMenuRepository.delete(id, restId) != 0;
@@ -30,7 +40,7 @@ public class DataJpaMenuRepositoryImpl implements MenuRepository {
 
     @Override
     public List<Menu> getAll(int restId) {
-        return crudMenuRepository.findAllByIdRest(restId);
+        return crudMenuRepository.getAll(restId);
     }
 
     @Override
