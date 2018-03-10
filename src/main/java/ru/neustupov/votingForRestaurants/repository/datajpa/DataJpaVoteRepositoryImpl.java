@@ -2,6 +2,7 @@ package ru.neustupov.votingForRestaurants.repository.datajpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.votingForRestaurants.model.Vote;
 import ru.neustupov.votingForRestaurants.repository.VoteRepository;
 
@@ -16,6 +17,7 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     @Autowired
     private CrudUserRepository crudUserRepository;
 
+    @Transactional
     @Override
     public Vote save(Vote vote, int userId) {
         if (!vote.isNew() && get(vote.getId(), userId) == null) {
@@ -25,6 +27,7 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
         return crudVoteRepository.save(vote);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id, int userId) {
         return crudVoteRepository.delete(id, userId) != 0;
@@ -37,7 +40,7 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
 
     @Override
     public List<Vote> getAllByUser(int userId) {
-        return crudVoteRepository.findAllByUserId(userId);
+        return crudVoteRepository.getAllByUserId(userId);
     }
 
     @Override

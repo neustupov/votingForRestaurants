@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Transactional
-public interface CrudVoteRepository extends JpaRepository<Vote, Integer>{
+public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     @Transactional
     @Modifying
@@ -26,7 +26,9 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer>{
     @Override
     Optional<Vote> findById(Integer id);
 
-    List<Vote> findAllByUserId(int userId);
+    @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
+    @Query("SELECT v FROM Vote v WHERE v.user.id=:userId")
+    List<Vote> getAllByUserId(@Param("userId") int userId);
 
     List<Vote> findAllByRestaurantId(int restId);
 
@@ -39,7 +41,7 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer>{
     @Query("SELECT v FROM Vote v WHERE v.id=?1")
     Vote getWithUser(int id, int userId);
 
-    @EntityGraph(attributePaths = {"restaurant","user"}, type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(attributePaths = {"restaurant", "user"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT v FROM Vote v WHERE v.id=?1")
     Vote getWithRestaurantAndUser(int id, int restId, int userId);
 }

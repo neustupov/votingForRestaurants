@@ -3,7 +3,6 @@ package ru.neustupov.votingForRestaurants.web.menu;
 import org.slf4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-import ru.neustupov.votingForRestaurants.model.Meal;
 import ru.neustupov.votingForRestaurants.model.Menu;
 
 import javax.servlet.ServletConfig;
@@ -14,11 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class MenuServlet extends HttpServlet{
+public class MenuServlet extends HttpServlet {
 
     private static final Logger log = getLogger(MenuServlet.class);
 
@@ -47,8 +45,7 @@ public class MenuServlet extends HttpServlet{
                 request.getRequestDispatcher("/menus.jsp").forward(request, response);
                 break;
             case "create":
-                final Menu menu = new Menu(restId,
-                        LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+                final Menu menu = new Menu(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
                 restController.create(menu, restId);
                 request.setAttribute("restId", restId);
                 request.setAttribute("menusList", restController.getAll(restId));

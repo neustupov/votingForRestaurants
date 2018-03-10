@@ -2,22 +2,25 @@ package ru.neustupov.votingForRestaurants.repository.datajpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.votingForRestaurants.model.User;
 import ru.neustupov.votingForRestaurants.repository.UserRepository;
 
 import java.util.List;
 
 @Repository
-public class DataJpaUserRepositoryImpl implements UserRepository{
+public class DataJpaUserRepositoryImpl implements UserRepository {
 
     @Autowired
     private CrudUserRepository crudUserRepository;
 
+    @Transactional
     @Override
     public User save(User user) {
         return crudUserRepository.save(user);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         return crudUserRepository.delete(id) != 0;

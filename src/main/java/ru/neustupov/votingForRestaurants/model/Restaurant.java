@@ -1,11 +1,12 @@
 package ru.neustupov.votingForRestaurants.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
 @Table(name = "restaurants")
-public class Restaurant extends AbstractNamedEntity{
+public class Restaurant extends AbstractNamedEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     private Set<Menu> menus;
@@ -13,7 +14,7 @@ public class Restaurant extends AbstractNamedEntity{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     private Set<Vote> votes;
 
-    public Restaurant(Restaurant r){
+    public Restaurant(Restaurant r) {
         this(r.getId(), r.getName());
     }
 
@@ -21,11 +22,11 @@ public class Restaurant extends AbstractNamedEntity{
         super(null, null);
     }
 
-    public Restaurant(String name){
+    public Restaurant(@NotNull String name) {
         super(null, name);
     }
 
-    public Restaurant(Integer id, String name) {
+    public Restaurant(@NotNull Integer id, @NotNull String name) {
         super(id, name);
     }
 
@@ -43,15 +44,5 @@ public class Restaurant extends AbstractNamedEntity{
 
     public void setVotes(Set<Vote> votes) {
         this.votes = votes;
-    }
-
-    @Override
-    public String toString() {
-        return "Restaurant{" +
-                "menus=" + menus +
-                ", votes=" + votes +
-                ", name='" + name + '\'' +
-                ", id=" + id +
-                '}';
     }
 }

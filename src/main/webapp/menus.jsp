@@ -22,7 +22,7 @@
     <c:forEach items="${menusList}" var="menu">
         <tr>
             <td><c:out value="${menu.id}"/></td>
-            <td><c:out value="${menu.restId}"/></td>
+            <td><c:out value="${menu.restaurant.id}"/></td>
             <td><c:out value="${menu.addDate}"/></td>
             <td><a href="meals?action=all&menuId=${menu.id}&restId=${restId}">Show the meal</a></td>
             <td><a href="menus?action=delete&menuId=${menu.id}&restId=${restId}">Delete</a></td>

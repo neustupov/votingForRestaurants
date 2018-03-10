@@ -24,9 +24,9 @@
         <tr>
             <td><c:out value="${meal.id}"/></td>
             <td><c:out value="${meal.name}"/></td>
-            <td><c:out value="${meal.menuId}"/></td>
+            <td><c:out value="${meal.menu.id}"/></td>
             <td><c:out value="${meal.price}"/></td>
-            <td><a href="meals?action=delete&mealId=${meal.id}&menuId=${menuId}&restId=${restId}">Delete this meal</a>
+            <td><a href="meals?action=delete&mealId=${meal.id}&menuId=${menuId}&restId=${restId}">Delete</a>
             </td>
             <td><a href="meals?action=update&mealId=${meal.id}&menuId=${menuId}&restId=${restId}">Update</a></td>
         </tr>

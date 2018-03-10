@@ -10,11 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "menus")
-public class Menu extends AbstractBaseEntity{
-
-    @Column(name = "id_rest")
-    @NotNull
-    private Integer restId;
+public class Menu extends AbstractBaseEntity {
 
     @Column(name = "add_date", columnDefinition = "timestamp default now()")
     @NotNull
@@ -32,23 +28,16 @@ public class Menu extends AbstractBaseEntity{
     public Menu() {
     }
 
-    public Menu(Menu m){
-        this(m.getId(), m.getRestId(), m.getAddDate());
+    public Menu(Menu m) {
+        this(m.getId(), m.getAddDate());
     }
 
-    public Menu(@NotNull Integer restId, @NotNull LocalDateTime addDate) {
-        super(null);
-        this.restId = restId;
-        this.addDate = addDate;
-    }
-
-    public Menu(Integer id, @NotNull Integer restId, @NotNull LocalDateTime addDate) {
+    public Menu(@NotNull Integer id, @NotNull LocalDateTime addDate) {
         super(id);
-        this.restId = restId;
         this.addDate = addDate;
     }
 
-    public Menu(LocalDateTime addDate) {
+    public Menu(@NotNull LocalDateTime addDate) {
         this.addDate = addDate;
     }
 
@@ -76,18 +65,10 @@ public class Menu extends AbstractBaseEntity{
         this.restaurant = restaurant;
     }
 
-    public Integer getRestId() {
-        return restId;
-    }
-
-    public void setRestId(Integer id_rest) {
-        this.restId = restId;
-    }
-
     @Override
     public String toString() {
         return "Menu{" +
-                "restId=" + restId +
+                "restId=" +
                 ", addDate=" + addDate +
                 ", id=" + id +
                 ", meals=" + meals +

@@ -37,14 +37,15 @@ public class User extends AbstractNamedEntity {
         this(u.getId(), u.getName(), u.getPassword(), u.getRegistered(), u.getRoles());
     }
 
-    public User(String name, String password, Date registered, Set<Role> roles) {
+    public User(@NotNull String name, @NotNull String password, @NotNull Date registered, @NotNull Set<Role> roles) {
         this.name = name;
         this.password = password;
         this.registered = registered;
         setRoles(roles);
     }
 
-    public User(Integer id, String name, String password, Date registered, Set<Role> roles) {
+    public User(@NotNull Integer id, @NotNull String name, @NotNull String password, @NotNull Date registered,
+                @NotNull Set<Role> roles) {
         super(id, name);
         this.password = password;
         this.registered = registered;
@@ -89,17 +90,5 @@ public class User extends AbstractNamedEntity {
 
     public void setRegistered(Date registered) {
         this.registered = registered;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", id=" + id +
-                ", registered=" + registered +
-                ", roles=" + roles +
-                ", votes=" + votes +
-                '}';
     }
 }
