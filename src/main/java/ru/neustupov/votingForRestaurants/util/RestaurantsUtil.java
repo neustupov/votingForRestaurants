@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 
 public class RestaurantsUtil {
 
+    private RestaurantsUtil() {
+    }
+
     public static List<RestaurantWithVotes> getWithVotes(Collection<Restaurant> restaurants, List<Vote> allVotes){
         return restaurants.stream()
                 .map(restaurant -> createWithVotes(restaurant, allVotes))
