@@ -52,7 +52,7 @@ public class MenuServlet extends HttpServlet {
                 request.getRequestDispatcher("/menus.jsp").forward(request, response);
                 break;
             case "update":
-                int id = Integer.parseInt(request.getParameter("id"));
+                /*int id = Integer.parseInt(request.getParameter("id"));*/
                 break;
             case "all":
             default:
