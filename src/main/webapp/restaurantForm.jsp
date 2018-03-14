@@ -11,7 +11,7 @@
     <h3><a href="restaurants">Back to Restaurants</a></h3>
     <h2>${param.action == 'create' ? 'Create restaurant' : 'Edit restaurant'}</h2>
     <hr>
-    <jsp:useBean id="restaurant" type="ru.neustupov.votingForRestaurants.model.Restaurant" scope="request"/>
+    <jsp:useBean id="restaurant" type="ru.neustupov.votingforrestaurants.model.Restaurant" scope="request"/>
     <form method="post" action="restaurants">
         <input type="hidden" name="restId" value="${restaurant.id}">
         <dl>

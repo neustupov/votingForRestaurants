@@ -21,7 +21,7 @@
         </tr>
         </thead>
         <c:forEach items="${votesList}" var="vote">
-            <jsp:useBean id="vote" scope="page" type="ru.neustupov.votingForRestaurants.model.Vote"/>
+            <jsp:useBean id="vote" scope="page" type="ru.neustupov.votingforrestaurants.model.Vote"/>
             <tr>
                 <td>
                         ${vote.id}

@@ -11,7 +11,7 @@
     <h3><a href="index.html">Home</a></h3>
     <h2>${param.action == 'create' ? 'Create vote' : 'Edit vote'}</h2>
     <hr>
-    <jsp:useBean id="vote" type="ru.neustupov.votingForRestaurants.model.Vote" scope="request"/>
+    <jsp:useBean id="vote" type="ru.neustupov.votingforrestaurants.model.Vote" scope="request"/>
     <form method="post" action="votes">
         <dl>
             <dt>ID:</dt>
