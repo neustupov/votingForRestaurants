@@ -50,11 +50,13 @@ public class VoteServiceImpl implements VoteService{
 
     @Override
     public List<Vote> getAllByUser(int userId) {
+        Assert.notNull(userId, "userId must not be null");
         return repository.getAllByUser(userId);
     }
 
     @Override
     public List<Vote> getAllByRest(int restId) {
+        Assert.notNull(restId, "restId must not be null");
         return repository.getAllByRest(restId);
     }
 
