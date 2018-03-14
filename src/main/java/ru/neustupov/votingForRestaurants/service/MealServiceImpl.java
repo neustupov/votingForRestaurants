@@ -34,17 +34,20 @@ public class MealServiceImpl implements MealService{
 
     @Override
     public Meal get(int id, int menuId) throws NotFoundException {
+        Assert.notNull(menuId, "menuId must not be null");
         return checkNotFoundWithId(repository.get(id, menuId), id);
     }
 
     @Override
     public void update(Meal meal, int menuId) {
         Assert.notNull(meal, "meal must not be null");
+        Assert.notNull(menuId, "menuId must not be null");
         checkNotFoundWithId(repository.save(meal, menuId), meal.getId());
     }
 
     @Override
     public List<Meal> getAll(int menuId) {
+        Assert.notNull(menuId, "menuId must not be null");
         return repository.getAll(menuId);
     }
 
