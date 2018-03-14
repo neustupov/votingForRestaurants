@@ -1,20 +1,20 @@
-package ru.neustupov.votingForRestaurants.web.restaurant;
+package ru.neustupov.votingforrestaurants.web.restaurant;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import ru.neustupov.votingForRestaurants.AuthorizedUser;
-import ru.neustupov.votingForRestaurants.model.Restaurant;
-import ru.neustupov.votingForRestaurants.service.RestaurantService;
-import ru.neustupov.votingForRestaurants.service.VoteService;
-import ru.neustupov.votingForRestaurants.to.RestaurantWithVotes;
-import ru.neustupov.votingForRestaurants.util.RestaurantsUtil;
+import ru.neustupov.votingforrestaurants.AuthorizedUser;
+import ru.neustupov.votingforrestaurants.model.Restaurant;
+import ru.neustupov.votingforrestaurants.service.RestaurantService;
+import ru.neustupov.votingforrestaurants.service.VoteService;
+import ru.neustupov.votingforrestaurants.to.RestaurantWithVotes;
+import ru.neustupov.votingforrestaurants.util.RestaurantsUtil;
 
 import java.util.List;
 
-import static ru.neustupov.votingForRestaurants.util.ValidationUtil.assureIdConsistent;
-import static ru.neustupov.votingForRestaurants.util.ValidationUtil.checkNew;
+import static ru.neustupov.votingforrestaurants.util.ValidationUtil.assureIdConsistent;
+import static ru.neustupov.votingforrestaurants.util.ValidationUtil.checkNew;
 
 @Controller
 public class RestaurantRestController {

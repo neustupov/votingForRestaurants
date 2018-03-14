@@ -1,10 +1,10 @@
-package ru.neustupov.votingForRestaurants.repository.mock;
+package ru.neustupov.votingforrestaurants.repository.mock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import ru.neustupov.votingForRestaurants.model.Restaurant;
-import ru.neustupov.votingForRestaurants.repository.RestaurantRepository;
+import ru.neustupov.votingforrestaurants.model.Restaurant;
+import ru.neustupov.votingforrestaurants.repository.RestaurantRepository;
 
 import java.util.Comparator;
 import java.util.List;

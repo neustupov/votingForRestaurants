@@ -1,6 +1,6 @@
-package ru.neustupov.votingForRestaurants.repository;
+package ru.neustupov.votingforrestaurants.repository;
 
-import ru.neustupov.votingForRestaurants.model.Vote;
+import ru.neustupov.votingforrestaurants.model.Vote;
 
 import java.util.List;
 

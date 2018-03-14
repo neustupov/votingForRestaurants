@@ -1,9 +1,9 @@
-package ru.neustupov.votingForRestaurants.web.menu;
+package ru.neustupov.votingforrestaurants.web.menu;
 
 import org.slf4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-import ru.neustupov.votingForRestaurants.model.Menu;
+import ru.neustupov.votingforrestaurants.model.Menu;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

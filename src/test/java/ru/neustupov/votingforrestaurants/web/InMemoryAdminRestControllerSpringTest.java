@@ -1,4 +1,4 @@
-package ru.neustupov.votingForRestaurants.web;
+package ru.neustupov.votingforrestaurants.web;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -7,15 +7,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.neustupov.votingForRestaurants.UserTestData;
-import ru.neustupov.votingForRestaurants.model.User;
-import ru.neustupov.votingForRestaurants.repository.mock.InMemoryUserRepository;
-import ru.neustupov.votingForRestaurants.util.exception.NotFoundException;
-import ru.neustupov.votingForRestaurants.web.user.AdminRestController;
+import ru.neustupov.votingforrestaurants.UserTestData;
+import ru.neustupov.votingforrestaurants.model.User;
+import ru.neustupov.votingforrestaurants.repository.mock.InMemoryUserRepository;
+import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
+import ru.neustupov.votingforrestaurants.web.user.AdminRestController;
 
 import java.util.Collection;
 
-import static ru.neustupov.votingForRestaurants.UserTestData.ADMIN;
+import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
 
 @ContextConfiguration("classpath:spring/mock.xml")
 @RunWith(SpringRunner.class)

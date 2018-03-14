@@ -1,16 +1,16 @@
-package ru.neustupov.votingForRestaurants.web.meal;
+package ru.neustupov.votingforrestaurants.web.meal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import ru.neustupov.votingForRestaurants.model.Meal;
-import ru.neustupov.votingForRestaurants.service.MealService;
+import ru.neustupov.votingforrestaurants.model.Meal;
+import ru.neustupov.votingforrestaurants.service.MealService;
 
 import java.util.List;
 
-import static ru.neustupov.votingForRestaurants.util.ValidationUtil.assureIdConsistent;
-import static ru.neustupov.votingForRestaurants.util.ValidationUtil.checkNew;
+import static ru.neustupov.votingforrestaurants.util.ValidationUtil.assureIdConsistent;
+import static ru.neustupov.votingforrestaurants.util.ValidationUtil.checkNew;
 
 @Controller
 public class MealRestController {

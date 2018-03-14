@@ -1,12 +1,12 @@
-package ru.neustupov.votingForRestaurants.web.user;
+package ru.neustupov.votingforrestaurants.web.user;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import ru.neustupov.votingForRestaurants.AuthorizedUser;
-import ru.neustupov.votingForRestaurants.model.User;
-import ru.neustupov.votingForRestaurants.service.UserService;
+import ru.neustupov.votingforrestaurants.AuthorizedUser;
+import ru.neustupov.votingforrestaurants.model.User;
+import ru.neustupov.votingforrestaurants.service.UserService;
 
 @Controller
 public class ProfileRestController {

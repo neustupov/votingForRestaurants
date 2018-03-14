@@ -1,7 +1,7 @@
-package ru.neustupov.votingForRestaurants.service;
+package ru.neustupov.votingforrestaurants.service;
 
-import ru.neustupov.votingForRestaurants.model.Meal;
-import ru.neustupov.votingForRestaurants.util.exception.NotFoundException;
+import ru.neustupov.votingforrestaurants.model.Meal;
+import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
 
 import java.util.List;
 

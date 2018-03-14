@@ -1,7 +1,7 @@
-package ru.neustupov.votingForRestaurants;
+package ru.neustupov.votingforrestaurants;
 
-import ru.neustupov.votingForRestaurants.model.Role;
-import ru.neustupov.votingForRestaurants.model.User;
+import ru.neustupov.votingforrestaurants.model.Role;
+import ru.neustupov.votingforrestaurants.model.User;
 
 import java.time.Instant;
 import java.util.Date;

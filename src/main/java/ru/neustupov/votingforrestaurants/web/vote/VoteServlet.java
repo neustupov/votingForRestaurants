@@ -1,13 +1,13 @@
-package ru.neustupov.votingForRestaurants.web.vote;
+package ru.neustupov.votingforrestaurants.web.vote;
 
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-import ru.neustupov.votingForRestaurants.AuthorizedUser;
-import ru.neustupov.votingForRestaurants.model.Restaurant;
-import ru.neustupov.votingForRestaurants.model.User;
-import ru.neustupov.votingForRestaurants.model.Vote;
-import ru.neustupov.votingForRestaurants.web.restaurant.RestaurantRestController;
-import ru.neustupov.votingForRestaurants.web.user.AdminRestController;
+import ru.neustupov.votingforrestaurants.AuthorizedUser;
+import ru.neustupov.votingforrestaurants.model.Restaurant;
+import ru.neustupov.votingforrestaurants.model.User;
+import ru.neustupov.votingforrestaurants.model.Vote;
+import ru.neustupov.votingforrestaurants.web.restaurant.RestaurantRestController;
+import ru.neustupov.votingforrestaurants.web.user.AdminRestController;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

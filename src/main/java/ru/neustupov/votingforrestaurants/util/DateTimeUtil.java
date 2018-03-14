@@ -1,4 +1,4 @@
-package ru.neustupov.votingForRestaurants.util;
+package ru.neustupov.votingforrestaurants.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

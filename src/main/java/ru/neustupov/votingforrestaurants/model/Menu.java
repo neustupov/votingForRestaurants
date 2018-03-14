@@ -1,4 +1,4 @@
-package ru.neustupov.votingForRestaurants.model;
+package ru.neustupov.votingforrestaurants.model;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;

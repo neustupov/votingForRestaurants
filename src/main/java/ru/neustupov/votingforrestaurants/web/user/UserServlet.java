@@ -1,7 +1,7 @@
-package ru.neustupov.votingForRestaurants.web.user;
+package ru.neustupov.votingforrestaurants.web.user;
 
 import org.slf4j.Logger;
-import ru.neustupov.votingForRestaurants.AuthorizedUser;
+import ru.neustupov.votingforrestaurants.AuthorizedUser;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

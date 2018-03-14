@@ -1,15 +1,15 @@
-package ru.neustupov.votingForRestaurants.service;
+package ru.neustupov.votingforrestaurants.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import ru.neustupov.votingForRestaurants.model.User;
-import ru.neustupov.votingForRestaurants.repository.UserRepository;
-import ru.neustupov.votingForRestaurants.util.exception.NotFoundException;
+import ru.neustupov.votingforrestaurants.model.User;
+import ru.neustupov.votingforrestaurants.repository.UserRepository;
+import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
 
 import java.util.List;
 
-import static ru.neustupov.votingForRestaurants.util.ValidationUtil.checkNotFoundWithId;
+import static ru.neustupov.votingforrestaurants.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class UserServiceImpl implements UserService {

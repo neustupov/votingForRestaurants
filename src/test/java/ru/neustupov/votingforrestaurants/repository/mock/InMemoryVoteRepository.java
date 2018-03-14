@@ -1,11 +1,11 @@
-package ru.neustupov.votingForRestaurants.repository.mock;
+package ru.neustupov.votingforrestaurants.repository.mock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import ru.neustupov.votingForRestaurants.AuthorizedUser;
-import ru.neustupov.votingForRestaurants.model.Vote;
-import ru.neustupov.votingForRestaurants.repository.VoteRepository;
+import ru.neustupov.votingforrestaurants.AuthorizedUser;
+import ru.neustupov.votingforrestaurants.model.Vote;
+import ru.neustupov.votingforrestaurants.repository.VoteRepository;
 
 import java.time.LocalDateTime;
 import java.time.Month;

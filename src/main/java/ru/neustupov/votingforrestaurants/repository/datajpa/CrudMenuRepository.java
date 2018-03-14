@@ -1,4 +1,4 @@
-package ru.neustupov.votingForRestaurants.repository.datajpa;
+package ru.neustupov.votingforrestaurants.repository.datajpa;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import ru.neustupov.votingForRestaurants.model.Menu;
+import ru.neustupov.votingforrestaurants.model.Menu;
 
 import java.util.List;
 import java.util.Optional;
