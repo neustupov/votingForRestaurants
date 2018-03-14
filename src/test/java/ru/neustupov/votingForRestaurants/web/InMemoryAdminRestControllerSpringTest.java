@@ -17,7 +17,7 @@ import java.util.Collection;
 
 import static ru.neustupov.votingForRestaurants.UserTestData.ADMIN;
 
-@ContextConfiguration("classpath:spring/spring-app.xml")
+@ContextConfiguration("classpath:spring/mock.xml")
 @RunWith(SpringRunner.class)
 public class InMemoryAdminRestControllerSpringTest {
 
