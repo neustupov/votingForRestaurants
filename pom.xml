@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.neustupov</groupId>
-    <artifactId>votingForRestaurants</artifactId>
+    <artifactId>votingforrestaurants</artifactId>
     <packaging>war</packaging>
 
     <version>1.0-SNAPSHOT</version>
@@ -46,7 +46,7 @@
     </properties>
 
     <build>
-        <finalName>votingForRestaurants</finalName>
+        <finalName>votingforrestaurants</finalName>
         <defaultGoal>package</defaultGoal>
 
         <plugins>
@@ -97,6 +97,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>commons-logging</groupId>
