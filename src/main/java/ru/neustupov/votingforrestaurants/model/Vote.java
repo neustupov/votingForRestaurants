@@ -17,7 +17,7 @@ public class Vote extends AbstractBaseEntity {
     @NotNull
     private User user;
 
-    @Column(name = "date_time", columnDefinition = "timestamp default now()")
+    @Column(name = "date_time", columnDefinition = "timestamp default now()",  nullable = false)
     @NotNull
     private LocalDateTime dateTime;
 
