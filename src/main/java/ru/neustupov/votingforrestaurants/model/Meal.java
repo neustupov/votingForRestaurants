@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "meals")
 public class Meal extends AbstractNamedEntity {
 
-    @Column(name = "price")
+    @Column(name = "price",  nullable = false)
     @NotNull
     private Integer price;
 
@@ -31,7 +31,7 @@ public class Meal extends AbstractNamedEntity {
         this.price = price;
     }
 
-    public Meal(int id, String name, int price) {
+    public Meal(@NotNull int id, @NotNull String name, @NotNull int price) {
         super(id, name);
         this.price = price;
     }
