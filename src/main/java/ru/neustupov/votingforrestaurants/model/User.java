@@ -17,7 +17,7 @@ public class User extends AbstractNamedEntity {
     @Size(min = 5, max = 64)
     private String password;
 
-    @Column(name = "registered", columnDefinition = "timestamp default now()")
+    @Column(name = "registered", columnDefinition = "timestamp default now()",  nullable = false)
     @NotNull
     private Date registered = new Date();
 
