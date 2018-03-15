@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name = "menus")
 public class Menu extends AbstractBaseEntity {
 
-    @Column(name = "add_date", columnDefinition = "timestamp default now()")
+    @Column(name = "add_date", columnDefinition = "timestamp default now()",  nullable = false)
     @NotNull
     private LocalDateTime addDate;
 
