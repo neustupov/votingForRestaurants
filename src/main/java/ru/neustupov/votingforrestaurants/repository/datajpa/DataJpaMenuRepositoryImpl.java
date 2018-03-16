@@ -9,6 +9,7 @@ import ru.neustupov.votingforrestaurants.repository.MenuRepository;
 import java.util.List;
 
 @Repository
+@Transactional(readOnly = true)
 public class DataJpaMenuRepositoryImpl implements MenuRepository {
 
     @Autowired
