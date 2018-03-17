@@ -17,7 +17,6 @@
             <th>Add Date</th>
             <th>Restaurant</th>
             <th></th>
-            <th></th>
         </tr>
         </thead>
         <c:forEach items="${votesList}" var="vote">
@@ -35,7 +34,6 @@
                 <td>
                         ${vote.restaurant.name}
                 </td>
-                <td><a href="votes?action=update&id=${vote.id}">Update</a></td>
                 <td><a href="votes?action=delete&id=${vote.id}">Delete</a></td>
             </tr>
         </c:forEach>
