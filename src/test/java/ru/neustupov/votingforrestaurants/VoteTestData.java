@@ -30,11 +30,11 @@ public class VoteTestData {
     public static final Vote VOTE5 = new Vote(VOTE5_ID, ADMIN, LocalDateTime.of(2015, Month.MAY, 2, 8, 0), FART);
     public static final Vote VOTE6 = new Vote(VOTE6_ID, ADMIN, LocalDateTime.of(2015, Month.MAY, 3, 8, 0), RUSSIA);
 
+    public static final List<Vote> VOTES = Arrays.asList(VOTE2, VOTE3, VOTE4, VOTE5, VOTE6);
+
     public static Vote getCreated() {
         return new Vote(null, USER, LocalDateTime.of(2015, Month.MAY, 1, 9,0), RUSSIA);
     }
-
-    public static final List<Vote> VOTES = Arrays.asList(VOTE2, VOTE3, VOTE4, VOTE5, VOTE6);
 
     public static void assertMatch(Vote actual, Vote expected) {
         assertThat(actual).isEqualTo(expected);
