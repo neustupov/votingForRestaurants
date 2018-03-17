@@ -65,7 +65,7 @@ public class Menu extends AbstractBaseEntity {
         this.restaurant = restaurant;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Menu{" +
                 "restId=" +
@@ -74,5 +74,5 @@ public class Menu extends AbstractBaseEntity {
                 ", meals=" + meals +
                 ", restaurant=" + restaurant +
                 '}';
-    }
+    }*/
 }
