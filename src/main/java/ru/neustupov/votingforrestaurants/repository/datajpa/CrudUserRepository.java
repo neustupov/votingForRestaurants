@@ -16,8 +16,8 @@ import java.util.Optional;
 public interface CrudUserRepository extends JpaRepository<User, Integer>{
 
     @Transactional
-    @Modifying
     @Query("DELETE FROM User u WHERE u.id=:id")
+    @Modifying
     int delete(@Param("id") int id);
 
     @Override
@@ -27,8 +27,8 @@ public interface CrudUserRepository extends JpaRepository<User, Integer>{
     @Override
     Optional<User> findById(Integer id);
 
-    @Override
-    List<User> findAll(Sort sort);
+    @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name")
+    List<User> getAll();
 
     //    https://stackoverflow.com/a/46013654/548473
     @EntityGraph(attributePaths = {"votes"}, type = EntityGraph.EntityGraphType.LOAD)
