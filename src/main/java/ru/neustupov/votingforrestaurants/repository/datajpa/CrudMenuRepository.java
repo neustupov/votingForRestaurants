@@ -25,7 +25,7 @@ public interface CrudMenuRepository extends JpaRepository<Menu, Integer> {
     @Query("SELECT m FROM Menu m WHERE m.id=:id AND m.restaurant.id=:restId")
     Optional<Menu> get(@Param("id") int id, @Param("restId") int restId);
 
-    @Query("SELECT m FROM Menu m WHERE m.restaurant.id=:restId")
+    @Query("SELECT m FROM Menu m WHERE m.restaurant.id=:restId ORDER BY m.id")
     List<Menu> getAll(@Param("restId") int restId);
 
     //    https://stackoverflow.com/a/46013654/548473
