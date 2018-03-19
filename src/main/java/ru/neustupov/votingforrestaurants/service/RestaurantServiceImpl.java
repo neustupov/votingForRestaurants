@@ -1,6 +1,8 @@
 package ru.neustupov.votingforrestaurants.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.neustupov.votingforrestaurants.model.Restaurant;
@@ -21,12 +23,14 @@ public class RestaurantServiceImpl implements RestaurantService{
         this.repository = repository;
     }
 
+    @CacheEvict(value = "restaurants", allEntries = true)
     @Override
     public Restaurant create(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
         return repository.save(restaurant);
     }
 
+    @CacheEvict(value = "restaurants", allEntries = true)
     @Override
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id), id);
@@ -37,12 +41,14 @@ public class RestaurantServiceImpl implements RestaurantService{
         return checkNotFoundWithId(repository.get(id), id);
     }
 
+    @CacheEvict(value = "restaurants", allEntries = true)
     @Override
     public void update(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
         checkNotFoundWithId(repository.save(restaurant), restaurant.getId());
     }
 
+    @Cacheable("restaurants")
     @Override
     public List<Restaurant> getAll() {
         return repository.getAll();
