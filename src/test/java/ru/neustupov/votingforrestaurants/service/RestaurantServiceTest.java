@@ -1,7 +1,9 @@
 package ru.neustupov.votingforrestaurants.service;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataAccessException;
 import ru.neustupov.votingforrestaurants.model.Restaurant;
 import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
@@ -14,6 +16,14 @@ public class RestaurantServiceTest extends AbstractServiceTest{
 
     @Autowired
     private RestaurantService service;
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    @Before
+    public void setUp() throws Exception {
+        cacheManager.getCache("restaurants").clear();
+    }
 
     @Test
     public void create() throws Exception {
