@@ -45,6 +45,9 @@
         <webjars-noty.version>3.1.0</webjars-noty.version>
         <webjars-datatables.version>1.10.16</webjars-datatables.version>
 
+        <!--Tools-->
+        <ehcache.version>3.4.0</ehcache.version>
+
     </properties>
 
     <build>
@@ -281,6 +284,25 @@
             <groupId>org.webjars.bower</groupId>
             <artifactId>noty</artifactId>
             <version>${webjars-noty.version}</version>
+        </dependency>
+
+        <!-- Cache -->
+        <dependency>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <scope>runtime</scope>
+            <version>${ehcache.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>
