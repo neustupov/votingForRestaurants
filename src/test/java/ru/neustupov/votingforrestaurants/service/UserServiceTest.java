@@ -1,7 +1,9 @@
 package ru.neustupov.votingforrestaurants.service;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataAccessException;
 import ru.neustupov.votingforrestaurants.model.Role;
 import ru.neustupov.votingforrestaurants.model.User;
@@ -18,6 +20,14 @@ public class UserServiceTest extends AbstractServiceTest{
 
     @Autowired
     private UserService service;
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    @Before
+    public void setUp() throws Exception {
+        cacheManager.getCache("users").clear();
+    }
 
     @Test
     public void create() throws Exception {
