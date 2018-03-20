@@ -13,36 +13,36 @@ public class MenuServiceTest extends AbstractServiceTest{
     private MenuService service;
 
     @Test
-    public void testDelete() throws Exception {
+    public void delete() throws Exception {
         service.delete(RUSSIA_MENU_ID1, RUSSIA_ID);
         assertMatch(service.getAll(RUSSIA_ID), RUSSIA_MENU2);
     }
 
     @Test(expected = NotFoundException.class)
-    public void testDeleteNotFound() throws Exception {
+    public void deleteNotFound() throws Exception {
         service.delete(RUSSIA_MENU_ID1, 1);
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void save() throws Exception {
         Menu created = getCreated();
         service.create(created, RUSSIA_ID);
         assertMatch(service.getAll(RUSSIA_ID), RUSSIA_MENU1, RUSSIA_MENU2, created);
     }
 
     @Test
-    public void testGet() throws Exception {
+    public void get() throws Exception {
         Menu actual = service.get(RUSSIA_MENU_ID1, RUSSIA_ID);
         assertMatch(actual, RUSSIA_MENU1);
     }
 
     @Test(expected = NotFoundException.class)
-    public void testGetNotFound() throws Exception {
+    public void getNotFound() throws Exception {
         service.get(UKRAINE_MENU_ID, RUSSIA_ID);
     }
 
     @Test
-    public void testGetAll() throws Exception {
+    public void getAll() throws Exception {
         assertMatch(service.getAll(RUSSIA_ID), RUSSIA_MENU1, RUSSIA_MENU2);
     }
 }
