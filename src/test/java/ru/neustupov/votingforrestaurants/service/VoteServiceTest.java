@@ -15,36 +15,36 @@ public class VoteServiceTest extends AbstractServiceTest{
     private VoteService service;
 
     @Test
-    public void testDelete() throws Exception {
+    public void delete() throws Exception {
         service.delete(VOTE1_ID, USER_ID);
         assertMatch(service.getAll(), VOTES);
     }
 
     @Test(expected = NotFoundException.class)
-    public void testDeleteNotFound() throws Exception {
+    public void deleteNotFound() throws Exception {
         service.delete(VOTE1_ID, 1);
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void save() throws Exception {
         Vote created = getCreated();
         service.create(created, USER_ID);
         assertMatch(service.getAll(), VOTE1, VOTE2, VOTE3, VOTE4, VOTE5, VOTE6, created);
     }
 
     @Test
-    public void testGet() throws Exception {
+    public void get() throws Exception {
         Vote actual = service.get(VOTE1_ID, USER_ID);
         assertMatch(actual, VOTE1);
     }
 
     @Test(expected = NotFoundException.class)
-    public void testGetNotFound() throws Exception {
+    public void getNotFound() throws Exception {
         service.get(VOTE1_ID, ADMIN_ID);
     }
 
     @Test
-    public void testGetAll() throws Exception {
+    public void getAll() throws Exception {
         assertMatch(service.getAll(),VOTE1, VOTE2, VOTE3, VOTE4, VOTE5, VOTE6);
     }
 }
