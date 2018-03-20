@@ -15,48 +15,48 @@ public class MealServiceTest extends AbstractServiceTest{
     private MealService service;
 
     @Test
-    public void testDelete() throws Exception {
+    public void delete() throws Exception {
         service.delete(APPLE_ID, RUSSIA_MENU_ID1);
         assertMatch(service.getAll(RUSSIA_MENU_ID1), BOTTLE_OF_WATER);
     }
 
     @Test(expected = NotFoundException.class)
-    public void testDeleteNotFound() throws Exception {
+    public void deleteNotFound() throws Exception {
         service.delete(APPLE_ID, 1);
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void save() throws Exception {
         Meal created = getCreated();
         service.create(created, RUSSIA_MENU_ID1);
         assertMatch(service.getAll(RUSSIA_MENU_ID1), APPLE, BOTTLE_OF_WATER, created);
     }
 
     @Test
-    public void testGet() throws Exception {
+    public void get() throws Exception {
         Meal actual = service.get(APPLE_ID, RUSSIA_MENU_ID1);
         assertMatch(actual, APPLE);
     }
 
     @Test(expected = NotFoundException.class)
-    public void testGetNotFound() throws Exception {
+    public void getNotFound() throws Exception {
         service.get(BANANAS_ID, RUSSIA_MENU_ID1);
     }
 
     @Test
-    public void testGetAll() throws Exception {
+    public void getAll() throws Exception {
         assertMatch(service.getAll(RUSSIA_MENU_ID1), APPLE, BOTTLE_OF_WATER);
     }
 
     @Test
-    public void testUpdate() throws Exception {
+    public void update() throws Exception {
         Meal updated = getUpdated();
         service.update(updated, RUSSIA_MENU_ID1);
         assertMatch(service.get(APPLE_ID, RUSSIA_MENU_ID1), updated);
     }
 
     @Test(expected = NotFoundException.class)
-    public void testUpdateNotFound() throws Exception {
+    public void updateNotFound() throws Exception {
         service.update(BANANAS, RUSSIA_MENU_ID1);
     }
 }
