@@ -9,7 +9,6 @@ import ru.neustupov.votingforrestaurants.repository.RestaurantRepository;
 import java.util.List;
 
 @Repository
-@Transactional(readOnly = true)
 public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository{
 
     @Autowired
