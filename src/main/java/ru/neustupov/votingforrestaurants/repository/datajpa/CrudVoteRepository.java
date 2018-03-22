@@ -9,9 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.votingforrestaurants.model.Vote;
 
 import java.util.List;
-import java.util.Optional;
 
-@Transactional
+@Transactional(readOnly = true)
 public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     @Transactional
