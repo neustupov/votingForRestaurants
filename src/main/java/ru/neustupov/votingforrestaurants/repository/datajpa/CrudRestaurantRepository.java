@@ -24,9 +24,6 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
     Restaurant save (Restaurant restaurant);
 
     @Override
-    Optional<Restaurant> findById(Integer id);
-
-    @Override
     List<Restaurant> findAll(Sort sort);
 
     //    https://stackoverflow.com/a/46013654/548473
