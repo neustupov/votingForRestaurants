@@ -14,13 +14,11 @@ public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository{
     @Autowired
     private CrudRestaurantRepository crudRestaurantRepository;
 
-    @Transactional
     @Override
     public Restaurant save(Restaurant restaurant) {
         return crudRestaurantRepository.save(restaurant);
     }
 
-    @Transactional
     @Override
     public boolean delete(int id) {
         return crudRestaurantRepository.delete(id) != 0;

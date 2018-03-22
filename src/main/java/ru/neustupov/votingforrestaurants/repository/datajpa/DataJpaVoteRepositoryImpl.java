@@ -27,7 +27,6 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
         return crudVoteRepository.save(vote);
     }
 
-    @Transactional
     @Override
     public boolean delete(int id, int userId) {
         return crudVoteRepository.delete(id, userId) != 0;

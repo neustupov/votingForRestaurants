@@ -14,13 +14,11 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     @Autowired
     private CrudUserRepository crudUserRepository;
 
-    @Transactional
     @Override
     public User save(User user) {
         return crudUserRepository.save(user);
     }
 
-    @Transactional
     @Override
     public boolean delete(int id) {
         return crudUserRepository.delete(id) != 0;
