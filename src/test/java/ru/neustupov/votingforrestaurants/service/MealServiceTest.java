@@ -26,7 +26,7 @@ public class MealServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    public void save() throws Exception {
+    public void create() throws Exception {
         Meal created = getCreated();
         service.create(created, RUSSIA_MENU_ID1);
         assertMatch(service.getAll(RUSSIA_MENU_ID1), APPLE, BOTTLE_OF_WATER, created);

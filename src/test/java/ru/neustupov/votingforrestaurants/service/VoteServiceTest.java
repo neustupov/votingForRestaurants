@@ -26,7 +26,7 @@ public class VoteServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    public void save() throws Exception {
+    public void create() throws Exception {
         Vote created = getCreated();
         service.create(created, USER_ID);
         assertMatch(service.getAll(), VOTE1, VOTE2, VOTE3, VOTE4, VOTE5, VOTE6, created);

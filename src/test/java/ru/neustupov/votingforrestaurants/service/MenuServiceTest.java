@@ -24,7 +24,7 @@ public class MenuServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    public void save() throws Exception {
+    public void create() throws Exception {
         Menu created = getCreated();
         service.create(created, RUSSIA_ID);
         assertMatch(service.getAll(RUSSIA_ID), RUSSIA_MENU1, RUSSIA_MENU2, created);
