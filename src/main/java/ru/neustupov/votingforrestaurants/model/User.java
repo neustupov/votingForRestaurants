@@ -37,15 +37,14 @@ public class User extends AbstractNamedEntity {
         this(u.getId(), u.getName(), u.getPassword(), u.getRegistered(), u.getRoles());
     }
 
-    public User(@NotNull String name, @NotNull String password, @NotNull Date registered, @NotNull Set<Role> roles) {
+    public User(String name, String password, Date registered, Set<Role> roles) {
         this.name = name;
         this.password = password;
         this.registered = registered;
         setRoles(roles);
     }
 
-    public User(@NotNull Integer id, @NotNull String name, @NotNull String password, @NotNull Date registered,
-                @NotNull Set<Role> roles) {
+    public User( Integer id, String name, String password, Date registered, Set<Role> roles) {
         super(id, name);
         this.password = password;
         this.registered = registered;
