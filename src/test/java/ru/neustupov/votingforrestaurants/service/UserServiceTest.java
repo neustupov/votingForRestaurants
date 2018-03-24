@@ -9,14 +9,16 @@ import ru.neustupov.votingforrestaurants.model.Role;
 import ru.neustupov.votingforrestaurants.model.User;
 import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
 
+import javax.validation.ConstraintViolationException;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
 
 import static ru.neustupov.votingforrestaurants.UserTestData.*;
 
-public class UserServiceTest extends AbstractServiceTest{
+public class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
     private UserService service;
@@ -77,4 +79,15 @@ public class UserServiceTest extends AbstractServiceTest{
         List<User> all = service.getAll();
         assertMatch(all, ADMIN, USER);
     }
+
+    @Test
+    public void testValidation() throws Exception {
+        validateRootCause(() -> service.create(new User(100500, "   ", "Password", Date.from(Instant.now()), EnumSet.of(Role.ROLE_USER))), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new User(100500, "TestUser", "   ", Date.from(Instant.now()), EnumSet.of(Role.ROLE_USER))), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new User(100500, "TestUser", "Pass", Date.from(Instant.now()), EnumSet.of(Role.ROLE_USER))), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new User(100500, "TestUser", "1234567890qwertyuiopsdfghjklzxcvbnmnbvcxzasdfghjklpoiuytrewq12345", Date.from(Instant.now()), EnumSet.of(Role.ROLE_USER))), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new User(100500, "TestUser", "Password", null, EnumSet.of(Role.ROLE_USER))), ConstraintViolationException.class);
+    }
+
 }
+

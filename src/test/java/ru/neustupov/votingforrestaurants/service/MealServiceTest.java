@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.neustupov.votingforrestaurants.model.Meal;
 import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
 
+import javax.validation.ConstraintViolationException;
+
 import static ru.neustupov.votingforrestaurants.MealTestData.*;
 import static ru.neustupov.votingforrestaurants.MenuTestData.RUSSIA_MENU_ID1;
 import static ru.neustupov.votingforrestaurants.MealTestData.assertMatch;
+import static ru.neustupov.votingforrestaurants.MenuTestData.UKRAINE_MENU_ID;
 
 public class MealServiceTest extends AbstractServiceTest{
 
@@ -58,5 +61,11 @@ public class MealServiceTest extends AbstractServiceTest{
     @Test(expected = NotFoundException.class)
     public void updateNotFound() throws Exception {
         service.update(BANANAS, RUSSIA_MENU_ID1);
+    }
+
+    @Test
+    public void testValidation() throws Exception {
+        validateRootCause(() -> service.create(new Meal("   ", 10), UKRAINE_MENU_ID), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new Meal("Bananas", null), UKRAINE_MENU_ID), ConstraintViolationException.class);
     }
 }

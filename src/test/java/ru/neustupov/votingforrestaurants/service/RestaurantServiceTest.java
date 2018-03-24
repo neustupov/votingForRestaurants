@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import ru.neustupov.votingforrestaurants.model.Restaurant;
 import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 import static ru.neustupov.votingforrestaurants.RestaurantTestData.*;
@@ -72,5 +73,10 @@ public class RestaurantServiceTest extends AbstractServiceTest{
     public void getAll() throws Exception {
         List<Restaurant> all = service.getAll();
         assertMatch(all, RUSSIA, UKRAINE, U_KOLYANA, ALMAZ, FART);
+    }
+
+    @Test
+    public void testValidation() throws Exception {
+        validateRootCause(() -> service.create(new Restaurant("   ")), ConstraintViolationException.class);
     }
 }
