@@ -32,12 +32,12 @@ public class Menu extends AbstractBaseEntity {
         this(m.getId(), m.getAddDate());
     }
 
-    public Menu(@NotNull Integer id, @NotNull LocalDateTime addDate) {
+    public Menu(Integer id, LocalDateTime addDate) {
         super(id);
         this.addDate = addDate;
     }
 
-    public Menu(@NotNull LocalDateTime addDate) {
+    public Menu(LocalDateTime addDate) {
         this.addDate = addDate;
     }
 
@@ -64,15 +64,4 @@ public class Menu extends AbstractBaseEntity {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
-
-    /*@Override
-    public String toString() {
-        return "Menu{" +
-                "restId=" +
-                ", addDate=" + addDate +
-                ", id=" + id +
-                ", meals=" + meals +
-                ", restaurant=" + restaurant +
-                '}';
-    }*/
 }
