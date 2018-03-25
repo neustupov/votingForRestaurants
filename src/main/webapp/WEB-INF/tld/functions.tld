@@ -7,11 +7,11 @@
 
     <tlib-version>1.0</tlib-version>
     <short-name>functions</short-name>
-    <uri>http://votingForRestaurants.neustupov.ru/functions</uri>
+    <uri>http://votingforrestaurants.neustupov.ru/functions</uri>
 
     <function>
         <name>formatDateTime</name>
-        <function-class>ru.neustupov.votingforrestaurants.DateTimeUtil</function-class>
+        <function-class>ru.neustupov.votingforrestaurants.util.DateTimeUtil</function-class>
         <function-signature>java.lang.String toString(java.time.LocalDateTime)</function-signature>
     </function>
 </taglib>
