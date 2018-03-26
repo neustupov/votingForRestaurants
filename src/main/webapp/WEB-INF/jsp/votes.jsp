@@ -1,23 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fn" uri="http://votingforrestaurants.neustupov.ru/functions" %>
 
-<fmt:setBundle basename="messages.app"/>
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <section>
-    <h3><a href="restaurants"><fmt:message key="common.backToRestaurants"/></a></h3>
-    <h2><fmt:message key="vote.vote"/></h2>
+    <h3><a href="restaurants"><spring:message code="common.backToRestaurants"/></a></h3>
+    <h2><spring:message code="vote.vote"/></h2>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
         <tr>
             <th>Id</th>
-            <th><fmt:message key="user.userId"/></th>
-            <th><fmt:message key="common.addDate"/></th>
-            <th><fmt:message key="vote.restaurant"/></th>
+            <th><spring:message code="user.userId"/></th>
+            <th><spring:message code="common.addDate"/></th>
+            <th><spring:message code="vote.restaurant"/></th>
             <th></th>
         </tr>
         </thead>
@@ -36,7 +35,7 @@
                 <td>
                         ${vote.restaurant.name}
                 </td>
-                <td><a href="votes?action=delete&id=${vote.id}"><fmt:message key="common.delete"/></a></td>
+                <td><a href="votes?action=delete&id=${vote.id}"><spring:message code="common.delete"/></a></td>
             </tr>
         </c:forEach>
     </table>
