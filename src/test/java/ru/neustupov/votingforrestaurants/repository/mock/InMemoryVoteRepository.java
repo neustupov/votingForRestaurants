@@ -7,6 +7,8 @@ import ru.neustupov.votingforrestaurants.AuthorizedUser;
 import ru.neustupov.votingforrestaurants.model.Vote;
 import ru.neustupov.votingforrestaurants.repository.VoteRepository;
 
+import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Comparator;
@@ -26,9 +28,9 @@ public class InMemoryVoteRepository implements VoteRepository {
     private AtomicInteger counter = new AtomicInteger(0);
 
     {
-        save(new Vote(LocalDateTime.of(2015, Month.MAY, 30, 10, 0)),
+        save(new Vote(Date.valueOf("2015-05-29")),
                 AuthorizedUser.id());
-        save(new Vote(LocalDateTime.of(2015, Month.JULY, 10, 11, 0)),
+        save(new Vote(Date.valueOf("2015-05-30")),
                 AuthorizedUser.id());
     }
 
@@ -91,6 +93,6 @@ public class InMemoryVoteRepository implements VoteRepository {
         return votes == null ?
                 Stream.empty() :
                 votes.values().stream()
-                        .sorted(Comparator.comparing(Vote::getDateTime));
+                        .sorted(Comparator.comparing(Vote::getDate));
     }
 }
