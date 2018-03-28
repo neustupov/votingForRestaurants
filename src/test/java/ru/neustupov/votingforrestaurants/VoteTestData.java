@@ -34,7 +34,7 @@ public class VoteTestData {
     public static final List<Vote> VOTES = Arrays.asList(VOTE2, VOTE3, VOTE4, VOTE5, VOTE6);
 
     public static Vote getCreated() {
-        return new Vote(null, USER, Date.valueOf("2015-05-01"), RUSSIA);
+        return new Vote(null, USER, Date.valueOf("2015-05-04"), RUSSIA);
     }
 
     public static void assertMatch(Vote actual, Vote expected) {
