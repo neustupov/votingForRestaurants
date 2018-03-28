@@ -30,7 +30,7 @@
                         ${vote.user.id}
                 </td>
                 <td>
-                        ${fn:formatDateTime(vote.dateTime)}
+                        ${fn:formatDateTime(vote.date)}
                 </td>
                 <td>
                         ${vote.restaurant.name}
