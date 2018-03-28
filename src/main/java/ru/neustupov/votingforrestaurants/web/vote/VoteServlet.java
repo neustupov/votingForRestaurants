@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class VoteServlet extends HttpServlet {
@@ -43,7 +45,7 @@ public class VoteServlet extends HttpServlet {
                 User user = adminRestController.get(AuthorizedUser.id());
                 Restaurant restaurant = restaurantRestController.get(
                         Integer.parseInt(request.getParameter("restId")));
-                Vote vote = new Vote(user, LocalDateTime.now(), restaurant);
+                Vote vote = new Vote(user, Date.from(Instant.now()), restaurant);
                 voteRestController.create(vote);
                 response.sendRedirect("restaurants");
                 break;
