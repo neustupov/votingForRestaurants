@@ -23,7 +23,7 @@
         </dl>
         <dl>
             <dt>Add DateTime</dt>
-            <dd><input type="datetime-local" value="${vote.dateTime}" name="dateTime" required></dd>
+            <dd><input type="datetime-local" value="${vote.date}" name="dateTime" required></dd>
         </dl>
         <dl>
             <dt>Restaurant:</dt>
