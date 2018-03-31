@@ -8,8 +8,8 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <hr/>
-<a href="restaurants?action=create"><spring:message code="restaurants.addRestaurant"/></a>
-<a href="votes?action=all"><spring:message code="restaurant.viewAllVotes"/></a>
+<a href="restaurants/create"><spring:message code="restaurants.addRestaurant"/></a>
+<a href="votes"><spring:message code="restaurant.viewAllVotes"/></a>
 <hr/>
 <table border="1" cellpadding="8" cellspacing="0">
     <thead>
@@ -20,6 +20,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
     </tr>
     </thead>
     <c:forEach items="${restaurantsList}" var="restaurant">
@@ -27,10 +28,11 @@
         <td><c:out value="${restaurant.id}"/></td>
         <td><c:out value="${restaurant.name}"/></td>
         <td><c:out value="${restaurant.numberOfVotes}"/>
-        <td><a href="menus?action=all&restId=${restaurant.id}"><spring:message code="restaurant.showAllMenus"/></a></td>
-        <td><a href="restaurants?action=delete&restId=${restaurant.id}"><spring:message code="common.delete"/></a></td>
-        <td><a href="restaurants?action=update&restId=${restaurant.id}"><spring:message code="common.update"/></a></td>
-        <td><a href="votes?action=create&restId=${restaurant.id}"><spring:message code="restaurant.vote"/></a></td>
+        <td><a href="menus/getTodaysMenuWithMeals?restId=${restaurant.id}"><spring:message code="menu.showTodaysMenu"/></a></td>
+        <td><a href="menus?restId=${restaurant.id}"><spring:message code="restaurant.showAllMenus"/></a></td>
+        <td><a href="restaurants/delete?id=${restaurant.id}"><spring:message code="common.delete"/></a></td>
+        <td><a href="restaurants/update?id=${restaurant.id}"><spring:message code="common.update"/></a></td>
+        <td><a href="votes/create?restId=${restaurant.id}"><spring:message code="restaurant.vote"/></a></td>
     </tr>
     </c:forEach>
 </table>

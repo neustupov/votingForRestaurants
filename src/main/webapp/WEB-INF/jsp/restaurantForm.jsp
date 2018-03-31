@@ -7,12 +7,12 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <section>
-    <h3><a href="restaurants"><spring:message code="common.backToRestaurants"/></a></h3>
-    <h2>${param.action == 'create' ? '<fmt:message key="restaurants.addRestaurant"/>' : 'Edit restaurant'}</h2>
-    <hr>
     <jsp:useBean id="restaurant" type="ru.neustupov.votingforrestaurants.model.Restaurant" scope="request"/>
+    <h3><a href="restaurants"><spring:message code="common.backToRestaurants"/></a></h3>
+    <h2><spring:message code="${restaurant.isNew() ? 'restaurant.add' : 'restaurant.edit'}"/></h2>
+    <hr>
     <form method="post" action="restaurants">
-        <input type="hidden" name="restId" value="${restaurant.id}">
+        <input type="hidden" name="id" value="${restaurant.id}">
         <dl>
             <dt><spring:message code="common.name"/></dt>
             <dd><input type="text" value="${restaurant.name}" size=40 name="name" required></dd>

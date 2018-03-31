@@ -8,7 +8,7 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <hr/>
-<a href="menus?action=create&restId=${restId}"><spring:message code="menu.addMenu"/></a>
+<a href="menus/create?restId=${restId}&menuId=${menuId}"><spring:message code="menu.addMenu"/></a>
 <hr/>
 <table border="1" cellpadding="8" cellspacing="0">
     <thead>
@@ -24,9 +24,9 @@
         <tr>
             <td><c:out value="${menu.id}"/></td>
             <td><c:out value="${menu.restaurant.id}"/></td>
-            <td>${fn:formatDateTime(menu.addDate)}</td>
-            <td><a href="meals?action=all&menuId=${menu.id}&restId=${restId}"><spring:message code="menu.showAllMeals"/></a></td>
-            <td><a href="menus?action=delete&menuId=${menu.id}&restId=${restId}"><spring:message code="common.delete"/></a></td>
+            <td><c:out value="${menu.addDate}"/></td>
+            <td><a href="meals?menuId=${menu.id}&restId=${restId}"><spring:message code="menu.showAllMeals"/></a></td>
+            <td><a href="menus/delete?menuId=${menu.id}&restId=${restId}"><spring:message code="common.delete"/></a></td>
         </tr>
     </c:forEach>
 </table>
