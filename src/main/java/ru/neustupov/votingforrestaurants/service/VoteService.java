@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface VoteService {
 
-    Vote create(Vote vote, int userId);
+    Vote create(Vote vote, int userId, int restId);
 
     void delete(int id, int userId) throws NotFoundException;
 
     Vote get(int id, int userId) throws NotFoundException;
 
-    void update(Vote vote, int userId);
+    void update(Vote vote, int userId, int restId);
 
     List<Vote> getAll();
 
