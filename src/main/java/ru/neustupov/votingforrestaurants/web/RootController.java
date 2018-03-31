@@ -6,14 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.neustupov.votingforrestaurants.AuthorizedUser;
-import ru.neustupov.votingforrestaurants.service.UserService;
+import ru.neustupov.votingforrestaurants.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class RootController {
     @Autowired
-    private UserService service;
+    private UserService userService;
 
     @GetMapping("/")
     public String root() {
@@ -22,7 +22,7 @@ public class RootController {
 
     @GetMapping("/users")
     public String users(Model model) {
-        model.addAttribute("users", service.getAll());
+        model.addAttribute("users", userService.getAll());
         return "users";
     }
 
@@ -30,6 +30,6 @@ public class RootController {
     public String setUser(HttpServletRequest request) {
         int userId = Integer.valueOf(request.getParameter("userId"));
         AuthorizedUser.setId(userId);
-        return "redirect:meals";
+        return "redirect:/restaurants";
     }
 }
