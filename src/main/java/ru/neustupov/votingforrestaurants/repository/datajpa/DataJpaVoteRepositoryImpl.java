@@ -17,13 +17,17 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     @Autowired
     private CrudUserRepository crudUserRepository;
 
+    @Autowired
+    private CrudRestaurantRepository crudRestaurantRepository;
+
     @Transactional
     @Override
-    public Vote save(Vote vote, int userId) {
+    public Vote save(Vote vote, int userId, int restId) {
         if (!vote.isNew() && get(vote.getId(), userId) == null) {
             return null;
         }
         vote.setUser(crudUserRepository.getOne(userId));
+        vote.setRestaurant(crudRestaurantRepository.getOne(restId));
         return crudVoteRepository.save(vote);
     }
 
