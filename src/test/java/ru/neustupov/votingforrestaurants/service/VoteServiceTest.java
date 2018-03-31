@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.neustupov.votingforrestaurants.model.Vote;
 import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
 
+import static ru.neustupov.votingforrestaurants.RestaurantTestData.RUSSIA_ID;
 import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN_ID;
 import static ru.neustupov.votingforrestaurants.UserTestData.USER_ID;
 import static ru.neustupov.votingforrestaurants.VoteTestData.*;
@@ -28,7 +29,7 @@ public class VoteServiceTest extends AbstractServiceTest{
     @Test
     public void create() throws Exception {
         Vote created = getCreated();
-        service.create(created, USER_ID);
+        service.create(created, USER_ID, RUSSIA_ID);
         assertMatch(service.getAll(), VOTE1, VOTE2, VOTE3, VOTE4, VOTE5, VOTE6, created);
     }
 
