@@ -7,6 +7,8 @@ import ru.neustupov.votingforrestaurants.model.Menu;
 import ru.neustupov.votingforrestaurants.repository.MenuRepository;
 import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.neustupov.votingforrestaurants.util.ValidationUtil.checkNotFoundWithId;
@@ -51,8 +53,8 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Menu getWithMeals(int id) {
-        return checkNotFoundWithId(repository.getWithMeals(id), id);
+    public Menu getTodaysMenuWithMeals(int restId) {
+            return repository.getTodaysMenuWithMeals(restId, Date.valueOf(LocalDate.now()));
     }
 
     @Override
