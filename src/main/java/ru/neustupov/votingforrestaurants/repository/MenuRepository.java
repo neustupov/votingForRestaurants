@@ -2,6 +2,7 @@ package ru.neustupov.votingforrestaurants.repository;
 
 import ru.neustupov.votingforrestaurants.model.Menu;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface MenuRepository {
@@ -20,7 +21,7 @@ public interface MenuRepository {
         throw new UnsupportedOperationException();
     }
 
-    default Menu getWithMeals(int id) {
+    default Menu getTodaysMenuWithMeals(int id, Date currDate) {
         throw new UnsupportedOperationException();
     }
 
