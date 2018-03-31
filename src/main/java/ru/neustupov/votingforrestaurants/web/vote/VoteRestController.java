@@ -38,8 +38,6 @@ public class VoteRestController {
     }
 
     public List<Vote> getAll() {
-        /*int userId = AuthorizedUser.id();*/
-        /*log.info("getAll for user {}", userId);*/
         log.info("getAll votes");
         return service.getAll();
     }
@@ -49,17 +47,17 @@ public class VoteRestController {
         return service.getAllByRest(restId);
     }
 
-    public Vote create(Vote vote) {
+    public Vote create(Vote vote, int restId) {
         int userId = AuthorizedUser.id();
         checkNew(vote);
-        log.info("create {} for user {}", vote, userId);
-        return service.create(vote, userId);
+        log.info("create {} for user {} and restaurant {}", vote, userId, restId);
+        return service.create(vote, userId, restId);
     }
 
-    public void update(Vote vote, int id) {
+    public void update(Vote vote, int id, int restId) {
         int userId = AuthorizedUser.id();
         assureIdConsistent(vote, id);
-        log.info("update {} for user {}", vote, userId);
-        service.update(vote, userId);
+        log.info("update {} for user {} and restaurant {}", vote, userId, restId);
+        service.update(vote, userId, restId);
     }
 }
