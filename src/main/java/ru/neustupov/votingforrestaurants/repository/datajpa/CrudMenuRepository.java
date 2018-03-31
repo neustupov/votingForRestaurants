@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.votingforrestaurants.model.Menu;
 
+import java.sql.Date;
 import java.util.List;
 
 @Transactional(readOnly = true)
@@ -31,8 +32,7 @@ public interface CrudMenuRepository extends JpaRepository<Menu, Integer> {
     Menu getWithRestaurant(int id);
 
     @EntityGraph(attributePaths = {"meals"}, type = EntityGraph.EntityGraphType.LOAD)
-    @Query("SELECT m FROM Menu m WHERE m.id=?1")
-    Menu getWithMeals(int id);
+    Menu findByRestaurantIdAndAddDate(int restId, Date currDate);
 
     @EntityGraph(attributePaths = {"restaurant", "meals"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT m FROM Menu m WHERE m.id=?1")
