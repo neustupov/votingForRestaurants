@@ -3,14 +3,9 @@ package ru.neustupov.votingforrestaurants.repository.mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import ru.neustupov.votingforrestaurants.AuthorizedUser;
 import ru.neustupov.votingforrestaurants.model.Vote;
 import ru.neustupov.votingforrestaurants.repository.VoteRepository;
 
-import java.sql.Date;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -27,15 +22,8 @@ public class InMemoryVoteRepository implements VoteRepository {
     private Map<Integer, Map<Integer, Vote>> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
 
-    {
-        save(new Vote(Date.valueOf("2015-05-29")),
-                AuthorizedUser.id());
-        save(new Vote(Date.valueOf("2015-05-30")),
-                AuthorizedUser.id());
-    }
-
     @Override
-    public Vote save(Vote vote, int userId) {
+    public Vote save(Vote vote, int userId, int restId) {
         Map<Integer, Vote> votes = repository.computeIfAbsent(userId, ConcurrentHashMap::new);
         if (vote.isNew()) {
             vote.setId(counter.incrementAndGet());

@@ -4,8 +4,7 @@ import org.springframework.stereotype.Repository;
 import ru.neustupov.votingforrestaurants.model.Menu;
 import ru.neustupov.votingforrestaurants.repository.MenuRepository;
 
-import java.time.LocalDateTime;
-import java.time.Month;
+import java.sql.Date;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -19,19 +18,6 @@ public class InMemoryMenuRepositoryImpl implements MenuRepository {
 
     private Map<Integer, Map<Integer, Menu>> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
-
-    {
-        save(new Menu(2, LocalDateTime.of(2015, Month.JUNE, 1, 10, 0)),
-                2);
-        save(new Menu(3, LocalDateTime.of(2015, Month.JUNE, 2, 10, 0)),
-                3);
-        save(new Menu(1, LocalDateTime.of(2015, Month.MAY, 29, 10, 0)),
-                1);
-        save(new Menu(1, LocalDateTime.of(2015, Month.MAY, 30, 10, 0)),
-                1);
-        save(new Menu(4, LocalDateTime.of(2015, Month.MAY, 29, 10, 0)),
-                4);
-    }
 
     @Override
     public Menu save(Menu menu, int restId) {
@@ -67,7 +53,7 @@ public class InMemoryMenuRepositoryImpl implements MenuRepository {
     }
 
     @Override
-    public Menu getWithMeals(int id) {
+    public Menu getTodaysMenuWithMeals(int id, Date currDate) {
         return null;
     }
 
