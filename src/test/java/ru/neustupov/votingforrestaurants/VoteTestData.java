@@ -3,8 +3,6 @@ package ru.neustupov.votingforrestaurants;
 import ru.neustupov.votingforrestaurants.model.Vote;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
 
