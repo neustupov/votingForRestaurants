@@ -17,7 +17,7 @@ public interface MenuService {
 
     List<Menu> getAll(int restId);
 
-    Menu getWithMeals(int id);
+    Menu getTodaysMenuWithMeals(int id);
 
     Menu getWithRestaurant(int id);
 
