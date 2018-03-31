@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.votingforrestaurants.model.Menu;
 import ru.neustupov.votingforrestaurants.repository.MenuRepository;
 
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -48,8 +49,8 @@ public class DataJpaMenuRepositoryImpl implements MenuRepository {
     }
 
     @Override
-    public Menu getWithMeals(int id) {
-        return crudMenuRepository.getWithMeals(id);
+    public Menu getTodaysMenuWithMeals(int restId, Date currDate) {
+        return crudMenuRepository.findByRestaurantIdAndAddDate(restId, currDate);
     }
 
     @Override
