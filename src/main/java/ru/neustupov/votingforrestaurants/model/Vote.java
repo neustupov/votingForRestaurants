@@ -5,7 +5,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -64,6 +63,11 @@ public class Vote extends AbstractBaseEntity {
     public Vote(@NotNull Integer id, @NotNull User user, @NotNull Date date, @NotNull Restaurant restaurant) {
         super(id);
         this.user = user;
+        this.date = date;
+        this.restaurant = restaurant;
+    }
+
+    public Vote(@NotNull Date date, @NotNull Restaurant restaurant){
         this.date = date;
         this.restaurant = restaurant;
     }
