@@ -5,16 +5,16 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "menus")
 public class Menu extends AbstractBaseEntity {
 
-    @Column(name = "add_date", columnDefinition = "timestamp default now()",  nullable = false)
+    @Column(name = "add_date", columnDefinition = "date default current_date",  nullable = false)
     @NotNull
-    private LocalDateTime addDate;
+    private Date addDate;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu")
     private Set<Meal> meals;
@@ -32,20 +32,20 @@ public class Menu extends AbstractBaseEntity {
         this(m.getId(), m.getAddDate());
     }
 
-    public Menu(Integer id, LocalDateTime addDate) {
+    public Menu(Integer id, Date addDate) {
         super(id);
         this.addDate = addDate;
     }
 
-    public Menu(LocalDateTime addDate) {
+    public Menu(Date addDate) {
         this.addDate = addDate;
     }
 
-    public LocalDateTime getAddDate() {
+    public Date getAddDate() {
         return addDate;
     }
 
-    public void setAddDate(LocalDateTime addDate) {
+    public void setAddDate(Date addDate) {
         this.addDate = addDate;
     }
 
