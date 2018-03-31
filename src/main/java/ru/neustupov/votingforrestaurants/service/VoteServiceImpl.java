@@ -22,9 +22,9 @@ public class VoteServiceImpl implements VoteService{
     }
 
     @Override
-    public Vote create(Vote vote, int userId) {
+    public Vote create(Vote vote, int userId, int restId) {
         Assert.notNull(vote, "vote must not be null");
-        return repository.save(vote, userId);
+        return repository.save(vote, userId, restId);
     }
 
     @Override
@@ -38,9 +38,9 @@ public class VoteServiceImpl implements VoteService{
     }
 
     @Override
-    public void update(Vote vote, int userId) {
+    public void update(Vote vote, int userId, int restId) {
         Assert.notNull(vote, "vote must not be null");
-        checkNotFoundWithId(repository.save(vote, userId), vote.getId());
+        checkNotFoundWithId(repository.save(vote, userId,restId), vote.getId());
     }
 
     @Override
