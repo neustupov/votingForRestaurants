@@ -2,11 +2,13 @@ package ru.neustupov.votingforrestaurants.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.neustupov.votingforrestaurants.model.Meal;
 import ru.neustupov.votingforrestaurants.model.Menu;
 import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
 
 import static ru.neustupov.votingforrestaurants.MenuTestData.*;
 import static ru.neustupov.votingforrestaurants.RestaurantTestData.RUSSIA_ID;
+import static ru.neustupov.votingforrestaurants.MealTestData.MEAL_IN_MENU;
 
 public class MenuServiceTest extends AbstractServiceTest{
     @Autowired
@@ -44,5 +46,17 @@ public class MenuServiceTest extends AbstractServiceTest{
     @Test
     public void getAll() throws Exception {
         assertMatch(service.getAll(RUSSIA_ID), RUSSIA_MENU1, RUSSIA_MENU2);
+    }
+
+    @Test
+    public void getTodaysMenuWithMeals() throws Exception {
+        Menu menu = service.getTodaysMenuWithMeals(100002);
+        assertMatch(MENU_TODAYS_WITH_MEALS, menu);
+        ru.neustupov.votingforrestaurants.MealTestData.assertMatch(MEAL_IN_MENU, (Meal)menu.getMeals().toArray()[0]);
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void getTodaysMenuWithMealsNotFound() throws Exception {
+
     }
 }
