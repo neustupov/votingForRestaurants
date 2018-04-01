@@ -21,14 +21,6 @@ public class InMemoryRestaurantRepositoryImpl implements RestaurantRepository {
     private Map<Integer, Restaurant> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
 
-    {
-        save(new Restaurant("Topaz"));
-        save(new Restaurant("Gruzia"));
-        save(new Restaurant("Afonja"));
-        save(new Restaurant("Finland"));
-        save(new Restaurant("Ludmila"));
-    }
-
     @Override
     public Restaurant save(Restaurant restaurant) {
         if (restaurant.isNew()) {
