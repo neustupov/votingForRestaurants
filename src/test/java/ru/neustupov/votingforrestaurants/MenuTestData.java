@@ -1,10 +1,15 @@
 package ru.neustupov.votingforrestaurants;
 
+import ru.neustupov.votingforrestaurants.model.Meal;
 import ru.neustupov.votingforrestaurants.model.Menu;
 
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static ru.neustupov.votingforrestaurants.model.AbstractBaseEntity.START_SEQ;
@@ -17,6 +22,7 @@ public class MenuTestData {
     public static final int ALMAZ_MENU_ID = START_SEQ + 10;
     public static final int FART_MENU_ID = START_SEQ + 11;
     public static final int RUSSIA_MENU_ID2 = START_SEQ + 12;
+    public static final int MENU_TODAYS_WITH_MEALS_ID = START_SEQ + 13;
 
     public static final Menu RUSSIA_MENU1 = new Menu(RUSSIA_MENU_ID1, Date.valueOf("2015-05-01"));
     public static final Menu UKRAINE_MENU = new Menu(UKRAINE_MENU_ID, Date.valueOf("2015-05-02"));
@@ -24,6 +30,8 @@ public class MenuTestData {
     public static final Menu ALMAZ_MENU = new Menu(ALMAZ_MENU_ID, Date.valueOf("2015-05-01"));
     public static final Menu FART_MENU = new Menu(FART_MENU_ID, Date.valueOf("2015-05-02"));
     public static final Menu RUSSIA_MENU2 = new Menu(RUSSIA_MENU_ID2, Date.valueOf("2015-05-02"));
+
+    public static final Menu MENU_TODAYS_WITH_MEALS = new Menu(MENU_TODAYS_WITH_MEALS_ID, Date.valueOf(LocalDate.now()));
 
     public static final List<Menu> MENUS = Arrays.asList(RUSSIA_MENU1, UKRAINE_MENU, U_KOLYANA_MENU, ALMAZ_MENU, FART_MENU, RUSSIA_MENU2);
 
