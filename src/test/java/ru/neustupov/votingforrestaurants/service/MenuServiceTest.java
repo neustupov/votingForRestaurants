@@ -17,7 +17,7 @@ public class MenuServiceTest extends AbstractServiceTest{
     @Test
     public void delete() throws Exception {
         service.delete(RUSSIA_MENU_ID1, RUSSIA_ID);
-        assertMatch(service.getAll(RUSSIA_ID), RUSSIA_MENU2);
+        assertMatch(service.getAll(RUSSIA_ID), RUSSIA_MENU2, MENU_TODAYS_WITH_MEALS);
     }
 
     @Test(expected = NotFoundException.class)
@@ -29,7 +29,7 @@ public class MenuServiceTest extends AbstractServiceTest{
     public void create() throws Exception {
         Menu created = getCreated();
         service.create(created, RUSSIA_ID);
-        assertMatch(service.getAll(RUSSIA_ID), RUSSIA_MENU1, RUSSIA_MENU2, created);
+        assertMatch(service.getAll(RUSSIA_ID), RUSSIA_MENU1, RUSSIA_MENU2, MENU_TODAYS_WITH_MEALS,created);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class MenuServiceTest extends AbstractServiceTest{
 
     @Test
     public void getAll() throws Exception {
-        assertMatch(service.getAll(RUSSIA_ID), RUSSIA_MENU1, RUSSIA_MENU2);
+        assertMatch(service.getAll(RUSSIA_ID), RUSSIA_MENU1, RUSSIA_MENU2, MENU_TODAYS_WITH_MEALS);
     }
 
     @Test
@@ -57,6 +57,6 @@ public class MenuServiceTest extends AbstractServiceTest{
 
     @Test(expected = NotFoundException.class)
     public void getTodaysMenuWithMealsNotFound() throws Exception {
-
+        service.getTodaysMenuWithMeals(100003);
     }
 }
