@@ -10,12 +10,12 @@ import static ru.neustupov.votingforrestaurants.model.AbstractBaseEntity.START_S
 
 public class MealTestData {
 
-    public static final int APPLE_ID = START_SEQ + 13;
-    public static final int JUICE_ID = START_SEQ + 14;
-    public static final int POTATO_ID = START_SEQ + 15;
-    public static final int BANANAS_ID = START_SEQ + 16;
-    public static final int BREAD_ID = START_SEQ + 17;
-    public static final int BOTTLE_OF_WATER_ID = START_SEQ + 18;
+    public static final int APPLE_ID = START_SEQ + 14;
+    public static final int JUICE_ID = START_SEQ + 15;
+    public static final int POTATO_ID = START_SEQ + 16;
+    public static final int BANANAS_ID = START_SEQ + 17;
+    public static final int BREAD_ID = START_SEQ + 18;
+    public static final int BOTTLE_OF_WATER_ID = START_SEQ + 19;
     public static final int MEAL_IN_MENU_ID = START_SEQ + 20;
 
     public static final Meal APPLE = new Meal(APPLE_ID, "Apple", 5);

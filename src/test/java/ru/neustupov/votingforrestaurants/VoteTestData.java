@@ -15,12 +15,12 @@ import static ru.neustupov.votingforrestaurants.model.AbstractBaseEntity.START_S
 
 public class VoteTestData {
 
-    public static final int VOTE1_ID = START_SEQ + 19;
-    public static final int VOTE2_ID = START_SEQ + 20;
-    public static final int VOTE3_ID = START_SEQ + 21;
-    public static final int VOTE4_ID = START_SEQ + 22;
-    public static final int VOTE5_ID = START_SEQ + 23;
-    public static final int VOTE6_ID = START_SEQ + 24;
+    public static final int VOTE1_ID = START_SEQ + 21;
+    public static final int VOTE2_ID = START_SEQ + 22;
+    public static final int VOTE3_ID = START_SEQ + 23;
+    public static final int VOTE4_ID = START_SEQ + 24;
+    public static final int VOTE5_ID = START_SEQ + 25;
+    public static final int VOTE6_ID = START_SEQ + 26;
 
     public static final Vote VOTE1 = new Vote(VOTE1_ID, USER, Date.valueOf("2015-05-01"), RUSSIA);
     public static final Vote VOTE2 = new Vote(VOTE2_ID, USER, Date.valueOf("2015-05-02"), UKRAINE);
