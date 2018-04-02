@@ -22,7 +22,7 @@ public interface CrudUserRepository extends JpaRepository<User, Integer>{
     @Transactional
     User save(User user);
 
-    @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name")
+    @Query("SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name")
     List<User> getAll();
 
     //    https://stackoverflow.com/a/46013654/548473
