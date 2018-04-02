@@ -57,8 +57,8 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void get() throws Exception {
-        User user = service.get(USER_ID);
-        assertMatch(user, USER);
+        User user = service.get(ADMIN_ID);
+        assertMatch(user, ADMIN);
     }
 
     @Test(expected = NotFoundException.class)
@@ -70,6 +70,7 @@ public class UserServiceTest extends AbstractServiceTest {
     public void update() throws Exception {
         User updated = new User(USER);
         updated.setName("UpdatedName");
+        updated.setRoles(Collections.singletonList(Role.ROLE_ADMIN));
         service.update(updated);
         assertMatch(service.get(USER_ID), updated);
     }
