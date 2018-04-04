@@ -6,13 +6,14 @@ import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static ru.neustupov.votingforrestaurants.UserTestData.USER;
 import static ru.neustupov.votingforrestaurants.model.AbstractBaseEntity.START_SEQ;
 
-public class RootControllerTest extends AbstractControllerTest{
+public class RootControllerTest extends AbstractControllerTest {
 
     @Test
     public void testUsers() throws Exception {
@@ -28,5 +29,14 @@ public class RootControllerTest extends AbstractControllerTest{
                                 hasProperty("name", is(USER.getName()))
                         )
                 )));
+    }
+
+    @Test
+    public void testUsersPut() throws Exception {
+        mockMvc.perform(post("/users")
+                .param("userId", "100000"))
+                .andDo(print())
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("/restaurants"));
     }
 }
