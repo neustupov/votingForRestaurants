@@ -1,11 +1,9 @@
 package ru.neustupov.votingforrestaurants.web.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.neustupov.votingforrestaurants.AuthorizedUser;
 import ru.neustupov.votingforrestaurants.model.User;
-import ru.neustupov.votingforrestaurants.service.UserService;
 
 @RestController
 @RequestMapping(ProfileRestController.REST_URL)
