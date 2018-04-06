@@ -26,4 +26,8 @@ public interface VoteService {
     Vote getWithRestaurant(int id, int restId);
 
     Vote getWithRestaurantAndUser(int id, int restId, int userId);
+
+    Vote getByUserIdAndRestId(int userId, int restId);
+
+    Vote getByUserIdAndDate(int userId);
 }
