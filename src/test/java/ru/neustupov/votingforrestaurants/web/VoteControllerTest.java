@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.neustupov.votingforrestaurants.service.VoteService;
 
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -28,13 +26,11 @@ public class VoteControllerTest extends AbstractControllerTest{
     }
 
     @Test
-    public void testCreate() throws Exception {
+    public void testUpdateOrCreateOnlyCreate() throws Exception {
         mockMvc.perform(get("/votes/updateOrCreate")
                 .param("restId", "100002"))
                 .andDo(print())
                 .andExpect(status().isFound())
-                .andExpect(redirectedUrl("/restaurants"))
-                .andExpect(model().attribute("vote",
-                        hasProperty("id", isEmptyOrNullString())));
+                .andExpect(redirectedUrl("/restaurants"));
     }
 }
