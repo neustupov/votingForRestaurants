@@ -13,7 +13,7 @@ import static ru.neustupov.votingforrestaurants.util.ValidationUtil.checkNew;
 
 public abstract class AbstractMenuController {
 
-    private static final Logger log = LoggerFactory.getLogger(MenuRestController.class);
+    private static final Logger log = LoggerFactory.getLogger(AbstractMenuController.class);
 
     @Autowired
     private MenuService service;
