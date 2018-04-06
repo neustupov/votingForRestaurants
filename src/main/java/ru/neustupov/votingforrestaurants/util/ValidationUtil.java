@@ -1,7 +1,10 @@
 package ru.neustupov.votingforrestaurants.util;
 
 import ru.neustupov.votingforrestaurants.model.AbstractBaseEntity;
+import ru.neustupov.votingforrestaurants.model.Vote;
 import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
+
+import java.time.*;
 
 public class ValidationUtil {
 
@@ -51,5 +54,14 @@ public class ValidationUtil {
             result = cause;
         }
         return result;
+    }
+
+    public static void checkTimeForVote(Vote vote){
+        Instant instant = vote.getDate().toInstant();
+        ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
+        LocalDateTime ldt = zdt.toLocalDateTime();
+        if(ldt.getHour() > 11 && ldt.getMinute() > 0 ){
+            throw new DateTimeException("time is after 11");
+        }
     }
 }

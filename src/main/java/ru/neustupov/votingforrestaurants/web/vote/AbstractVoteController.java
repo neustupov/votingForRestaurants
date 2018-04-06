@@ -9,12 +9,11 @@ import ru.neustupov.votingforrestaurants.service.VoteService;
 
 import java.util.List;
 
-import static ru.neustupov.votingforrestaurants.util.ValidationUtil.assureIdConsistent;
 import static ru.neustupov.votingforrestaurants.util.ValidationUtil.checkNew;
 
 public abstract class AbstractVoteController {
 
-    private static final Logger log = LoggerFactory.getLogger(VoteRestController.class);
+    private static final Logger log = LoggerFactory.getLogger(AbstractVoteController.class);
 
     @Autowired
     private VoteService service;
@@ -50,8 +49,18 @@ public abstract class AbstractVoteController {
 
     public void update(Vote vote, int restId) {
         int userId = AuthorizedUser.id();
-        assureIdConsistent(vote, userId);
         log.info("update {} for user {} and restaurant {}", vote, userId, restId);
         service.update(vote, userId, restId);
+    }
+
+    public Vote getByUserIdAndRestId(int restId) {
+        int userId = AuthorizedUser.id();
+        log.info("getByUserIdAndRestId userId {} restId {}", restId, userId);
+        return service.getByUserIdAndRestId(userId, restId);
+    }
+
+    public Vote getByUserIdAndDate() {
+        int userId = AuthorizedUser.id();
+        return service.getByUserIdAndDate(userId);
     }
 }

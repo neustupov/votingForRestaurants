@@ -70,4 +70,14 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     public Vote getWithRestaurantAndUser(int id, int restId, int userId) {
         return crudVoteRepository.getWithRestaurantAndUser(id, restId, userId);
     }
+
+    @Override
+    public Vote getByUserIdAndRestId(int userId, int restId) {
+        return crudVoteRepository.getByUserIdAndRestId(userId, restId);
+    }
+
+    @Override
+    public Vote getByUserIdAndDate(int userId) {
+        return crudVoteRepository.getByUserIdAndDate(userId);
+    }
 }

@@ -29,7 +29,7 @@ public class VoteControllerTest extends AbstractControllerTest{
 
     @Test
     public void testCreate() throws Exception {
-        mockMvc.perform(get("/votes/create")
+        mockMvc.perform(get("/votes/updateOrCreate")
                 .param("restId", "100002"))
                 .andDo(print())
                 .andExpect(status().isFound())

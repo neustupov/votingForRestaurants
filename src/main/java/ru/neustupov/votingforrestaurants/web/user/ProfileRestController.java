@@ -1,34 +1,28 @@
 package ru.neustupov.votingforrestaurants.web.user;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import ru.neustupov.votingforrestaurants.AuthorizedUser;
 import ru.neustupov.votingforrestaurants.model.User;
-import ru.neustupov.votingforrestaurants.service.UserService;
 
-@Controller
-public class ProfileRestController {
+@RestController
+@RequestMapping(ProfileRestController.REST_URL)
+public class ProfileRestController extends AbstractUserController{
 
-    protected final Logger log = LoggerFactory.getLogger(getClass());
+    static final String REST_URL = "/rest/profile";
 
-    private UserService service;
-
-    @Autowired
-    public ProfileRestController(UserService service) {
-        this.service = service;
-    }
-
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public User get() {
-        return service.get(AuthorizedUser.id());
+        return super.get(AuthorizedUser.id());
     }
 
+    @DeleteMapping
     public void delete() {
-        service.delete(AuthorizedUser.id());
+        super.delete(AuthorizedUser.id());
     }
 
-    public void update(User user) {
-        service.update(user);
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void update(@RequestBody User user) {
+        super.update(user, AuthorizedUser.id());
     }
 }

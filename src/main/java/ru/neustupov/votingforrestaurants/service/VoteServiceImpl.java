@@ -75,4 +75,15 @@ public class VoteServiceImpl implements VoteService{
     public Vote getWithRestaurantAndUser(int id, int restId, int userId) {
         return checkNotFoundWithId(repository.getWithRestaurantAndUser(id, restId, userId), id);
     }
+
+    public Vote getByUserIdAndRestId(int userId, int restId) {
+        Assert.notNull(userId, "userId must not be null");
+        Assert.notNull(restId, "restId must not be null");
+        return repository.getByUserIdAndRestId(userId, restId);
+    }
+
+    public Vote getByUserIdAndDate(int userId) {
+        Assert.notNull(userId, "userId must not be null");
+        return repository.getByUserIdAndDate(userId);
+    }
 }

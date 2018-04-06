@@ -32,7 +32,7 @@
         <td><a href="menus?restId=${restaurant.id}"><spring:message code="restaurant.showAllMenus"/></a></td>
         <td><a href="restaurants/delete?id=${restaurant.id}"><spring:message code="common.delete"/></a></td>
         <td><a href="restaurants/update?id=${restaurant.id}"><spring:message code="common.update"/></a></td>
-        <td><a href="votes/create?restId=${restaurant.id}"><spring:message code="restaurant.vote"/></a></td>
+        <td><a href="votes/updateOrCreate?restId=${restaurant.id}"><spring:message code="restaurant.vote"/></a></td>
     </tr>
     </c:forEach>
 </table>
