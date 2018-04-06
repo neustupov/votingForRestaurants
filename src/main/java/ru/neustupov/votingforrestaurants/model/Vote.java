@@ -1,5 +1,6 @@
 package ru.neustupov.votingforrestaurants.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -15,6 +16,7 @@ public class Vote extends AbstractBaseEntity {
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
+    @JsonIgnore
     private User user;
 
     @Column(name = "date", columnDefinition = "date default current_date",  nullable = false)
@@ -25,6 +27,7 @@ public class Vote extends AbstractBaseEntity {
     @JoinColumn(name = "restaurant", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
+    @JsonIgnore
     private Restaurant restaurant;
 
     public Vote() {

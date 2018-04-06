@@ -1,5 +1,6 @@
 package ru.neustupov.votingforrestaurants.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class User extends AbstractNamedEntity {
     private Set<Role> roles;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnore
     private Set<Vote> votes;
 
     public User() {
