@@ -3,6 +3,7 @@ package ru.neustupov.votingforrestaurants;
 import ru.neustupov.votingforrestaurants.model.Vote;
 
 import java.sql.Date;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class VoteTestData {
     public static final int VOTE4_ID = START_SEQ + 24;
     public static final int VOTE5_ID = START_SEQ + 25;
     public static final int VOTE6_ID = START_SEQ + 26;
+    public static final int VOTE_FOR_GET_BY_USER_ID_AND_DATE_ID = START_SEQ + 27;
 
     public static final Vote VOTE1 = new Vote(VOTE1_ID, USER, Date.valueOf("2015-05-01"), RUSSIA);
     public static final Vote VOTE2 = new Vote(VOTE2_ID, USER, Date.valueOf("2015-05-02"), UKRAINE);
@@ -28,6 +30,8 @@ public class VoteTestData {
     public static final Vote VOTE4 = new Vote(VOTE4_ID, ADMIN, Date.valueOf("2015-05-01"), ALMAZ);
     public static final Vote VOTE5 = new Vote(VOTE5_ID, ADMIN, Date.valueOf("2015-05-02"), FART);
     public static final Vote VOTE6 = new Vote(VOTE6_ID, ADMIN, Date.valueOf("2015-05-03"), RUSSIA);
+
+    public static final Vote VOTE_FOR_GET_BY_USER_ID_AND_DATE = new Vote(VOTE_FOR_GET_BY_USER_ID_AND_DATE_ID, ADMIN, Date.from(Instant.now()), RUSSIA);
 
     public static final List<Vote> VOTES = Arrays.asList(VOTE2, VOTE3, VOTE4, VOTE5, VOTE6);
 

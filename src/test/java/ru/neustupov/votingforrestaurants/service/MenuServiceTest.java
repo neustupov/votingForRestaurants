@@ -54,9 +54,4 @@ public class MenuServiceTest extends AbstractServiceTest{
         assertMatch(MENU_TODAYS_WITH_MEALS, menu);
         ru.neustupov.votingforrestaurants.MealTestData.assertMatch(MEAL_IN_MENU, (Meal)menu.getMeals().toArray()[0]);
     }
-
-    @Test(expected = NotFoundException.class)
-    public void getTodaysMenuWithMealsNotFound() throws Exception {
-        service.getTodaysMenuWithMeals(100003);
-    }
 }

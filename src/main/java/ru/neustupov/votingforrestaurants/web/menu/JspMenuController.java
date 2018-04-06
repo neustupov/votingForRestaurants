@@ -1,5 +1,6 @@
 package ru.neustupov.votingforrestaurants.web.menu;
 
+import org.hsqldb.lib.Collection;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import ru.neustupov.votingforrestaurants.model.Menu;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
@@ -41,10 +43,15 @@ public class JspMenuController extends AbstractMenuController{
     @GetMapping("/getTodaysMenuWithMeals")
     public String getTodaysMenuWithMeals(HttpServletRequest request, Model model){
         Menu menu = super.getTodaysMenuWithMeals(getId(request, "restId"));
-        Set<Meal> mealList = menu.getMeals();
+        Set<Meal> mealList;
+        if(menu != null){
+            mealList = menu.getMeals();
+            model.addAttribute("menuId", menu.getId());
+        }else{
+            mealList = Collections.emptySet();
+        }
         model.addAttribute("mealsList", mealList);
         model.addAttribute("restId", getId(request, "restId"));
-        model.addAttribute("menuId", menu.getId());
         return "meals";
     }
 
