@@ -29,4 +29,8 @@ public interface VoteRepository {
     }
 
     default Vote getWithRestaurantAndUser(int id, int restId, int userId){throw new UnsupportedOperationException();}
+
+    Vote getByUserIdAndRestId(int userId, int restId);
+
+    Vote getByUserIdAndDate(int userId);
 }
