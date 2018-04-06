@@ -83,4 +83,14 @@ public class InMemoryVoteRepository implements VoteRepository {
                 votes.values().stream()
                         .sorted(Comparator.comparing(Vote::getDate));
     }
+
+    @Override
+    public Vote getByUserIdAndRestId(int userId, int restId) {
+        return null;
+    }
+
+    @Override
+    public Vote getByUserIdAndDate(int userId) {
+        return null;
+    }
 }
