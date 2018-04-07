@@ -1,6 +1,5 @@
 package ru.neustupov.votingforrestaurants.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -19,7 +18,6 @@ public class Meal extends AbstractNamedEntity {
     @JoinColumn(name = "id_menu", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
-    @JsonIgnore
     private Menu menu;
 
     public Meal() {

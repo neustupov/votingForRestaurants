@@ -1,7 +1,5 @@
 package ru.neustupov.votingforrestaurants.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -11,11 +9,9 @@ import java.util.Set;
 public class Restaurant extends AbstractNamedEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
-    @JsonIgnore
     private Set<Menu> menus;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
-    @JsonIgnore
     private Set<Vote> votes;
 
     public Restaurant(Restaurant r) {

@@ -1,6 +1,5 @@
 package ru.neustupov.votingforrestaurants.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -18,14 +17,12 @@ public class Menu extends AbstractBaseEntity {
     private Date addDate;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu")
-    @JsonIgnore
     private Set<Meal> meals;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_rest", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
-    @JsonIgnore
     private Restaurant restaurant;
 
     public Menu() {
