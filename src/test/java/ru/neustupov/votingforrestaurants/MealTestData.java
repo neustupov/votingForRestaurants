@@ -1,12 +1,15 @@
 package ru.neustupov.votingforrestaurants;
 
+import org.springframework.test.web.servlet.ResultMatcher;
 import ru.neustupov.votingforrestaurants.model.Meal;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static ru.neustupov.votingforrestaurants.model.AbstractBaseEntity.START_SEQ;
+import static ru.neustupov.votingforrestaurants.web.json.JsonUtil.writeIgnoreProps;
 
 public class MealTestData {
 
@@ -47,5 +50,13 @@ public class MealTestData {
 
     public static void assertMatch(Iterable<Meal> actual, Iterable<Meal> expected) {
         assertThat(actual).usingElementComparatorIgnoringFields("menu").isEqualTo(expected);
+    }
+
+    public static ResultMatcher contentJson(Meal... expected) {
+        return content().json(writeIgnoreProps(Arrays.asList(expected), "menu"));
+    }
+
+    public static ResultMatcher contentJson(Meal expected) {
+        return content().json(writeIgnoreProps(expected, "menu"));
     }
 }
