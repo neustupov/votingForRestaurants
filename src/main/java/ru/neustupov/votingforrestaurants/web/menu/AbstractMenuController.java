@@ -45,7 +45,6 @@ public abstract class AbstractMenuController {
     }
 
     public void update(Menu menu, int restId) {
-        assureIdConsistent(menu, restId);
         log.info("update {} for restaurant {}", menu, restId);
         service.update(menu, restId);
     }
