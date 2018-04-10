@@ -106,6 +106,7 @@ public class MealControllerTest extends AbstractControllerTest {
     @Test
     public void testCreateOrUpdateOnlyUpdate() throws Exception {
         mockMvc.perform(post("/meals")
+                .param("id", "100014")
                 .param("name", "AppleNew")
                 .param("price", "15")
                 .param("mealId", "100014")

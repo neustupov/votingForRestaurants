@@ -34,9 +34,10 @@ public class AbstractMealController {
         return service.get(id, menuId);
     }
 
-    public void update(Meal meal, int mealId, int menuId){
+    public void update(int id, Meal meal, int mealId, int menuId){
+        meal.setId(id);
         assureIdConsistent(meal, mealId);
-        log.info("update {} for menu {}", meal, menuId);
+        log.info("update {} with id = {} for menu {}", meal, id, menuId);
         service.update(meal, menuId);
     }
 

@@ -31,7 +31,7 @@ public class JspVoteController extends AbstractVoteController {
             super.create(new Vote(Date.from(Instant.now())), getId(request, "restId"));
         } else {
             ValidationUtil.checkTimeForVote();
-            super.update(vote, getId(request, "restId"));
+            super.update(getId(request, "id"), vote, getId(request, "restId"));
         }
         return "redirect:/restaurants";
     }
