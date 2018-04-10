@@ -12,11 +12,11 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping(value = "/meals")
-public class JspMealController extends AbstractMealController{
+public class JspMealController extends AbstractMealController {
 
     @GetMapping
     public String meals(Model model, HttpServletRequest request) {
-        model.addAttribute("mealsList", super.getAll(getId(request,"menuId")));
+        model.addAttribute("mealsList", super.getAll(getId(request, "menuId")));
         model.addAttribute("menuId", request.getParameter("menuId"));
         model.addAttribute("restId", request.getParameter("restId"));
         return "meals";
@@ -53,7 +53,8 @@ public class JspMealController extends AbstractMealController{
         if (request.getParameter("mealId").isEmpty()) {
             super.create(meal, getId(request, "menuId"));
         } else {
-            super.update(meal, getId(request, "mealId"), getId(request, "menuId"));
+            super.update(getId(request, "id"), meal, getId(request, "mealId"),
+                    getId(request, "menuId"));
         }
 
         model.addAttribute("menuId", getId(request, "menuId"));

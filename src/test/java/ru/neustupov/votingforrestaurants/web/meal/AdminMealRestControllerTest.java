@@ -48,7 +48,7 @@ public class AdminMealRestControllerTest extends AbstractControllerTest {
     public void testUpdate() throws Exception {
         Meal updated = new Meal(APPLE);
         updated.setName("UpdatedName");
-        mockMvc.perform(put(REST_URL)
+        mockMvc.perform(put(REST_URL + APPLE_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated))
                 .param("mealId", "100014")

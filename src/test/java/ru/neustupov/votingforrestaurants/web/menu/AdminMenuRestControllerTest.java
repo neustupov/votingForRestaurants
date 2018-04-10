@@ -76,7 +76,7 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest{
         Menu updated = new Menu(getCreated());
         updated.setId(100007);
         updated.setAddDate(Date.valueOf("2017-06-01"));
-        mockMvc.perform(put(REST_URL)
+        mockMvc.perform(put(REST_URL + RUSSIA_MENU_ID1)
                 .param("restId", "100002")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))

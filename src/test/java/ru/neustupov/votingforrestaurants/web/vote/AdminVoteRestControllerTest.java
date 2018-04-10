@@ -50,7 +50,7 @@ public class AdminVoteRestControllerTest extends AbstractControllerTest{
     public void testUpdate() throws Exception {
         Vote updated = new Vote(VOTE1);
         updated.setDate(Date.valueOf("2017-06-01"));
-        mockMvc.perform(put(REST_URL)
+        mockMvc.perform(put(REST_URL + VOTE1_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated))
                 .param("restId", "100002"))
