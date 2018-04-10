@@ -1,5 +1,6 @@
 package ru.neustupov.votingforrestaurants.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -17,6 +18,7 @@ public class Menu extends AbstractBaseEntity {
     private Date addDate;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu")
+    @JsonIgnoreProperties("menu")
     private Set<Meal> meals;
 
     @ManyToOne(fetch = FetchType.LAZY)
