@@ -44,8 +44,9 @@ public abstract class AbstractMenuController {
         return service.create(menu, restId);
     }
 
-    public void update(Menu menu, int restId) {
-        log.info("update {} for restaurant {}", menu, restId);
+    public void update(int id, Menu menu, int restId) {
+        menu.setId(id);
+        log.info("update {} with id = {} for restaurant {}", menu, id, restId);
         service.update(menu, restId);
     }
 }

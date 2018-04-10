@@ -47,8 +47,9 @@ public abstract class AbstractVoteController {
         return service.create(vote, userId, restId);
     }
 
-    public void update(Vote vote, int restId) {
+    public void update(int id, Vote vote, int restId) {
         int userId = AuthorizedUser.id();
+        vote.setId(id);
         log.info("update {} for user {} and restaurant {}", vote, userId, restId);
         service.update(vote, userId, restId);
     }
