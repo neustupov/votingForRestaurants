@@ -51,8 +51,8 @@ public class AdminMenuRestController extends AbstractMenuController {
     }
 
     @Override
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody Menu menu, @RequestParam("restId") int restId) {
-        super.update(menu, restId);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void update(@PathVariable("id") int id, @RequestBody Menu menu, @RequestParam("restId") int restId) {
+        super.update(id, menu, restId);
     }
 }

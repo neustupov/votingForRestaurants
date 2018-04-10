@@ -45,8 +45,8 @@ public class AdminVoteRestController extends AbstractVoteController{
     }
 
     @Override
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody  Vote vote, @RequestParam("restId") int restId) {
-        super.update(vote, restId);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void update(@PathVariable("id") int id, @RequestBody  Vote vote, @RequestParam("restId") int restId) {
+        super.update(id, vote, restId);
     }
 }

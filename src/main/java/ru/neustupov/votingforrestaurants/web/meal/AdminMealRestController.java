@@ -39,9 +39,10 @@ public class AdminMealRestController extends AbstractMealController{
     }
 
     @Override
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody Meal meal, @RequestParam("mealId") int mealId, @RequestParam("menuId") int menuId) {
-        super.update(meal, mealId, menuId);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void update(@PathVariable("id") int id, @RequestBody Meal meal, @RequestParam("mealId") int mealId,
+                       @RequestParam("menuId") int menuId) {
+        super.update(id, meal, mealId, menuId);
     }
 
     @Override
