@@ -36,7 +36,7 @@ public abstract class AbstractRestaurantController {
 
     public List<RestaurantWithVotes> getAll() {
         log.info("getAll restaurants {}");
-        return RestaurantsUtil.getWithVotes(restaurantService.getAll(),voteService.getAll());
+        return RestaurantsUtil.getWithVotes(restaurantService.getAll(),voteService.getAllForCurrentDate());
     }
 
     public Restaurant create(Restaurant restaurant) {

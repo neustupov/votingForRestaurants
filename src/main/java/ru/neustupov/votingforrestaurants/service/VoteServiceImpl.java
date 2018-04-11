@@ -86,4 +86,8 @@ public class VoteServiceImpl implements VoteService{
         Assert.notNull(userId, "userId must not be null");
         return repository.getByUserIdAndDate(userId);
     }
+
+    public List<Vote> getAllForCurrentDate(){
+        return repository.getAllForCurrentDate();
+    }
 }

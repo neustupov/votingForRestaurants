@@ -80,4 +80,8 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     public Vote getByUserIdAndDate(int userId) {
         return crudVoteRepository.getByUserIdAndDate(userId);
     }
+
+    public List<Vote> getAllForCurrentDate() {
+        return crudVoteRepository.getAllForCurrentDate();
+    }
 }

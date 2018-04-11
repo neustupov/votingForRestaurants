@@ -93,4 +93,9 @@ public class InMemoryVoteRepository implements VoteRepository {
     public Vote getByUserIdAndDate(int userId) {
         return null;
     }
+
+    @Override
+    public List<Vote> getAllForCurrentDate() {
+        return null;
+    }
 }

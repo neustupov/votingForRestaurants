@@ -53,8 +53,9 @@ public class JspMealController extends AbstractMealController {
         if (request.getParameter("mealId").isEmpty()) {
             super.create(meal, getId(request, "menuId"));
         } else {
-            super.update(getId(request, "id"), meal, getId(request, "mealId"),
-                    getId(request, "menuId"));
+            int menuId = getId(request, "menuId");
+            int id = getId(request, "mealId");
+            super.update(id, meal, menuId);
         }
 
         model.addAttribute("menuId", getId(request, "menuId"));
