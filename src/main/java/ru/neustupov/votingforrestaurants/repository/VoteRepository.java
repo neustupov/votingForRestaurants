@@ -33,4 +33,6 @@ public interface VoteRepository {
     Vote getByUserIdAndRestId(int userId, int restId);
 
     Vote getByUserIdAndDate(int userId);
+
+    List<Vote> getAllForCurrentDate();
 }

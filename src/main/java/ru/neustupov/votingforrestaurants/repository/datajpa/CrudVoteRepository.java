@@ -51,4 +51,7 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.date=CURRENT_DATE ")
     Vote getByUserIdAndDate(@Param("userId") int userId);
+
+    @Query("SELECT v FROM Vote v WHERE v.date=CURRENT_DATE ")
+    List<Vote> getAllForCurrentDate();
 }
