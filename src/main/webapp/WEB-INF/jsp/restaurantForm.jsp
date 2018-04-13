@@ -9,7 +9,6 @@
 <div class="jumbotron">
     <div class="container">
         <jsp:useBean id="restaurant" type="ru.neustupov.votingforrestaurants.model.Restaurant" scope="request"/>
-        <h3><a href="restaurants"><spring:message code="common.backToRestaurants"/></a></h3>
         <h2><spring:message code="${restaurant.isNew() ? 'restaurant.add' : 'restaurant.edit'}"/></h2>
         <hr>
         <form method="post" action="restaurants">
