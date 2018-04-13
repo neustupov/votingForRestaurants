@@ -8,8 +8,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
-        <h3><a href="meals?restId=${restId}&menuId=${menuId}"><spring:message code="meal.backToMeals"/></a></h3>
-        <h2>${param.action == 'create' ? 'Create meal' : 'Edit meal'}</h2>
+        <h2><spring:message code="${meal.isNew() ? 'meal.addMeal' : 'meal.editMeal'}"/></h2>
         <hr>
         <jsp:useBean id="meal" type="ru.neustupov.votingforrestaurants.model.Meal" scope="request"/>
         <form method="post" action="meals">
