@@ -9,12 +9,15 @@ import ru.neustupov.votingforrestaurants.util.ValidationUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Objects;
 
 @Controller
 @RequestMapping(value = "/votes")
 public class JspVoteController extends AbstractVoteController {
+
+    static final LocalTime STOP_TIME = LocalTime.of(11,00,00,00);
 
     @GetMapping
     public String votes(Model model) {
@@ -30,7 +33,7 @@ public class JspVoteController extends AbstractVoteController {
         if (vote == null) {
             super.create(new Vote(Date.from(Instant.now())), getId(request, "restId"));
         } else {
-            ValidationUtil.checkTimeForVote();
+            ValidationUtil.checkTimeForVote(STOP_TIME);
             super.update(getId(request, "id"), vote, getId(request, "restId"));
         }
         return "redirect:/restaurants";
