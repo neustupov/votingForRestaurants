@@ -9,7 +9,6 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
-        <h3><a href="restaurants"><spring:message code="common.backToRestaurants"/></a></h3>
         <h2><spring:message code="vote.vote"/></h2>
         <table class="table table-striped display">
             <thead>
@@ -40,6 +39,8 @@
                 </tr>
             </c:forEach>
         </table>
+        <a><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
+        <a href="restaurants"><spring:message code="common.backToRestaurants"/></a>
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>

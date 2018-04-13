@@ -13,6 +13,14 @@
         <a href="restaurants/create"><spring:message code="restaurants.addRestaurant"/></a>
         <a href="votes"><spring:message code="restaurant.viewAllVotes"/></a>
         <hr/>
+        <a class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <spring:message code="restaurants.addRestaurant"/>
+        </a>
+        <a class="btn btn-primary">
+            <span class="glyphicon" aria-hidden="true"></span>
+            <spring:message code="restaurant.viewAllVotes"/>
+        </a>
         <table class="table table-striped display">
             <thead>
             <tr>
@@ -32,11 +40,15 @@
                     <td><c:out value="${restaurant.numberOfVotes}"/>
                     <td><a href="menus/getTodaysMenuWithMeals?restId=${restaurant.id}"><spring:message
                             code="menu.showTodaysMenu"/></a></td>
-                    <td><a href="menus?restId=${restaurant.id}"><spring:message code="restaurant.showAllMenus"/></a>
+                    <td><a><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a>
+                        <a href="menus?restId=${restaurant.id}"><spring:message code="restaurant.showAllMenus"/></a>
                     </td>
-                    <td><a href="restaurants/delete?id=${restaurant.id}"><spring:message code="common.delete"/></a></td>
-                    <td><a href="restaurants/update?id=${restaurant.id}"><spring:message code="common.update"/></a></td>
-                    <td><a href="votes/updateOrCreate?restId=${restaurant.id}"><spring:message
+                    <td><a><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <a href="restaurants/delete?id=${restaurant.id}"><spring:message code="common.delete"/></a></td>
+                    <td><a><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <a href="restaurants/update?id=${restaurant.id}"><spring:message code="common.update"/></a></td>
+                    <td><a><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+                        <a href="votes/updateOrCreate?restId=${restaurant.id}"><spring:message
                             code="restaurant.vote"/></a></td>
                 </tr>
             </c:forEach>

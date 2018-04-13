@@ -12,6 +12,10 @@
         <hr/>
         <a href="menus/create?restId=${restId}&menuId=${menuId}"><spring:message code="menu.addMenu"/></a>
         <hr/>
+        <a class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <spring:message code="menu.addMenu"/>
+        </a>
         <table class="table table-striped display">
             <thead>
             <tr>
@@ -27,16 +31,20 @@
                     <td><c:out value="${menu.id}"/></td>
                     <td><c:out value="${menu.restaurant.id}"/></td>
                     <td><c:out value="${menu.addDate}"/></td>
-                    <td><a href="meals?menuId=${menu.id}&restId=${restId}"><spring:message
+                    <td><a><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a>
+                        <a href="meals?menuId=${menu.id}&restId=${restId}"><spring:message
                             code="menu.showAllMeals"/></a></td>
-                    <td><a href="menus/delete?menuId=${menu.id}&restId=${restId}"><spring:message
+                    <td><a><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <a href="menus/delete?menuId=${menu.id}&restId=${restId}"><spring:message
                             code="common.delete"/></a></td>
                 </tr>
             </c:forEach>
         </table>
+        <br/>
+        <a><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
+        <a href="restaurants"><spring:message code="common.backToRestaurants"/></a>
     </div>
 </div>
-<h3><a href="restaurants"><spring:message code="common.backToRestaurants"/></a></h3>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
