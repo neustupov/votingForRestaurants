@@ -11,7 +11,11 @@
     <div class="container">
         <hr>
         <a href="meals/create?menuId=${menuId}&restId=${restId}"><spring:message code="meal.addMeal"/></a>
-        </hr>
+        <hr/>
+        <a class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <spring:message code="meal.addMeal"/>
+        </a>
         <table class="table table-striped display">
             <thead>
             <tr>
@@ -28,16 +32,19 @@
                     <td><c:out value="${meal.name}"/></td>
                     <td><c:out value="${meal.menu.id}"/></td>
                     <td><c:out value="${meal.price}"/></td>
-                    <td><a href="meals/delete?mealId=${meal.id}&menuId=${menuId}&restId=${restId}"><spring:message
+                    <td><a><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <a href="meals/delete?mealId=${meal.id}&menuId=${menuId}&restId=${restId}"><spring:message
                             code="common.delete"/></a>
                     </td>
-                    <td><a href="meals/update?mealId=${meal.id}&menuId=${menuId}&restId=${restId}"><spring:message
+                    <td><a><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <a href="meals/update?mealId=${meal.id}&menuId=${menuId}&restId=${restId}"><spring:message
                             code="common.update"/></a></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-        <h3><a href="menus?restId=${restId}"><spring:message code="meal.backToMenus"/></a></h3>
+        <a><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
+        <a href="menus?restId=${restId}"><spring:message code="meal.backToMenus"/></a>
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>
