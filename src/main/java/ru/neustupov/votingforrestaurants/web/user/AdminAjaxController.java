@@ -8,6 +8,8 @@ import ru.neustupov.votingforrestaurants.model.User;
 import java.util.EnumSet;
 import java.util.List;
 
+@RestController
+@RequestMapping("/ajax/admin/users")
 public class AdminAjaxController extends AbstractUserController{
 
     @Override
