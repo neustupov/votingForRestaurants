@@ -9,6 +9,11 @@ function makeEditable() {
     });
 }
 
+function add() {
+    $("#detailsForm").find(":input").val("");
+    $("#editRow").modal();
+}
+
 function deleteRow(id) {
     $.ajax({
         url: ajaxUrl + id,
