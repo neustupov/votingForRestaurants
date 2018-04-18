@@ -23,7 +23,6 @@
         <table class="table table-striped display" id="restDatatable">
             <thead>
             <tr>
-                <th>Id</th>
                 <th><spring:message code="common.name"/></th>
                 <th><spring:message code="restaurant.numberOfVotes"/></th>
                 <th></th>
@@ -35,21 +34,28 @@
             </thead>
             <c:forEach items="${restaurantsList}" var="restaurant">
                 <tr>
-                    <td><c:out value="${restaurant.id}"/></td>
                     <td><c:out value="${restaurant.name}"/></td>
                     <td><c:out value="${restaurant.numberOfVotes}"/>
-                    <td><a href="menus/getTodaysMenuWithMeals?restId=${restaurant.id}"><spring:message
-                            code="menu.showTodaysMenu"/></a></td>
-                    <td><a><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a>
-                        <a href="menus?restId=${restaurant.id}"><spring:message code="restaurant.showAllMenus"/></a>
+                    <td>
+                        <a class="glyphicon glyphicon-cutlery" aria-hidden="false"
+                           onclick="getTodaysMenuWithMeals(${restaurant.id})"></a>
                     </td>
-                    <td><a><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                        <a href="restaurants/delete?id=${restaurant.id}"><spring:message code="common.delete"/></a></td>
-                    <td><a><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                        <a href="restaurants/update?id=${restaurant.id}"><spring:message code="common.update"/></a></td>
-                    <td><a><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
-                        <a href="votes/updateOrCreate?restId=${restaurant.id}"><spring:message
-                            code="restaurant.vote"/></a></td>
+                    <td>
+                        <a class="glyphicon glyphicon-th-list" aria-hidden="true"
+                           onclick="redirectToMenus(${restaurant.id})"></a>
+                    </td>
+                    <td>
+                        <a class="glyphicon glyphicon-remove" aria-hidden="true"
+                           onclick="deleteRow(${restaurant.id})"></a>
+                    <td>
+                        <a class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+                        <a href="restaurants/update?id=${restaurant.id}">
+                            <spring:message code="common.update"/></a>
+                    </td>
+                    <td>
+                        <a class="glyphicon glyphicon-ok" aria-hidden="true"
+                           onclick="createVote(${restaurant.id})"></a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
