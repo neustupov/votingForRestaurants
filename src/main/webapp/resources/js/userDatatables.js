@@ -1,6 +1,10 @@
 var ajaxUrl = "ajax/admin/users/";
 var datatableApi;
 
+function updateTable() {
+    $.get(ajaxUrl, updateTableByData);
+}
+
 $(function () {
     datatableApi = $("#datatable").DataTable({
         "paging": false,
