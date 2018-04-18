@@ -72,7 +72,3 @@ function failNoty(jqXHR) {
         layout: "bottomRight"
     }).show();
 }
-
-function redirectToVotes() {
-    document.location.href="/votes"
-}
