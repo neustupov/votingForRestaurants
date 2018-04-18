@@ -1,6 +1,5 @@
 package ru.neustupov.votingforrestaurants.web.menu;
 
-import org.hsqldb.lib.Collection;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,7 +51,7 @@ public class JspMenuController extends AbstractMenuController{
         }
         model.addAttribute("mealsList", mealList);
         model.addAttribute("restId", getId(request, "restId"));
-        return "meals";
+        return "todays";
     }
 
     private int getId(HttpServletRequest request, String param) {
