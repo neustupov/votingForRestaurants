@@ -11,12 +11,9 @@ $(function () {
         "info": true,
         "columns": [
             {
-                "data": "id"
-            }, {
                 "data": "name"
             }, {
-                "defaultContent": "Todays",
-                "orderable": false
+                "defaultContent": "Votes"
             }, {
                 "defaultContent": "Todays",
                 "orderable": false
@@ -43,3 +40,19 @@ $(function () {
     });
     makeEditable();
 });
+
+function redirectToVotes() {
+    document.location.href="/votes"
+}
+
+function redirectToMenus(restId) {
+    document.location.href="/menus?restId=" + restId;
+}
+
+function getTodaysMenuWithMeals(restId) {
+    document.location.href="menus/getTodaysMenuWithMeals?restId=" + restId;
+}
+
+function createVote(restId) {
+    document.location.href="votes/updateOrCreate?restId=" + restId;
+}
