@@ -61,7 +61,7 @@ public class MenuControllerTest extends AbstractControllerTest {
                 .param("restId", "100002"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(view().name("meals"))
+                .andExpect(view().name("todays"))
                 .andExpect(model().attribute("mealsList", hasSize(1)));
     }
 }
