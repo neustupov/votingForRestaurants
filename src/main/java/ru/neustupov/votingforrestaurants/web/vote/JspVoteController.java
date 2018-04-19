@@ -17,8 +17,6 @@ import java.util.Objects;
 @RequestMapping(value = "/votes")
 public class JspVoteController extends AbstractVoteController {
 
-    static final LocalTime STOP_TIME = LocalTime.of(11,00,00,00);
-
     @GetMapping
     public String votes(Model model) {
         model.addAttribute("votesList", super.getAll());
@@ -33,7 +31,6 @@ public class JspVoteController extends AbstractVoteController {
         if (vote == null) {
             super.create(new Vote(Date.from(Instant.now())), getId(request, "restId"));
         } else {
-            ValidationUtil.checkTimeForVote(STOP_TIME);
             super.update(vote.getId(), vote, getId(request, "restId"));
         }
         return "redirect:/restaurants";

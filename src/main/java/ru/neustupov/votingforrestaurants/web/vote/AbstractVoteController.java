@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.neustupov.votingforrestaurants.AuthorizedUser;
 import ru.neustupov.votingforrestaurants.model.Vote;
 import ru.neustupov.votingforrestaurants.service.VoteService;
+import ru.neustupov.votingforrestaurants.util.ValidationUtil;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import static ru.neustupov.votingforrestaurants.util.ValidationUtil.checkNew;
 
 public abstract class AbstractVoteController {
+
+    static final LocalTime STOP_TIME = LocalTime.of(11,00,00,00);
 
     private static final Logger log = LoggerFactory.getLogger(AbstractVoteController.class);
 
@@ -50,6 +54,7 @@ public abstract class AbstractVoteController {
     public void update(int id, Vote vote, int restId) {
         int userId = AuthorizedUser.id();
         vote.setId(id);
+        ValidationUtil.checkTimeForVote(STOP_TIME);
         log.info("update {} for user {} and restaurant {}", vote, userId, restId);
         service.update(vote, userId, restId);
     }
