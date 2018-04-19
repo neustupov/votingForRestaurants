@@ -1,4 +1,5 @@
 var ajaxUrl = "/ajax/admin/restaurants/";
+var voteAjaxUrl = "/ajax/admin/votes/";
 var datatableApi;
 
 function updateTable() {
@@ -41,8 +42,8 @@ $(function () {
     makeEditable();
 });
 
-function redirectToVotes() {
-    document.location.href="/votes"
+function getAllVotes() {
+    document.location.href="/votes";
 }
 
 function redirectToMenus(restId) {
@@ -54,5 +55,13 @@ function getTodaysMenuWithMeals(restId) {
 }
 
 function createVote(restId) {
-    document.location.href="votes/updateOrCreate?restId=" + restId;
+    $.ajax({
+        type: "POST",
+        url: voteAjaxUrl,
+        data: {"restId":restId},
+        success: function () {
+            updateTable();
+            successNoty("Saved");
+        }
+    });
 }
