@@ -33,11 +33,7 @@ public class AdminMenuAjaxController extends AbstractMenuController{
     }
 
     @PostMapping
-    public void createOrUpdate(@RequestParam("id") Integer id,
-                               @RequestParam("restId") int restId) {
-        Menu menu = new Menu(id, Date.valueOf(LocalDate.now()));
-        if (menu.isNew()) {
-            super.create(menu, restId);
-        }
+    public void create(@RequestParam("restId") int restId) {
+            super.create(new Menu(Date.valueOf(LocalDate.now())), restId);
     }
 }
