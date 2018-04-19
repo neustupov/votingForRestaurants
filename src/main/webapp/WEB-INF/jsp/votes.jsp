@@ -6,17 +6,20 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
+<script type="text/javascript" src="resources/js/datatablesUtil.js" defer></script>
+<script type="text/javascript" src="resources/js/voteDatatables.js" defer></script>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
-        <h2><spring:message code="vote.vote"/></h2>
-        <table class="table table-striped display">
+        <div class="page-header">
+            <h3><spring:message code="vote.vote"/></h3>
+        </div>
+        <table class="table table-striped display" id="voteDatatable">
             <thead>
             <tr>
-                <th>Id</th>
-                <th><spring:message code="user.userId"/></th>
-                <th><spring:message code="common.addDate"/></th>
+                <th><spring:message code="user.name"/></th>
                 <th><spring:message code="vote.restaurant"/></th>
+                <th><spring:message code="common.addDate"/></th>
                 <th></th>
             </tr>
             </thead>
@@ -24,21 +27,22 @@
                 <jsp:useBean id="vote" scope="page" type="ru.neustupov.votingforrestaurants.model.Vote"/>
                 <tr>
                     <td>
-                            ${vote.id}
+                            ${vote.user.name}
                     </td>
                     <td>
-                            ${vote.user.id}
+                            ${vote.restaurant.name}
                     </td>
                     <td>
                         <fmt:formatDate value="${vote.date}" pattern="dd-MMMM-yyyy"/>
                     </td>
                     <td>
-                            ${vote.restaurant.name}
+                        <a class="glyphicon glyphicon-remove" aria-hidden="true"
+                           onclick="deleteRow(${vote.id})"></a>
                     </td>
-                    <td><a href="votes?action=delete&id=${vote.id}"><spring:message code="common.delete"/></a></td>
                 </tr>
             </c:forEach>
         </table>
+        <br/>
         <a><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
         <a href="restaurants"><spring:message code="common.backToRestaurants"/></a>
     </div>
