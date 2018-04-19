@@ -11,12 +11,14 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
-        <h3><spring:message code="restaurant.title"/></h3>
+        <div class="page-header">
+            <h3><spring:message code="restaurant.title"/></h3>
+        </div>
         <a class="btn btn-primary" onclick="add()">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             <spring:message code="restaurants.addRestaurant"/>
         </a>
-        <a class="btn btn-primary" onclick="redirectToVotes()">
+        <a class="btn btn-primary" onclick="getAllVotes()">
             <span class="glyphicon" aria-hidden="true"></span>
             <spring:message code="restaurant.viewAllVotes"/>
         </a>
