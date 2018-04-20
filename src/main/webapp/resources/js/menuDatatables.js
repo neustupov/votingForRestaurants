@@ -11,7 +11,7 @@ $(function () {
         "info": true,
         "columns": [
             {
-                "data": "name"
+                "data": "addDate"
             }, {
                 "defaultContent": "Edit",
                 "orderable": false
@@ -52,6 +52,17 @@ function deleteMenu(menuId, restId) {
         success: function () {
             updateTable(restId);
             successNoty("Deleted");
+        }
+    });
+}
+
+function createMenu(restId) {
+    $.ajax({
+        url: ajaxUrl + "?restId=" + restId,
+        type: "POST",
+        success: function () {
+            updateTable(restId);
+            successNoty("Created");
         }
     });
 }

@@ -17,7 +17,7 @@
                 </c:if>
             </h3>
         </div>
-        <a class="btn btn-primary" onclick="createMenu(${menu.id}, ${restId})">
+        <a class="btn btn-primary" onclick="createMenu(${restId})">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             <spring:message code="menu.addMenu"/>
         </a>
@@ -51,6 +51,7 @@
         <a href="restaurants"><spring:message code="common.backToRestaurants"/></a>
     </div>
 </div>
+
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
