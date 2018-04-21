@@ -46,6 +46,7 @@ public class AdminVoteRestControllerTest extends AbstractControllerTest{
         assertMatch(voteService.getAll(), VOTES);
     }
 
+    // it not working after STOP TIME //
     @Test
     public void testUpdate() throws Exception {
         Vote updated = new Vote(VOTE1);
