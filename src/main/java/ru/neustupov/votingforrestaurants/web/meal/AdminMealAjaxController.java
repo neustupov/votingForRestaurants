@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/ajax/admin/meals")
-public class AdminMealAjaxController extends AbstractMealController{
+public class AdminMealAjaxController extends AbstractMealController {
 
     @Override
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -31,14 +31,10 @@ public class AdminMealAjaxController extends AbstractMealController{
     }
 
     @PostMapping
-    public void createOrUpdate(@RequestParam("id") Integer id,
-                               @RequestParam("name") String name,
-                               @RequestParam("price") int price,
-                               @RequestParam("menuId") int menuId
-                               ) {
-        Meal meal = new Meal(id, name, price);
-        if (meal.isNew()) {
-            super.create(meal, menuId);
-        }
+    public void create(@RequestParam("name") String name,
+                       @RequestParam("price") int price,
+                       @RequestParam("menuId") int menuId) {
+        Meal meal = new Meal(name, price);
+        super.create(meal, menuId);
     }
 }
