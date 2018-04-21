@@ -33,3 +33,7 @@ $(function () {
     });
     makeEditable();
 });
+
+function redirectToRestaurants() {
+    document.location.href = "restaurants";
+}

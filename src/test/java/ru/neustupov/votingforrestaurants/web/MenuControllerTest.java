@@ -8,6 +8,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -35,29 +36,25 @@ public class MenuControllerTest extends AbstractControllerTest {
 
     @Test
     public void testDelete() throws Exception {
-        mockMvc.perform(get("/menus/delete")
-                .param("menuId", "100007")
+        mockMvc.perform(delete("/ajax/admin/menus/100007")
                 .param("restId", "100002"))
                 .andDo(print())
-                .andExpect(status().isFound())
-                .andExpect(redirectedUrl("/menus?restId=100002"));
+                .andExpect(status().isOk());
 
         assertThat(menuService.getAll(100002), hasSize(2));
     }
 
     @Test
     public void testCreate() throws Exception {
-        mockMvc.perform(get("/menus/create")
+        mockMvc.perform(get("/ajax/admin/menus")
                 .param("restId", "100002"))
                 .andDo(print())
-                .andExpect(status().isFound())
-                .andExpect(redirectedUrl("/menus?restId=100002"))
-                .andExpect(model().attribute("restId", 100002));
+                .andExpect(status().isOk());
     }
 
     @Test
     public void testGetTodaysMenuWithMeals() throws Exception {
-        mockMvc.perform(get("/menus/getTodaysMenuWithMeals")
+        mockMvc.perform(get("/getTodaysMenuWithMeals")
                 .param("restId", "100002"))
                 .andDo(print())
                 .andExpect(status().isOk())

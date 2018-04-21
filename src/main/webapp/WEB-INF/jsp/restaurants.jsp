@@ -47,13 +47,13 @@
                            onclick="redirectToMenus(${restaurant.id})"></a>
                     </td>
                     <td>
-                        <a class="glyphicon glyphicon-remove" aria-hidden="true"
-                           onclick="deleteRow(${restaurant.id})"></a>
-                    <td>
                         <a class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
                         <a href="restaurants/update?id=${restaurant.id}">
                             <spring:message code="common.update"/></a>
                     </td>
+                    <td>
+                        <a class="glyphicon glyphicon-remove" aria-hidden="true"
+                           onclick="deleteRow(${restaurant.id})"></a>
                     <td>
                         <a class="glyphicon glyphicon-ok" aria-hidden="true"
                            onclick="createVote(${restaurant.id})"></a>

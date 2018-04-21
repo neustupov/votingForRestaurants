@@ -51,7 +51,7 @@ function redirectToMenus(restId) {
 }
 
 function getTodaysMenuWithMeals(restId) {
-    document.location.href="menus/getTodaysMenuWithMeals?restId=" + restId;
+    document.location.href="getTodaysMenuWithMeals?restId=" + restId;
 }
 
 function createVote(restId) {
