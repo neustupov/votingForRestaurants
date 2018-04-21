@@ -43,8 +43,10 @@
             </c:forEach>
         </table>
         <br/>
-        <a><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
-        <a href="restaurants"><spring:message code="common.backToRestaurants"/></a>
+        <a class="btn btn-primary" onclick="redirectToRestaurants()">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            <spring:message code="common.backToRestaurants"/>
+        </a>
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>
