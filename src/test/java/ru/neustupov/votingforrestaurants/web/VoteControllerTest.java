@@ -6,6 +6,7 @@ import ru.neustupov.votingforrestaurants.service.VoteService;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
@@ -27,10 +28,9 @@ public class VoteControllerTest extends AbstractControllerTest{
 
     @Test
     public void testUpdateOrCreateOnlyCreate() throws Exception {
-        mockMvc.perform(get("/votes/updateOrCreate")
+        mockMvc.perform(post("/ajax/admin/votes")
                 .param("restId", "100002"))
                 .andDo(print())
-                .andExpect(status().isFound())
-                .andExpect(redirectedUrl("/restaurants"));
+                .andExpect(status().isOk());
     }
 }
