@@ -30,25 +30,19 @@ $(function () {
     makeEditable();
 });
 
-function createMenu(restId) {
-    $.ajax({
-        url: ajaxUrl + "?restId=" + restId,
-        type: "POST",
-        success: function () {
-            updateTable(restId);
-            successNoty("Saved");
-        }
-    });
-}
-
 function redirectToMeals(restId, menuId) {
     document.location.href = "meals?menuId=" + menuId + "&restId=" + restId;
 }
 
+function redirectToRestaurants() {
+    document.location.href = "restaurants";
+}
+
 function deleteMenu(menuId, restId) {
     $.ajax({
-        url: ajaxUrl + menuId + "?restId=" + restId,
+        url: ajaxUrl + menuId,
         type: "DELETE",
+        data: {"restId": restId},
         success: function () {
             updateTable(restId);
             successNoty("Deleted");
@@ -58,8 +52,9 @@ function deleteMenu(menuId, restId) {
 
 function createMenu(restId) {
     $.ajax({
-        url: ajaxUrl + "?restId=" + restId,
+        url: ajaxUrl,
         type: "POST",
+        data: {"restId": restId},
         success: function () {
             updateTable(restId);
             successNoty("Created");
