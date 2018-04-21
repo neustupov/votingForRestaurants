@@ -25,8 +25,11 @@
             </c:forEach>
             </tbody>
         </table>
-        <a><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
-        <a href="/restaurants"><spring:message code="menu.backToRestaurants"/></a>
+        <br/>
+        <a class="btn btn-primary" href="/restaurants">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            <spring:message code="common.backToRestaurants"/>
+        </a>
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>
