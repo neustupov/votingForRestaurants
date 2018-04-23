@@ -4,6 +4,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.neustupov.votingforrestaurants.model.Role;
 import ru.neustupov.votingforrestaurants.model.User;
+import ru.neustupov.votingforrestaurants.to.UserTo;
+import ru.neustupov.votingforrestaurants.util.UserUtil;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -25,14 +27,16 @@ public class AdminAjaxController extends AbstractUserController{
     }
 
     @PostMapping
-    public void createOrUpdate(@RequestParam("id") Integer id,
-                               @RequestParam("name") String name,
-                               @RequestParam("email") String email,
-                               @RequestParam("password") String password) {
+    public void createOrUpdate(UserTo userTo) {
 
-        User user = new User(id, name, email, password, EnumSet.of(Role.ROLE_USER));
-        if (user.isNew()) {
-            super.create(user);
+        if (userTo.isNew()) {
+            super.create(UserUtil.createNewFromTo(userTo));
         }
+    }
+
+    @Override
+    @PostMapping(value = "/{id}")
+    public void enable(@PathVariable("id") int id, @RequestParam("enabled") boolean enabled) {
+        super.enable(id, enabled);
     }
 }
