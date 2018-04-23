@@ -30,9 +30,7 @@ public class AdminRestaurantAjaxController extends AbstractRestaurantController{
     }
 
     @PostMapping
-    public void createOrUpdate(@RequestParam("id") Integer id,
-                               @RequestParam("name") String name) {
-        Restaurant restaurant = new Restaurant(id, name);
+    public void createOrUpdate(Restaurant restaurant) {
         if (restaurant.isNew()) {
             super.create(restaurant);
         }

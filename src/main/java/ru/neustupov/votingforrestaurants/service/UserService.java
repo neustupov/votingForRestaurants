@@ -18,4 +18,6 @@ public interface UserService {
     List<User> getAll();
 
     User getWithVotes(int id);
+
+    void enable(int id, boolean enable);
 }

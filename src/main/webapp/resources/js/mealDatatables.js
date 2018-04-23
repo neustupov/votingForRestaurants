@@ -38,13 +38,13 @@ function createMeal(menuId) {
     $.ajax({
         type: "POST",
         url: ajaxUrl,
-        data: form.serialize(),
-        success: function () {
+        data: form.serialize()
+    }).done(function () {
             $("#editRow").modal("hide");
             updateTable(menuId);
             successNoty("Saved");
         }
-    });
+    );
 }
 
 $('#editRow').on('show.bs.modal', function (event) {
@@ -58,12 +58,12 @@ function deleteMeal(mealId, menuId) {
     $.ajax({
         url: ajaxUrl + mealId,
         type: "DELETE",
-        data: {"menuId": menuId},
-        success: function () {
+        data: {"menuId": menuId}
+    }).done(function () {
             updateTable(menuId);
             successNoty("Deleted");
         }
-    });
+    );
 }
 
 function redirectToMenus(restId) {
