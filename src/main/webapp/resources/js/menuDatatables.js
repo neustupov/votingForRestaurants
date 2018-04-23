@@ -42,22 +42,22 @@ function deleteMenu(menuId, restId) {
     $.ajax({
         url: ajaxUrl + menuId,
         type: "DELETE",
-        data: {"restId": restId},
-        success: function () {
+        data: {"restId": restId}
+    }).done(function () {
             updateTable(restId);
             successNoty("Deleted");
         }
-    });
+    );
 }
 
 function createMenu(restId) {
     $.ajax({
         url: ajaxUrl,
         type: "POST",
-        data: {"restId": restId},
-        success: function () {
+        data: {"restId": restId}
+    }).done(function () {
             updateTable(restId);
             successNoty("Created");
         }
-    });
+    );
 }

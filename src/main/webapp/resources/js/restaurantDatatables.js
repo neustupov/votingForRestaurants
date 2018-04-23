@@ -58,10 +58,10 @@ function createVote(restId) {
     $.ajax({
         type: "POST",
         url: voteAjaxUrl,
-        data: {"restId":restId},
-        success: function () {
+        data: {"restId":restId}
+    }).done(function () {
             updateTable();
             successNoty("Saved");
         }
-    });
+    );
 }
