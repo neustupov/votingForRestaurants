@@ -20,25 +20,25 @@ function add() {
 function deleteRow(id) {
     $.ajax({
         url: ajaxUrl + id,
-        type: "DELETE",
-        success: function () {
+        type: "DELETE"
+    }).done(function () {
             updateTable();
             successNoty("Deleted");
         }
-    });
+    );
 }
 
 function save() {
     $.ajax({
         type: "POST",
         url: ajaxUrl,
-        data: form.serialize(),
-        success: function () {
+        data: form.serialize()
+    }).done(function () {
             $("#editRow").modal("hide");
             updateTable();
             successNoty("Saved");
         }
-    });
+    );
 }
 
 function updateTableByData(data) {
