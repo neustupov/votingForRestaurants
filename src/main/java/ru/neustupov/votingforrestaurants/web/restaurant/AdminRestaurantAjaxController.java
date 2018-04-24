@@ -33,6 +33,8 @@ public class AdminRestaurantAjaxController extends AbstractRestaurantController{
     public void createOrUpdate(Restaurant restaurant) {
         if (restaurant.isNew()) {
             super.create(restaurant);
+        }else {
+            super.update(restaurant, restaurant.getId());
         }
     }
 }

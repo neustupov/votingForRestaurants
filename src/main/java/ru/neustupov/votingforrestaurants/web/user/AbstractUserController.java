@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.neustupov.votingforrestaurants.model.User;
 import ru.neustupov.votingforrestaurants.service.UserService;
+import ru.neustupov.votingforrestaurants.to.UserTo;
 
 import java.util.List;
 
@@ -45,8 +46,19 @@ public abstract class AbstractUserController {
         service.update(user);
     }
 
+    public void update(UserTo userTo, int id) {
+        log.info("update {} with id={}", userTo, id);
+        assureIdConsistent(userTo, id);
+        service.update(userTo);
+    }
+
     public void enable(int id, boolean enabled) {
         log.info((enabled ? "enable " : "disable ") + id);
         service.enable(id, enabled);
+    }
+
+    public User getByMail(String email) {
+        log.info("getByEmail {}", email);
+        return service.getByEmail(email);
     }
 }

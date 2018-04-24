@@ -47,9 +47,8 @@
                            onclick="redirectToMenus(${restaurant.id})"></a>
                     </td>
                     <td>
-                        <a class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
-                        <a href="restaurants/update?id=${restaurant.id}">
-                            <spring:message code="common.update"/></a>
+                        <a class="glyphicon glyphicon-pencil" aria-hidden="true"
+                           onclick=updateRow(${restaurant.id})></a>
                     </td>
                     <td>
                         <a class="glyphicon glyphicon-remove" aria-hidden="true"

@@ -5,6 +5,8 @@ import org.springframework.http.MediaType;
 import ru.neustupov.votingforrestaurants.TestUtil;
 import ru.neustupov.votingforrestaurants.model.Role;
 import ru.neustupov.votingforrestaurants.model.User;
+import ru.neustupov.votingforrestaurants.to.UserTo;
+import ru.neustupov.votingforrestaurants.util.UserUtil;
 import ru.neustupov.votingforrestaurants.web.AbstractControllerTest;
 import ru.neustupov.votingforrestaurants.web.json.JsonUtil;
 
@@ -42,12 +44,12 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-        User updated = new User(USER_ID, "newName", "user@yandex.ru","newPassword", Date.from(Instant.now()), EnumSet.of(Role.ROLE_USER));
+        UserTo updatedTo = new UserTo(null, "newName", "user@yandex.ru","newPassword");
         mockMvc.perform(put(REST_URL).contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(updated)))
+                .content(JsonUtil.writeValue(updatedTo)))
                 .andDo(print())
                 .andExpect(status().isOk());
 
-        assertMatch(new User(userService.get(USER_ID)), updated);
+        assertMatch(userService.getByEmail("user@yandex.ru"), UserUtil.updateFromTo(new User(USER), updatedTo));
     }
 }

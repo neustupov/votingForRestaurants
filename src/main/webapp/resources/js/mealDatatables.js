@@ -34,7 +34,12 @@ $(function () {
     makeEditable();
 });
 
-function createMeal(menuId) {
+function addMeal(menuId) {
+    form.find(":input").val("");
+    $("#editRow").modal().find('#menuId').val(menuId);
+}
+
+function saveMeal(menuId) {
     $.ajax({
         type: "POST",
         url: ajaxUrl,
@@ -47,12 +52,16 @@ function createMeal(menuId) {
     );
 }
 
-$('#editRow').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    var menuId = button.data('wherever');
-    var modal = $(this);
-    modal.find('#menuId').val(menuId);
-});
+function updateMealsRow(id, menuId) {
+    $.get(ajaxUrl + id + "?menuId=" + menuId, function (data) {
+
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+
+        $('#editRow').modal().find('#menuId').val(menuId);
+    });
+}
 
 function deleteMeal(mealId, menuId) {
     $.ajax({
