@@ -18,7 +18,7 @@
                 </c:if>
             </h3>
         </div>
-        <a class="btn btn-primary" data-toggle="modal" data-target="#editRow" data-wherever="${menuId}">
+        <a class="btn btn-primary" data-toggle="modal" onclick="addMeal(${menuId})">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             <spring:message code="meal.addMeal"/>
         </a>
@@ -37,13 +37,14 @@
                     <td><c:out value="${meal.name}"/></td>
                     <td><c:out value="${meal.price}"/></td>
                     <td>
+                        <a class="glyphicon glyphicon-pencil" aria-hidden="true"
+                           onclick=updateMealsRow(${meal.id},${menuId})></a>
+                    </td>
+                    <td>
                         <a class="glyphicon glyphicon-remove" aria-hidden="true"
                            onclick="deleteMeal(${meal.id}, ${menuId})">
                         </a>
                     </td>
-                    <td><a><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                        <a href="meals/update?mealId=${meal.id}&menuId=${menuId}&restId=${restId}"><spring:message
-                                code="common.update"/></a></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -65,6 +66,7 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" id="detailsForm">
+                    <input type="hidden" id="id" name="id">
                     <input type="hidden" id="menuId" name="menuId">
 
                     <div class="form-group">
@@ -87,7 +89,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
-                            <button class="btn btn-primary" type="button" onclick="createMeal(${menuId})">
+                            <button class="btn btn-primary" type="button" onclick="saveMeal(${menuId})">
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
                         </div>
