@@ -31,9 +31,11 @@ public class AdminMealAjaxController extends AbstractMealController {
     }
 
     @PostMapping
-    public void create(@RequestParam("menuId") int menuId, Meal meal) {
+    public void createOrUpdate(@RequestParam("menuId") int menuId, Meal meal) {
         if (meal.isNew()) {
             super.create(meal, menuId);
+        } else {
+            super.update(meal.getId(), meal, menuId);
         }
     }
 }
