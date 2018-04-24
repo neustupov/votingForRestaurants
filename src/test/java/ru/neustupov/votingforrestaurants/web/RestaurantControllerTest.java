@@ -84,14 +84,13 @@ public class RestaurantControllerTest extends AbstractControllerTest {
         ));
     }
 
-    @Ignore
     @Test
     public void testCreateOrUpdateOnlyUpdate() throws Exception {
-        mockMvc.perform(post("/restaurants")
+        mockMvc.perform(post("/ajax/admin/restaurants/")
                 .param("name", "RussiaNew")
                 .param("id", "100002"))
                 .andDo(print())
-                .andExpect(status().isFound());
+                .andExpect(status().isOk());
 
         assertThat(restaurantService.getAll(), hasSize(5));
         assertThat(restaurantService.getAll(), hasItem(
