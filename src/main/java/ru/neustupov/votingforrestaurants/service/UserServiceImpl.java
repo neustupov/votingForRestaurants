@@ -8,10 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.neustupov.votingforrestaurants.model.User;
 import ru.neustupov.votingforrestaurants.repository.UserRepository;
+import ru.neustupov.votingforrestaurants.to.UserTo;
+import ru.neustupov.votingforrestaurants.util.UserUtil;
 import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
 
 import java.util.List;
 
+import static ru.neustupov.votingforrestaurants.util.ValidationUtil.checkNotFound;
 import static ru.neustupov.votingforrestaurants.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
@@ -49,10 +52,24 @@ public class UserServiceImpl implements UserService {
         checkNotFoundWithId(repository.save(user), user.getId());
     }
 
+    @CacheEvict(value = "users", allEntries = true)
+    @Transactional
+    @Override
+    public void update(UserTo userTo) {
+        User user = get(userTo.getId());
+        repository.save(UserUtil.updateFromTo(user, userTo));
+    }
+
     @Cacheable("users")
     @Override
     public List<User> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public User getByEmail(String email) throws NotFoundException {
+        Assert.notNull(email, "email must not be null");
+        return checkNotFound(repository.getByEmail(email), "email=" + email);
     }
 
     @Override

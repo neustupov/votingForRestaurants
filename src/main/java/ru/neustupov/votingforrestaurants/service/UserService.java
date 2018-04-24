@@ -1,6 +1,7 @@
 package ru.neustupov.votingforrestaurants.service;
 
 import ru.neustupov.votingforrestaurants.model.User;
+import ru.neustupov.votingforrestaurants.to.UserTo;
 import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
 
 import java.util.List;
@@ -15,7 +16,11 @@ public interface UserService {
 
     void update(User user);
 
+    void update(UserTo user);
+
     List<User> getAll();
+
+    User getByEmail(String email) throws NotFoundException;
 
     User getWithVotes(int id);
 
