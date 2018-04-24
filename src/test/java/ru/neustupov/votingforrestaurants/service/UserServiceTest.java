@@ -100,5 +100,11 @@ public class UserServiceTest extends AbstractServiceTest {
         Assert.assertTrue(service.get(USER_ID).isEnabled());
     }
 
+    @Test
+    public void getByEmail() throws Exception {
+        User user = service.getByEmail("admin@yandex.ru");
+        assertMatch(user, ADMIN);
+    }
+
 }
 
