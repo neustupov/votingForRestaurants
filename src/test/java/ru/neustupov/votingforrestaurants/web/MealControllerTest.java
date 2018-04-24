@@ -95,10 +95,9 @@ public class MealControllerTest extends AbstractControllerTest {
         ));
     }
 
-    @Ignore
     @Test
     public void testCreateOrUpdateOnlyUpdate() throws Exception {
-        mockMvc.perform(post("/meals")
+        mockMvc.perform(post("/ajax/admin/meals/")
                 .param("id", "100014")
                 .param("name", "AppleNew")
                 .param("price", "15")
@@ -106,7 +105,7 @@ public class MealControllerTest extends AbstractControllerTest {
                 .param("menuId", "100007")
                 .param("restId", "100002"))
                 .andDo(print())
-                .andExpect(status().isFound());
+                .andExpect(status().isOk());
 
         assertThat(mealService.getAll(100007), hasSize(2));
         assertThat(mealService.getAll(100007), hasItem(
