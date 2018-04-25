@@ -1,9 +1,16 @@
 package ru.neustupov.votingforrestaurants.web.meal;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.neustupov.votingforrestaurants.model.Meal;
+import ru.neustupov.votingforrestaurants.to.MealTo;
+import ru.neustupov.votingforrestaurants.util.ControllerUtil;
+import ru.neustupov.votingforrestaurants.util.MealUtil;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -31,11 +38,20 @@ public class AdminMealAjaxController extends AbstractMealController {
     }
 
     @PostMapping
-    public void createOrUpdate(@RequestParam("menuId") int menuId, Meal meal) {
-        if (meal.isNew()) {
-            super.create(meal, menuId);
-        } else {
-            super.update(meal.getId(), meal, menuId);
+    public ResponseEntity<String> createOrUpdate(@Valid MealTo mealTo, BindingResult result) {
+
+        ResponseEntity<String> responseEntity = new ResponseEntity<>(HttpStatus.OK);
+
+        if (result.hasErrors()) {
+            return ControllerUtil.bindResultErr(result);
         }
+
+        if (mealTo.isNew()) {
+            super.create(MealUtil.createNewFromTo(mealTo), mealTo.getMenuId());
+        } else {
+            super.update(mealTo.getId(), mealTo, mealTo.getMenuId());
+        }
+
+        return responseEntity;
     }
 }
