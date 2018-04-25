@@ -34,31 +34,6 @@
                 <th></th>
             </tr>
             </thead>
-            <c:forEach items="${restaurantsList}" var="restaurant">
-                <tr>
-                    <td><c:out value="${restaurant.name}"/></td>
-                    <td><c:out value="${restaurant.numberOfVotes}"/>
-                    <td>
-                        <a class="glyphicon glyphicon-cutlery" aria-hidden="false"
-                           onclick="getTodaysMenuWithMeals(${restaurant.id})"></a>
-                    </td>
-                    <td>
-                        <a class="glyphicon glyphicon-th-list" aria-hidden="true"
-                           onclick="redirectToMenus(${restaurant.id})"></a>
-                    </td>
-                    <td>
-                        <a class="glyphicon glyphicon-pencil" aria-hidden="true"
-                           onclick=updateRow(${restaurant.id})></a>
-                    </td>
-                    <td>
-                        <a class="glyphicon glyphicon-remove" aria-hidden="true"
-                           onclick="deleteRow(${restaurant.id})"></a>
-                    <td>
-                        <a class="glyphicon glyphicon-ok" aria-hidden="true"
-                           onclick="createVote(${restaurant.id})"></a>
-                    </td>
-                </tr>
-            </c:forEach>
         </table>
     </div>
 </div>

@@ -8,28 +8,37 @@ function updateTable() {
 
 $(function () {
     datatableApi = $("#restDatatable").DataTable({
+        "ajax": {
+            "url": ajaxUrl,
+            "dataSrc": ""
+        },
         "paging": false,
         "info": true,
         "columns": [
             {
                 "data": "name"
             }, {
-                "defaultContent": "Votes"
+                "data": "numberOfVotes"
             }, {
-                "defaultContent": "Todays",
-                "orderable": false
+                "orderable": false,
+                "defaultContent": "",
+                "render": renderTodaysBtn
             }, {
-                "defaultContent": "All",
-                "orderable": false
+                "orderable": false,
+                "defaultContent": "",
+                "render": renderAllBtn
             }, {
-                "defaultContent": "Delete",
-                "orderable": false
+                "orderable": false,
+                "defaultContent": "",
+                "render": renderEditBtn
             }, {
-                "defaultContent": "Edit",
-                "orderable": false
+                "orderable": false,
+                "defaultContent": "",
+                "render": renderDeleteBtn
             }, {
-                "defaultContent": "Vote",
-                "orderable": false
+                "orderable": false,
+                "defaultContent": "",
+                "render": renderVoteBtn
             }
         ],
         "order": [
@@ -64,4 +73,25 @@ function createVote(restId) {
             successNoty("Saved");
         }
     );
+}
+
+function renderTodaysBtn(data, type, row) {
+    if (type === "display") {
+        return "<a onclick='getTodaysMenuWithMeals(" + row.id + ");'>" +
+            "<span class='glyphicon glyphicon-cutlery' aria-hidden='true'></span></a>";
+    }
+}
+
+function renderAllBtn(data, type, row) {
+    if (type === "display") {
+        return "<a onclick='redirectToMenus(" + row.id + ");'>" +
+            "<span class='glyphicon glyphicon-th-list' aria-hidden='true'></span></a>";
+    }
+}
+
+function renderVoteBtn(data, type, row) {
+    if (type === "display") {
+        return "<a onclick='createVote(" + row.id + ");'>" +
+            "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a>";
+    }
 }

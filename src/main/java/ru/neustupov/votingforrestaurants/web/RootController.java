@@ -49,9 +49,7 @@ public class RootController {
     }
 
     @GetMapping("/restaurants")
-    public String restaurants(Model model) {
-        model.addAttribute("restaurantsList",
-                RestaurantsUtil.getWithVotes(restaurantService.getAll(), voteService.getAllForCurrentDate()));
+    public String restaurants() {
         return "restaurants";
     }
 
