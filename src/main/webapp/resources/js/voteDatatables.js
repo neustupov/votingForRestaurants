@@ -7,6 +7,10 @@ function updateTable() {
 
 $(function () {
     datatableApi = $("#voteDatatable").DataTable({
+        "ajax": {
+            "url": ajaxUrl,
+            "dataSrc": ""
+        },
         "paging": false,
         "info": true,
         "columns": [
@@ -17,11 +21,18 @@ $(function () {
                 "data": "restaurant.name"
             },
             {
-                "data": "date"
+                "data": "date",
+                "render": function (date, type, row) {
+                    if (type === "display") {
+                        return date.substring(0, 10);
+                    }
+                    return date;
+                }
             },
             {
-                "defaultContent": "Edit",
-                "orderable": false
+                "orderable": false,
+                "defaultContent": "",
+                "render": renderDeleteBtn
             }
         ],
         "order": [
