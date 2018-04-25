@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.neustupov.votingforrestaurants.model.Meal;
 import ru.neustupov.votingforrestaurants.service.MealService;
+import ru.neustupov.votingforrestaurants.to.MealTo;
 
 import java.util.List;
 
-import static ru.neustupov.votingforrestaurants.util.ValidationUtil.assureIdConsistent;
 import static ru.neustupov.votingforrestaurants.util.ValidationUtil.checkNew;
 
 public class AbstractMealController {
@@ -38,6 +38,12 @@ public class AbstractMealController {
         meal.setId(id);
         log.info("update {} with id = {} for menu {}", meal, id, menuId);
         service.update(meal, menuId);
+    }
+
+    public void update(int id, MealTo mealTo, int menuId){
+        mealTo.setId(id);
+        log.info("update {} with id = {} for menu {}", mealTo, id, menuId);
+        service.update(mealTo, menuId);
     }
 
     public List<Meal> getAll(int menuId){

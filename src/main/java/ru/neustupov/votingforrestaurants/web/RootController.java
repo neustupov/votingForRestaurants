@@ -18,8 +18,6 @@ import java.util.Set;
 
 @Controller
 public class RootController {
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private RestaurantService restaurantService;
@@ -39,8 +37,7 @@ public class RootController {
     }
 
     @GetMapping("/users")
-    public String users(Model model) {
-        model.addAttribute("users", userService.getAll());
+    public String users() {
         return "users";
     }
 
@@ -60,19 +57,19 @@ public class RootController {
 
     @GetMapping("/menus")
     public String menus(Model model, HttpServletRequest request) {
-        model.addAttribute("menusList", menuService.getAll(getId(request,"restId")));
+        model.addAttribute("menusList", menuService.getAll(getId(request, "restId")));
         model.addAttribute("restId", request.getParameter("restId"));
         return "menus";
     }
 
     @GetMapping("/getTodaysMenuWithMeals")
-    public String getTodaysMenuWithMeals(HttpServletRequest request, Model model){
+    public String getTodaysMenuWithMeals(HttpServletRequest request, Model model) {
         Menu menu = menuService.getTodaysMenuWithMeals(getId(request, "restId"));
         Set<Meal> mealList;
-        if(menu != null){
+        if (menu != null) {
             mealList = menu.getMeals();
             model.addAttribute("menuId", menu.getId());
-        }else{
+        } else {
             mealList = Collections.emptySet();
         }
         model.addAttribute("mealsList", mealList);
@@ -81,7 +78,7 @@ public class RootController {
     }
 
     @GetMapping("/meals")
-    public String meals(HttpServletRequest request, Model model){
+    public String meals(HttpServletRequest request, Model model) {
         model.addAttribute("mealsList", mealService.getAll(getId(request, "menuId")));
         model.addAttribute("menuId", request.getParameter("menuId"));
         model.addAttribute("restId", request.getParameter("restId"));
@@ -89,7 +86,7 @@ public class RootController {
     }
 
     @GetMapping("/votes")
-    public String votes(HttpServletRequest request, Model model){
+    public String votes(HttpServletRequest request, Model model) {
         model.addAttribute("votesList", voteService.getAll());
         return "votes";
     }
