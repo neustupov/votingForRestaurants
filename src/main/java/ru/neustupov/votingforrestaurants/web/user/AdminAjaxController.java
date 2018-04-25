@@ -1,13 +1,16 @@
 package ru.neustupov.votingforrestaurants.web.user;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.neustupov.votingforrestaurants.model.Role;
 import ru.neustupov.votingforrestaurants.model.User;
 import ru.neustupov.votingforrestaurants.to.UserTo;
+import ru.neustupov.votingforrestaurants.util.ControllerUtil;
 import ru.neustupov.votingforrestaurants.util.UserUtil;
 
-import java.util.EnumSet;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,13 +36,21 @@ public class AdminAjaxController extends AbstractUserController {
     }
 
     @PostMapping
-    public void createOrUpdate(UserTo userTo) {
+    public ResponseEntity<String> createOrUpdate(@Valid UserTo userTo, BindingResult result) {
+
+        ResponseEntity<String> responseEntity = new ResponseEntity<>(HttpStatus.OK);
+
+        if (result.hasErrors()) {
+            return ControllerUtil.bindResultErr(result);
+        }
 
         if (userTo.isNew()) {
             super.create(UserUtil.createNewFromTo(userTo));
         } else {
             super.update(userTo, userTo.getId());
         }
+
+        return responseEntity;
     }
 
     @Override
