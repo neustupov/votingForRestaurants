@@ -1,13 +1,21 @@
 package ru.neustupov.votingforrestaurants.to;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class UserTo extends BaseTo{
 
     private Integer id;
 
+    @NotBlank
     private String name;
 
+    @Email
+    @NotBlank
     private String email;
 
+    @Size(min = 5, max = 32, message = "length must between 5 and 32 characters")
     private String password;
 
     public UserTo() {
