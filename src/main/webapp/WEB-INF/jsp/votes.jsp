@@ -23,24 +23,6 @@
                 <th></th>
             </tr>
             </thead>
-            <c:forEach items="${votesList}" var="vote">
-                <jsp:useBean id="vote" scope="page" type="ru.neustupov.votingforrestaurants.model.Vote"/>
-                <tr>
-                    <td>
-                            ${vote.user.name}
-                    </td>
-                    <td>
-                            ${vote.restaurant.name}
-                    </td>
-                    <td>
-                        <fmt:formatDate value="${vote.date}" pattern="dd-MMMM-yyyy"/>
-                    </td>
-                    <td>
-                        <a class="glyphicon glyphicon-remove" aria-hidden="true"
-                           onclick="deleteRow(${vote.id})"></a>
-                    </td>
-                </tr>
-            </c:forEach>
         </table>
         <br/>
         <a class="btn btn-primary" onclick="redirectToRestaurants()">

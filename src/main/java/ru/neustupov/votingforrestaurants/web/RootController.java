@@ -20,12 +20,6 @@ import java.util.Set;
 public class RootController {
 
     @Autowired
-    private RestaurantService restaurantService;
-
-    @Autowired
-    private VoteService voteService;
-
-    @Autowired
     private MenuService menuService;
 
     @Autowired
@@ -84,8 +78,7 @@ public class RootController {
     }
 
     @GetMapping("/votes")
-    public String votes(HttpServletRequest request, Model model) {
-        model.addAttribute("votesList", voteService.getAll());
+    public String votes() {
         return "votes";
     }
 
