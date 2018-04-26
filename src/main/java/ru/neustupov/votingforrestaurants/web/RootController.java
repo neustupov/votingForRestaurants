@@ -9,7 +9,6 @@ import ru.neustupov.votingforrestaurants.AuthorizedUser;
 import ru.neustupov.votingforrestaurants.model.Meal;
 import ru.neustupov.votingforrestaurants.model.Menu;
 import ru.neustupov.votingforrestaurants.service.*;
-import ru.neustupov.votingforrestaurants.util.RestaurantsUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
@@ -49,8 +48,6 @@ public class RootController {
 
     @GetMapping("/menus")
     public String menus(Model model, HttpServletRequest request) {
-        model.addAttribute("menusList", menuService.getAll(getId(request, "restId")));
-        model.addAttribute("restId", request.getParameter("restId"));
         return "menus";
     }
 

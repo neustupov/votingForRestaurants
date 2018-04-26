@@ -4,10 +4,10 @@
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
-<body>
 <script type="text/javascript" src="resources/js/datatablesUtil.js" defer></script>
 <script type="text/javascript" src="resources/js/menuDatatables.js" defer></script>
 <jsp:include page="fragments/bodyHeader.jsp"/>
+<input id='restIdValue' type='hidden' value='${param.restId}'/>
 <div class="jumbotron">
     <div class="container">
         <div class="page-header">
@@ -17,7 +17,7 @@
                 </c:if>
             </h3>
         </div>
-        <a class="btn btn-primary" onclick="createMenu(${restId})">
+        <a class="btn btn-primary" onclick="createMenu(${param.restId})">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             <spring:message code="menu.addMenu"/>
         </a>
@@ -29,22 +29,6 @@
                 <th></th>
             </tr>
             </thead>
-            <c:forEach items="${menusList}" var="menu">
-                <jsp:useBean id="menu" scope="page" type="ru.neustupov.votingforrestaurants.model.Menu"/>
-                <tr>
-                    <td><c:out value="${menu.addDate}"/></td>
-                    <td>
-                        <a class="glyphicon glyphicon-th-list" aria-hidden="true"
-                           onclick="redirectToMeals(${restId}, ${menu.id})">
-                        </a>
-                    </td>
-                    <td>
-                        <a class=" glyphicon glyphicon-remove" aria-hidden="true"
-                           onclick="deleteMenu(${menu.id}, ${restId})">
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
         </table>
         <br/>
         <a class="btn btn-primary" onclick="redirectToRestaurants()">
