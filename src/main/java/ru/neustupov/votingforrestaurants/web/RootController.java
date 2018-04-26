@@ -21,9 +21,6 @@ public class RootController {
     @Autowired
     private MenuService menuService;
 
-    @Autowired
-    private MealService mealService;
-
     @GetMapping("/")
     public String root() {
         return "index";
@@ -67,10 +64,7 @@ public class RootController {
     }
 
     @GetMapping("/meals")
-    public String meals(HttpServletRequest request, Model model) {
-        model.addAttribute("mealsList", mealService.getAll(getId(request, "menuId")));
-        model.addAttribute("menuId", request.getParameter("menuId"));
-        model.addAttribute("restId", request.getParameter("restId"));
+    public String meals() {
         return "meals";
     }
 

@@ -1,5 +1,6 @@
 var ajaxUrl = "/ajax/admin/meals/";
 var datatableApi;
+var globalMenuId = document.getElementById('menuIdValue').value;
 
 function updateTable(menuId) {
     $.get(ajaxUrl + "?menuId=" + menuId, updateTableByData);
@@ -7,6 +8,10 @@ function updateTable(menuId) {
 
 $(function () {
     datatableApi = $("#mealDatatable").DataTable({
+        "ajax": {
+            "url": ajaxUrl + "?menuId=" + globalMenuId,
+            "dataSrc": ""
+        },
         "paging": false,
         "info": true,
         "columns": [
@@ -17,11 +22,13 @@ $(function () {
                 "data": "price"
             },
             {
-                "defaultContent": "Edit",
-                "orderable": false
+                "orderable": false,
+                "defaultContent": "",
+                "render": renderUpdateBtn
             }, {
-                "defaultContent": "Vote",
-                "orderable": false
+                "orderable": false,
+                "defaultContent": "",
+                "render": renderDeleteBtn
             }
         ],
         "order": [
@@ -77,4 +84,18 @@ function deleteMeal(mealId, menuId) {
 
 function redirectToMenus(restId) {
     document.location.href = "menus/?restId=" + restId;
+}
+
+function renderUpdateBtn(data, type, row) {
+    if (type === "display") {
+        return "<a onclick='updateMealsRow(" + row.id + "," + globalMenuId + ");'>" +
+            "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
+    }
+}
+
+function renderDeleteBtn(data, type, row) {
+    if (type === "display") {
+        return "<a onclick='deleteMeal(" + row.id + "," + globalMenuId + ");'>" +
+            "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
+    }
 }

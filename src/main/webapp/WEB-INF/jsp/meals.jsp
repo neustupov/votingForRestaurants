@@ -9,6 +9,7 @@
 <script type="text/javascript" src="resources/js/datatablesUtil.js" defer></script>
 <script type="text/javascript" src="resources/js/mealDatatables.js" defer></script>
 <jsp:include page="fragments/bodyHeader.jsp"/>
+<input id='menuIdValue' type='hidden' value='${param.menuId}'/>
 <div class="jumbotron">
     <div class="container">
         <div class="page-header">
@@ -18,7 +19,7 @@
                 </c:if>
             </h3>
         </div>
-        <a class="btn btn-primary" data-toggle="modal" onclick="addMeal(${menuId})">
+        <a class="btn btn-primary" data-toggle="modal" onclick="addMeal(${param.menuId})">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             <spring:message code="meal.addMeal"/>
         </a>
@@ -31,26 +32,9 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody>
-            <c:forEach items="${mealsList}" var="meal">
-                <tr>
-                    <td><c:out value="${meal.name}"/></td>
-                    <td><c:out value="${meal.price}"/></td>
-                    <td>
-                        <a class="glyphicon glyphicon-pencil" aria-hidden="true"
-                           onclick=updateMealsRow(${meal.id},${menuId})></a>
-                    </td>
-                    <td>
-                        <a class="glyphicon glyphicon-remove" aria-hidden="true"
-                           onclick="deleteMeal(${meal.id}, ${menuId})">
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
         </table>
         <br/>
-        <a class="btn btn-primary" onclick="redirectToMenus(${restId})">
+        <a class="btn btn-primary" onclick="redirectToMenus(${param.restId})">
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
             <spring:message code="meal.backToMenus"/>
         </a>
@@ -89,7 +73,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
-                            <button class="btn btn-primary" type="button" onclick="saveMeal(${menuId})">
+                            <button class="btn btn-primary" type="button" onclick="saveMeal(${param.menuId})">
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
                         </div>
