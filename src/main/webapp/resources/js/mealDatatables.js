@@ -42,7 +42,8 @@ $(function () {
 });
 
 function addMeal(menuId) {
-    form.find(":input").val("");
+    $("#modalTitle").html(i18n["addTitle"]);
+    $("#detailsForm").find(":input").val("");
     $("#editRow").modal().find('#menuId').val(menuId);
 }
 
@@ -54,12 +55,13 @@ function saveMeal(menuId) {
     }).done(function () {
             $("#editRow").modal("hide");
             updateTable(menuId);
-            successNoty("Saved");
+            successNoty("common.saved");
         }
     );
 }
 
 function updateMealsRow(id, menuId) {
+    $("#modalTitle").html(i18n["editTitle"]);
     $.get(ajaxUrl + id + "?menuId=" + menuId, function (data) {
 
         $.each(data, function (key, value) {
@@ -77,7 +79,7 @@ function deleteMeal(mealId, menuId) {
         data: {"menuId": menuId}
     }).done(function () {
             updateTable(menuId);
-            successNoty("Deleted");
+            successNoty("common.deleted");
         }
     );
 }
