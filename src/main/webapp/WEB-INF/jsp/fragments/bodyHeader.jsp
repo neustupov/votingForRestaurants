@@ -1,18 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-dark bg-dark">
     <div class="container">
-        <a href="/restaurants" class="navbar-brand"><spring:message code="app.title"/></a>
-
-        <div class="collapse navbar-collapse">
-            <form class="navbar-form navbar-right">
-                <a class="btn btn-info" href="users"><spring:message code="user.title"/></a>
-
-                <a class="btn btn-primary" href="">
-                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-                </a>
-            </form>
-        </div>
+        <a href="/restaurants" class="navbar-brand">
+            <img src="resources/images/vote_ico.png">
+            <spring:message code="app.title"/></a>
+        <form class="form-inline my-2">
+            <a class="btn btn-info mr-2" href="users"><spring:message code="user.title"/></a>
+            <a class="btn btn-primary" href="">
+                <span class="fa fa-sign-in"></span>
+            </a>
+        </form>
     </div>
-</div>
+</nav>
