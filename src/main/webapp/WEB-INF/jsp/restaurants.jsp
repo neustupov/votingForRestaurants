@@ -14,11 +14,13 @@
         <div class="page-header">
             <h3><spring:message code="restaurant.title"/></h3>
         </div>
-        <a class="btn btn-primary" onclick="add()">
+        <br/>
+        <br/>
+        <a class="btn btn-info mr-2" onclick="add()">
             <span class="fa fa-plus" aria-hidden="true"></span>
             <spring:message code="restaurants.addRestaurant"/>
         </a>
-        <a class="btn btn-primary" onclick="getAllVotes()">
+        <a class="btn btn-info mr-2" onclick="getAllVotes()">
             <span class="glyphicon" aria-hidden="true"></span>
             <spring:message code="restaurant.viewAllVotes"/>
         </a>

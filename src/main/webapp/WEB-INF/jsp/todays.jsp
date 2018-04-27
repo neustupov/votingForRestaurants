@@ -5,10 +5,16 @@
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
+<body>
 <hr>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
+        <div class="page-header">
+            <h3><spring:message code="menu.todays"/> ${param.restId}</h3>
+        </div>
+        <br/>
+        <br/>
         <table class="table table-striped display">
             <thead>
             <tr>
@@ -26,7 +32,7 @@
             </tbody>
         </table>
         <br/>
-        <a class="btn btn-primary" href="/restaurants">
+        <a class="btn btn-info mr-2" href="/restaurants">
             <span class="fa fa-mail-reply" aria-hidden="true"></span>
             <spring:message code="common.backToRestaurants"/>
         </a>

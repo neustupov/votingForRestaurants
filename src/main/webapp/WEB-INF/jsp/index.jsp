@@ -15,7 +15,7 @@
                 <option value="100000" selected>User</option>
                 <option value="100001">Admin</option>
             </select>
-            <button type="submit" class="btn btn-primary"><spring:message code="common.select"/></button>
+            <button type="submit" class="btn btn-info mr-2"><spring:message code="common.select"/></button>
         </form>
         <ul>
             <li><a href="users"><spring:message code="user.title"/></a></li>

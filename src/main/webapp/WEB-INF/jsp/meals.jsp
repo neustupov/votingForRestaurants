@@ -13,13 +13,11 @@
 <div class="jumbotron">
     <div class="container">
         <div class="page-header">
-            <h3>
-                <c:if test="${mealsList.size() != 0}">
-                    ${mealsList.get(0).menu.addDate}
-                </c:if>
-            </h3>
+            <h3><spring:message code="meal.all"/> ${param.menuId}</h3>
         </div>
-        <a class="btn btn-primary" data-toggle="modal" onclick="addMeal(${param.menuId})">
+        <br/>
+        <br/>
+        <a class="btn btn-info mr-2" data-toggle="modal" onclick="addMeal(${param.menuId})">
             <span class="fa fa-plus" aria-hidden="true"></span>
             <spring:message code="meal.addMeal"/>
         </a>
@@ -34,7 +32,7 @@
             </thead>
         </table>
         <br/>
-        <a class="btn btn-primary" onclick="redirectToMenus(${param.restId})">
+        <a class="btn btn-info mr-2" onclick="redirectToMenus(${param.restId})">
             <span class="fa fa-mail-reply" aria-hidden="true"></span>
             <spring:message code="meal.backToMenus"/>
         </a>
