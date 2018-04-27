@@ -78,13 +78,13 @@ function createMenu(restId) {
 function renderAllMealsBtn(data, type, row) {
     if (type === "display") {
         return "<a onclick='redirectToMeals(" + globalRestId + "," + row.id + ");'>" +
-            "<span class='glyphicon glyphicon-cutlery' aria-hidden='true'></span></a>";
+            "<span class='fa fa-cutlery' aria-hidden='true'></span></a>";
     }
 }
 
 function renderDeleteBtn(data, type, row) {
     if (type === "display") {
         return "<a onclick='deleteMenu(" + row.id + "," + globalRestId + ");'>" +
-            "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
+            "<span class='fa fa-remove' aria-hidden='true'></span></a>";
     }
 }

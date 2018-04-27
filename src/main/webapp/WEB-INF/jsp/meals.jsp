@@ -20,7 +20,7 @@
             </h3>
         </div>
         <a class="btn btn-primary" data-toggle="modal" onclick="addMeal(${param.menuId})">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="fa fa-plus" aria-hidden="true"></span>
             <spring:message code="meal.addMeal"/>
         </a>
         <table class="table table-striped display" id="mealDatatable">
@@ -35,48 +35,45 @@
         </table>
         <br/>
         <a class="btn btn-primary" onclick="redirectToMenus(${param.restId})">
-            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            <span class="fa fa-mail-reply" aria-hidden="true"></span>
             <spring:message code="meal.backToMenus"/>
         </a>
     </div>
 </div>
 
-<div class="modal fade" id="editRow">
+<div class="modal fade" tabindex="-1" id="editRow">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="modalTitle"><spring:message code="meal.addMeal"/></h2>
+                <h4 class="modal-title"><spring:message code="meal.addMeal"/></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="detailsForm">
+                <form id="detailsForm">
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="menuId" name="menuId">
 
                     <div class="form-group">
-                        <label for="name" class="control-label col-xs-3"><spring:message
+                        <label for="name" class="col-form-label"><spring:message
                                 code="common.name"/></label>
 
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" id="name" name="name"
-                                   placeholder="<spring:message code="common.name"/>">
-                        </div>
+                        <input type="text" class="form-control" id="name" name="name"
+                               placeholder="<spring:message code="common.name"/>">
                     </div>
                     <div class="form-group">
-                        <label for="name" class="control-label col-xs-3"><spring:message
+                        <label for="name" class="col-form-label"><spring:message
                                 code="meal.price"/></label>
 
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" id="price" name="price"
-                                   placeholder="<spring:message code="meal.price"/>">
-                        </div>
+                        <input type="text" class="form-control" id="price" name="price"
+                               placeholder="<spring:message code="meal.price"/>">
                     </div>
-                    <div class="form-group">
-                        <div class="col-xs-offset-3 col-xs-9">
-                            <button class="btn btn-primary" type="button" onclick="saveMeal(${param.menuId})">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            </button>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            <span class="fa fa-close" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" onclick="saveMeal(${param.menuId})" class="btn btn-primary">
+                            <span class="fa fa-check" aria-hidden="true"></span>
+                        </button>
                     </div>
                 </form>
             </div>

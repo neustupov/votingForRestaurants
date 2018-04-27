@@ -15,7 +15,7 @@
             <h3><spring:message code="restaurant.title"/></h3>
         </div>
         <a class="btn btn-primary" onclick="add()">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="fa fa-plus" aria-hidden="true"></span>
             <spring:message code="restaurants.addRestaurant"/>
         </a>
         <a class="btn btn-primary" onclick="getAllVotes()">
@@ -38,32 +38,30 @@
     </div>
 </div>
 
-<div class="modal fade" id="editRow">
+<div class="modal fade" tabindex="-1" id="editRow">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="modalTitle"><spring:message code="restaurant.add"/></h2>
+                <h4 class="modal-title"><spring:message code="restaurant.add"/></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="detailsForm">
+                <form id="detailsForm">
                     <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
-                        <label for="name" class="control-label col-xs-3"><spring:message
-                                code="restaurant.name"/></label>
+                        <label for="name" class="col-form-label"><spring:message code="restaurant.name"/></label>
 
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" id="name" name="name"
-                                   placeholder="<spring:message code="restaurant.name"/>">
-                        </div>
+                        <input type="text" class="form-control" id="name" name="name"
+                               placeholder="<spring:message code="restaurant.name"/>">
                     </div>
-                    <div class="form-group">
-                        <div class="col-xs-offset-3 col-xs-9">
-                            <button class="btn btn-primary" type="button" onclick="save()">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            </button>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            <span class="fa fa-close" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" onclick="save()" class="btn btn-primary">
+                            <span class="fa fa-check" aria-hidden="true"></span>
+                        </button>
                     </div>
                 </form>
             </div>

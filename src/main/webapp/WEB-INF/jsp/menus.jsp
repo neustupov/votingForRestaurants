@@ -18,7 +18,7 @@
             </h3>
         </div>
         <a class="btn btn-primary" onclick="createMenu(${param.restId})">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="fa fa-plus" aria-hidden="true"></span>
             <spring:message code="menu.addMenu"/>
         </a>
         <table class="table table-striped display" id="menuDatatable">
@@ -32,7 +32,7 @@
         </table>
         <br/>
         <a class="btn btn-primary" onclick="redirectToRestaurants()">
-            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            <span class="fa fa-mail-reply" aria-hidden="true"></span>
             <spring:message code="common.backToRestaurants"/>
         </a>
     </div>

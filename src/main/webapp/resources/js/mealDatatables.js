@@ -89,13 +89,13 @@ function redirectToMenus(restId) {
 function renderUpdateBtn(data, type, row) {
     if (type === "display") {
         return "<a onclick='updateMealsRow(" + row.id + "," + globalMenuId + ");'>" +
-            "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
+            "<span class='fa fa-pencil' aria-hidden='true'></span></a>";
     }
 }
 
 function renderDeleteBtn(data, type, row) {
     if (type === "display") {
         return "<a onclick='deleteMeal(" + row.id + "," + globalMenuId + ");'>" +
-            "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
+            "<span class='fa fa-remove' aria-hidden='true'></span></a>";
     }
 }

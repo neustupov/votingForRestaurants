@@ -78,20 +78,20 @@ function createVote(restId) {
 function renderTodaysBtn(data, type, row) {
     if (type === "display") {
         return "<a onclick='getTodaysMenuWithMeals(" + row.id + ");'>" +
-            "<span class='glyphicon glyphicon-cutlery' aria-hidden='true'></span></a>";
+            "<span class='fa fa-cutlery' aria-hidden='true'></span></a>";
     }
 }
 
 function renderAllBtn(data, type, row) {
     if (type === "display") {
         return "<a onclick='redirectToMenus(" + row.id + ");'>" +
-            "<span class='glyphicon glyphicon-th-list' aria-hidden='true'></span></a>";
+            "<span class='fa fa-reorder' aria-hidden='true'></span></a>";
     }
 }
 
 function renderVoteBtn(data, type, row) {
     if (type === "display") {
         return "<a onclick='createVote(" + row.id + ");'>" +
-            "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a>";
+            "<span class='fa fa-check' aria-hidden='true'></span></a>";
     }
 }
