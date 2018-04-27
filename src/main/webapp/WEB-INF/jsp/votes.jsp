@@ -26,7 +26,7 @@
         </table>
         <br/>
         <a class="btn btn-primary" onclick="redirectToRestaurants()">
-            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            <span class="fa fa-mail-reply" aria-hidden="true"></span>
             <spring:message code="common.backToRestaurants"/>
         </a>
     </div>

@@ -13,7 +13,7 @@ function makeEditable() {
 }
 
 function add() {
-    form.find(":input").val("");
+    $("#detailsForm").find(":input").val("");
     $("#editRow").modal();
 }
 
@@ -66,7 +66,7 @@ function closeNoty() {
 function successNoty(text) {
     closeNoty();
     new Noty({
-        text: "<span class='glyphicon glyphicon-ok'></span> &nbsp;" + text,
+        text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + text,
         type: 'success',
         layout: "bottomRight",
         timeout: 1000
@@ -76,7 +76,7 @@ function successNoty(text) {
 function failNoty(jqXHR) {
     closeNoty();
     failedNote = new Noty({
-        text: "<span class='glyphicon glyphicon-exclamation-sign'></span> &nbsp;Error status: " + jqXHR.status + (jqXHR.responseJSON ? "<br>" + jqXHR.responseJSON : ""),
+        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;Error status: " + jqXHR.status + (jqXHR.responseJSON ? "<br>" + jqXHR.responseJSON : ""),
         type: "error",
         layout: "bottomRight"
     }).show();
@@ -85,13 +85,13 @@ function failNoty(jqXHR) {
 function renderEditBtn(data, type, row) {
     if (type === "display") {
         return "<a onclick='updateRow(" + row.id + ");'>" +
-            "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
+            "<span class='fa fa-pencil' aria-hidden='true'></span></a>";
     }
 }
 
 function renderDeleteBtn(data, type, row) {
     if (type === "display") {
         return "<a onclick='deleteRow(" + row.id + ");'>" +
-            "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
+            "<span class='fa fa-remove' aria-hidden='true'></span></a>";
     }
 }
