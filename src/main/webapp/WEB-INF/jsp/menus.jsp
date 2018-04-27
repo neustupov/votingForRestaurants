@@ -11,13 +11,11 @@
 <div class="jumbotron">
     <div class="container">
         <div class="page-header">
-            <h3>
-                <c:if test="${menusList.size() != 0}">
-                    ${menusList.get(0).restaurant.name}
-                </c:if>
-            </h3>
+            <h3><spring:message code="menu.all"/> ${param.restId}</h3>
         </div>
-        <a class="btn btn-primary" onclick="createMenu(${param.restId})">
+        <br/>
+        <br/>
+        <a class="btn btn-info mr-2" onclick="createMenu(${param.restId})">
             <span class="fa fa-plus" aria-hidden="true"></span>
             <spring:message code="menu.addMenu"/>
         </a>
@@ -31,7 +29,7 @@
             </thead>
         </table>
         <br/>
-        <a class="btn btn-primary" onclick="redirectToRestaurants()">
+        <a class="btn btn-info mr-2" onclick="redirectToRestaurants()">
             <span class="fa fa-mail-reply" aria-hidden="true"></span>
             <spring:message code="common.backToRestaurants"/>
         </a>
@@ -40,4 +38,11 @@
 
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+<script type="text/javascript">
+    var i18n = [];
+
+    <c:forEach var="key" items='<%=new String[]{"common.deleted","common.saved","common.enabled","common.disabled","common.errorStatus"}%>'>
+    i18n["${key}"] = "<spring:message code="${key}"/>";
+    </c:forEach>
+</script>
 </html>

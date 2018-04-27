@@ -13,13 +13,11 @@
 <div class="jumbotron">
     <div class="container">
         <div class="page-header">
-            <h3>
-                <c:if test="${mealsList.size() != 0}">
-                    ${mealsList.get(0).menu.addDate}
-                </c:if>
-            </h3>
+            <h3><spring:message code="meal.all"/> ${param.menuId}</h3>
         </div>
-        <a class="btn btn-primary" data-toggle="modal" onclick="addMeal(${param.menuId})">
+        <br/>
+        <br/>
+        <a class="btn btn-info mr-2" data-toggle="modal" onclick="addMeal(${param.menuId})">
             <span class="fa fa-plus" aria-hidden="true"></span>
             <spring:message code="meal.addMeal"/>
         </a>
@@ -34,7 +32,7 @@
             </thead>
         </table>
         <br/>
-        <a class="btn btn-primary" onclick="redirectToMenus(${param.restId})">
+        <a class="btn btn-info mr-2" onclick="redirectToMenus(${param.restId})">
             <span class="fa fa-mail-reply" aria-hidden="true"></span>
             <spring:message code="meal.backToMenus"/>
         </a>
@@ -45,7 +43,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><spring:message code="meal.addMeal"/></h4>
+                <h4 class="modal-title" id="modalTitle"></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -83,4 +81,13 @@
 
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+<script type="text/javascript">
+    var i18n = [];
+    i18n["addTitle"] = '<spring:message code="meal.add"/>';
+    i18n["editTitle"] = '<spring:message code="meal.edit"/>';
+
+    <c:forEach var="key" items='<%=new String[]{"common.deleted","common.saved","common.enabled","common.disabled","common.errorStatus"}%>'>
+    i18n["${key}"] = "<spring:message code="${key}"/>";
+    </c:forEach>
+</script>
 </html>

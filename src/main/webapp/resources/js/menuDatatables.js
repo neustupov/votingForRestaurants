@@ -58,7 +58,7 @@ function deleteMenu(menuId, restId) {
         data: {"restId": restId}
     }).done(function () {
             updateTable(restId);
-            successNoty("Deleted");
+            successNoty("common.deleted");
         }
     );
 }
@@ -70,7 +70,7 @@ function createMenu(restId) {
         data: {"restId": restId}
     }).done(function () {
             updateTable(restId);
-            successNoty("Created");
+            successNoty("common.saved");
         }
     );
 }

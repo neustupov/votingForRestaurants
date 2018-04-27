@@ -70,7 +70,7 @@ function createVote(restId) {
         data: {"restId":restId}
     }).done(function () {
             updateTable();
-            successNoty("Saved");
+            successNoty("common.saved");
         }
     );
 }
