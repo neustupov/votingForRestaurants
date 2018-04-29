@@ -23,7 +23,7 @@ public class RootController {
 
     @GetMapping("/")
     public String root() {
-        return "index";
+        return "redirect:restaurants";
     }
 
     @GetMapping("/users")
@@ -31,11 +31,9 @@ public class RootController {
         return "users";
     }
 
-    @PostMapping("/users")
-    public String setUser(HttpServletRequest request) {
-        int userId = Integer.valueOf(request.getParameter("userId"));
-        AuthorizedUser.setId(userId);
-        return "redirect:/restaurants";
+    @GetMapping(value = "/login")
+    public String login() {
+        return "login";
     }
 
     @GetMapping("/restaurants")
