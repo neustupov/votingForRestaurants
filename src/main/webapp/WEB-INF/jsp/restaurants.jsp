@@ -29,11 +29,11 @@
             <tr>
                 <th><spring:message code="common.name"/></th>
                 <th><spring:message code="restaurant.numberOfVotes"/></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th><spring:message code="restaurant.todays"/></th>
+                <th><spring:message code="menu.all"/></th>
+                <th><spring:message code="common.edit"/></th>
+                <th><spring:message code="common.delete"/></th>
+                <th><spring:message code="vote.voting"/></th>
             </tr>
             </thead>
         </table>

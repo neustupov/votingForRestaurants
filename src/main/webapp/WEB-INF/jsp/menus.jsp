@@ -23,8 +23,8 @@
             <thead>
             <tr>
                 <th><spring:message code="menu.Date"/></th>
-                <th></th>
-                <th></th>
+                <th><spring:message code="menu.allMeals"/></th>
+                <th><spring:message code="common.delete"/></th>
             </tr>
             </thead>
         </table>
