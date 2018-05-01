@@ -6,7 +6,6 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<hr>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
