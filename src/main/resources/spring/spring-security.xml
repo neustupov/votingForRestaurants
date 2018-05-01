@@ -20,12 +20,15 @@
         <intercept-url pattern="/login" access="isAnonymous()"/>
         <intercept-url pattern="/**/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
-        <form-login login-page="/login" default-target-url="/meals"
+        <form-login login-page="/login"
                     authentication-failure-url="/login?error=true"
-                    login-processing-url="/spring_security_check"/>
+                    login-processing-url="/spring_security_check"
+                    authentication-success-handler-ref="customAuthenticationHandler"/>
         <logout logout-success-url="/login"/>
         <csrf disabled="true"/>
     </http>
+
+    <beans:bean id="customAuthenticationHandler" class="ru.neustupov.votingforrestaurants.util.CustomAuthenticationHandler"/>
 
     <authentication-manager>
         <authentication-provider>
