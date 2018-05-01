@@ -3,15 +3,19 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/5ab53e0c0fb24f44b0618deb/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5ab53e0c0fb24f44b0618deb)
 
 [![Build Status](https://travis-ci.org/neustupov/votingForRestaurants.svg?branch=master)](https://travis-ci.org/neustupov/votingForRestaurants)
+
 <br/>
 <br/>
+
 <a href="https://github.com/neustupov/votingForRestaurants">Java Enterprise проект</a> с
         регистрацией/авторизацией и интерфейсом на основе ролей (USER, ADMIN).
         Администратор может создавать/редактировать/удалять рестораны, меню, новые блюда, а пользователи -
         управлять своим профилем и голосовать за понравившийся ресторан через UI (по AJAX) и по REST интерфейсу с
         базовой авторизацией.
         Весь REST интерфейс покрывается JUnit тестами, используя Spring MVC Test и Spring Security Test.
+        
 <br/>
+
 Стек технологий: <a href="http://projects.spring.io/spring-security/">Spring Security</a>,
             <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html">Spring MVC</a>,
             <a href="http://projects.spring.io/spring-data-jpa/">Spring Data JPA</a>,
@@ -33,8 +37,10 @@
             <a href="http://jquery.com/">jQuery</a>,
             <a href="http://ned.im/noty/">jQuery notification</a>,
             <a href="http://getbootstrap.com/">Bootstrap</a>.</p>
+            
 <br/>            
-<br/>            
+<br/>         
+
 ![rest](https://user-images.githubusercontent.com/25206589/39355971-6a1f056c-4a17-11e8-83a1-12ad7f39e25a.png)
 
 ![votes_shema](https://user-images.githubusercontent.com/25206589/39207294-424422ae-4808-11e8-9bf5-12eb61b84e2e.png)
