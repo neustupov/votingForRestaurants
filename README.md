@@ -12,7 +12,6 @@
         базовой авторизацией.
         Весь REST интерфейс покрывается JUnit тестами, используя Spring MVC Test и Spring Security Test.
 <br/>
-<br/>
 Стек технологий: <a href="http://projects.spring.io/spring-security/">Spring Security</a>,
             <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html">Spring MVC</a>,
             <a href="http://projects.spring.io/spring-data-jpa/">Spring Data JPA</a>,
