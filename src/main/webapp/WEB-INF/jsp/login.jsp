@@ -5,22 +5,24 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
+<nav class="navbar navbar-dark bg-dark" role="navigation">
     <div class="container">
-        <div class="navbar-header navbar-brand"><spring:message code="app.title"/></div>
-        <div class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right" role="form" action="spring_security_check" method="post">
-                <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control" name="username">
+        <a href="/restaurants" class="navbar-brand">
+            <img src="resources/images/vote_ico.png">
+            <spring:message code="app.title"/></a>
+        <form class="form-inline my-2" role="form" action="spring_security_check" method="post">
+            <div class="form-row align-items-right">
+                <div class="col-auto form-group">
+                    <input type="text" placeholder="Email" class="form-control form-control-sm" name="username">
                 </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control" name="password">
+                <div class="col-auto form-group">
+                    <input type="password" placeholder="Password" class="form-control form-control-sm" name="password">
                 </div>
                 <button type="submit" class="btn btn-success">
-                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                    <span class="fa fa-sign-in" aria-hidden="true"></span>
                 </button>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </nav>
 
@@ -41,7 +43,7 @@
             <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('user@yandex.ru', 'password')">
                 <spring:message code="app.enter"/> User
             </button>
-            <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('admin@gmail.com', 'admin')">
+            <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('admin@yandex.ru', 'admin')">
                 <spring:message code="app.enter"/> Admin
             </button>
         </p>

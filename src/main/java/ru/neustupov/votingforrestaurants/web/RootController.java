@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import ru.neustupov.votingforrestaurants.AuthorizedUser;
 import ru.neustupov.votingforrestaurants.model.Meal;
 import ru.neustupov.votingforrestaurants.model.Menu;
 import ru.neustupov.votingforrestaurants.service.*;
@@ -41,6 +39,11 @@ public class RootController {
         return "restaurants";
     }
 
+    @GetMapping("/profileRestaurants")
+    public String profileRestaurants() {
+        return "profileRestaurants";
+    }
+
     @GetMapping("/menus")
     public String menus(Model model, HttpServletRequest request) {
         return "menus";
@@ -59,6 +62,21 @@ public class RootController {
         model.addAttribute("mealsList", mealList);
         model.addAttribute("restId", getId(request, "restId"));
         return "todays";
+    }
+
+    @GetMapping("/getProfileTodaysMenuWithMeals")
+    public String getProfileTodaysMenuWithMeals(HttpServletRequest request, Model model) {
+        Menu menu = menuService.getTodaysMenuWithMeals(getId(request, "restId"));
+        Set<Meal> mealList;
+        if (menu != null) {
+            mealList = menu.getMeals();
+            model.addAttribute("menuId", menu.getId());
+        } else {
+            mealList = Collections.emptySet();
+        }
+        model.addAttribute("mealsList", mealList);
+        model.addAttribute("restId", getId(request, "restId"));
+        return "profileTodays";
     }
 
     @GetMapping("/meals")

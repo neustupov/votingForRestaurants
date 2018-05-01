@@ -6,7 +6,7 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<jsp:include page="fragments/bodyHeader.jsp"/>
+<jsp:include page="fragments/profileBodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
         <div class="page-header">
@@ -31,7 +31,7 @@
             </tbody>
         </table>
         <br/>
-        <a class="btn btn-info mr-2" href="/restaurants">
+        <a class="btn btn-info mr-2" href="profileRestaurants">
             <span class="fa fa-mail-reply" aria-hidden="true"></span>
             <spring:message code="common.backToRestaurants"/>
         </a>
