@@ -26,8 +26,8 @@
             <tr>
                 <th><spring:message code="common.name"/></th>
                 <th><spring:message code="meal.price"/></th>
-                <th></th>
-                <th></th>
+                <th><spring:message code="common.edit"/></th>
+                <th><spring:message code="common.delete"/></th>
             </tr>
             </thead>
         </table>

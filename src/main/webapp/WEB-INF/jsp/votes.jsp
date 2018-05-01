@@ -20,7 +20,7 @@
                 <th><spring:message code="user.name"/></th>
                 <th><spring:message code="vote.restaurant"/></th>
                 <th><spring:message code="common.addDate"/></th>
-                <th></th>
+                <th><spring:message code="common.delete"/></th>
             </tr>
             </thead>
         </table>

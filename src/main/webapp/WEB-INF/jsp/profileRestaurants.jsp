@@ -7,7 +7,7 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <script type="text/javascript" src="resources/js/datatablesUtil.js" defer></script>
-<script type="text/javascript" src="resources/js/profile/profileRestaurantDatatables.js" defer></script>
+<script type="text/javascript" src="resources/js/profileRestaurantDatatables.js" defer></script>
 <jsp:include page="fragments/profileBodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
@@ -21,8 +21,8 @@
             <tr>
                 <th><spring:message code="common.name"/></th>
                 <th><spring:message code="restaurant.numberOfVotes"/></th>
-                <th></th>
-                <th></th>
+                <th><spring:message code="restaurant.todays"/></th>
+                <th><spring:message code="vote.voting"/></th>
             </tr>
             </thead>
         </table>
