@@ -15,7 +15,7 @@ public class Meal extends AbstractNamedEntity {
     @NotNull
     private Integer price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_menu", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
