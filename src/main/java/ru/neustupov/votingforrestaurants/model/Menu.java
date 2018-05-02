@@ -21,7 +21,7 @@ public class Menu extends AbstractBaseEntity {
     @JsonIgnoreProperties("menu")
     private Set<Meal> meals;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_rest", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
