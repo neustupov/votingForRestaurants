@@ -19,8 +19,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.neustupov.votingforrestaurants.MenuTestData.*;
 import static ru.neustupov.votingforrestaurants.RestaurantTestData.RUSSIA_ID;
+import static ru.neustupov.votingforrestaurants.TestUtil.userHttpBasic;
+import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
+import static ru.neustupov.votingforrestaurants.UserTestData.USER;
 
-public class AdminMenuRestControllerTest extends AbstractControllerTest{
+public class AdminMenuRestControllerTest extends AbstractControllerTest {
 
     private static final String REST_URL = AdminMenuRestController.REST_URL + '/';
 
@@ -30,7 +33,8 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest{
     @Test
     public void testGet() throws Exception {
         mockMvc.perform(get(REST_URL + RUSSIA_MENU_ID1)
-        .param("restId", "100002"))
+                .with(userHttpBasic(ADMIN))
+                .param("restId", "100002"))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -40,7 +44,8 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest{
     @Test
     public void testDelete() throws Exception {
         mockMvc.perform(delete(REST_URL + RUSSIA_MENU_ID1)
-        .param("restId", "100002"))
+                .with(userHttpBasic(ADMIN))
+                .param("restId", "100002"))
                 .andDo(print())
                 .andExpect(status().isNoContent());
         assertMatch(menuService.getAll(RUSSIA_ID), RUSSIA_MENU2, MENU_TODAYS_WITH_MEALS);
@@ -50,6 +55,7 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest{
     public void testCreate() throws Exception {
         Menu expected = new Menu(getCreated());
         ResultActions action = mockMvc.perform(post(REST_URL)
+                .with(userHttpBasic(ADMIN))
                 .param("restId", "100002")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(expected)))
@@ -65,7 +71,8 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest{
     @Test
     public void testGetAll() throws Exception {
         TestUtil.print(mockMvc.perform(get(REST_URL)
-        .param("restId", "100002"))
+                .with(userHttpBasic(ADMIN))
+                .param("restId", "100002"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(contentJson(RUSSIA_MENU1, RUSSIA_MENU2, MENU_TODAYS_WITH_MEALS)));
@@ -77,11 +84,25 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest{
         updated.setId(100007);
         updated.setAddDate(Date.valueOf("2017-06-01"));
         mockMvc.perform(put(REST_URL + RUSSIA_MENU_ID1)
+                .with(userHttpBasic(ADMIN))
                 .param("restId", "100002")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isOk());
 
         assertMatch(menuService.get(100007, RUSSIA_ID), updated);
+    }
+
+    @Test
+    public void testGetUnauth() throws Exception {
+        mockMvc.perform(get(REST_URL))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    public void testGetForbidden() throws Exception {
+        mockMvc.perform(get(REST_URL)
+                .with(userHttpBasic(USER)))
+                .andExpect(status().isForbidden());
     }
 }
