@@ -17,6 +17,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.neustupov.votingforrestaurants.MealTestData.*;
 import static ru.neustupov.votingforrestaurants.MenuTestData.RUSSIA_MENU_ID1;
+import static ru.neustupov.votingforrestaurants.TestUtil.userHttpBasic;
+import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
+import static ru.neustupov.votingforrestaurants.UserTestData.USER;
 
 public class AdminMealRestControllerTest extends AbstractControllerTest {
 
@@ -28,6 +31,7 @@ public class AdminMealRestControllerTest extends AbstractControllerTest {
     @Test
     public void testGet() throws Exception {
         mockMvc.perform(get(REST_URL + APPLE_ID)
+                .with(userHttpBasic(ADMIN))
                 .param("menuId", "100007"))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -38,6 +42,7 @@ public class AdminMealRestControllerTest extends AbstractControllerTest {
     @Test
     public void testDelete() throws Exception {
         mockMvc.perform(delete(REST_URL + APPLE_ID)
+                .with(userHttpBasic(ADMIN))
                 .param("menuId", "100007"))
                 .andDo(print())
                 .andExpect(status().isNoContent());
@@ -49,6 +54,7 @@ public class AdminMealRestControllerTest extends AbstractControllerTest {
         Meal updated = new Meal(APPLE);
         updated.setName("UpdatedName");
         mockMvc.perform(put(REST_URL + APPLE_ID)
+                .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated))
                 .param("mealId", "100014")
@@ -62,6 +68,7 @@ public class AdminMealRestControllerTest extends AbstractControllerTest {
     public void testCreate() throws Exception {
         Meal expected = new Meal("Potatoes", 250);
         ResultActions action = mockMvc.perform(post(REST_URL)
+                .with(userHttpBasic(ADMIN))
                 .param("menuId", "100007")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(expected)))
@@ -77,9 +84,23 @@ public class AdminMealRestControllerTest extends AbstractControllerTest {
     @Test
     public void testGetAll() throws Exception {
         TestUtil.print(mockMvc.perform(get(REST_URL)
+                .with(userHttpBasic(ADMIN))
                 .param("menuId", "100007"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(contentJson(APPLE, BOTTLE_OF_WATER)));
+    }
+
+    @Test
+    public void testGetUnauth() throws Exception {
+        mockMvc.perform(get(REST_URL))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    public void testGetForbidden() throws Exception {
+        mockMvc.perform(get(REST_URL)
+                .with(userHttpBasic(USER)))
+                .andExpect(status().isForbidden());
     }
 }

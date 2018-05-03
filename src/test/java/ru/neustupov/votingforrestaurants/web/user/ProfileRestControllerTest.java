@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static ru.neustupov.votingforrestaurants.TestUtil.userHttpBasic;
 import static ru.neustupov.votingforrestaurants.UserTestData.*;
 import static ru.neustupov.votingforrestaurants.web.user.ProfileRestController.REST_URL;
 
@@ -28,7 +29,8 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
     @Test
     public void testGet() throws Exception {
         TestUtil.print(
-                mockMvc.perform(get(REST_URL))
+                mockMvc.perform(get(REST_URL)
+                        .with(userHttpBasic(USER)))
                         .andExpect(status().isOk())
                         .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                         .andExpect(contentJson(USER))
@@ -37,7 +39,8 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testDelete() throws Exception {
-        mockMvc.perform(delete(REST_URL))
+        mockMvc.perform(delete(REST_URL)
+                .with(userHttpBasic(USER)))
                 .andExpect(status().isNoContent());
         assertMatch(userService.getAll(), ADMIN);
     }
@@ -45,11 +48,19 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
     @Test
     public void testUpdate() throws Exception {
         UserTo updatedTo = new UserTo(null, "newName", "user@yandex.ru","newPassword");
-        mockMvc.perform(put(REST_URL).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put(REST_URL)
+                .with(userHttpBasic(USER))
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updatedTo)))
                 .andDo(print())
                 .andExpect(status().isOk());
 
         assertMatch(userService.getByEmail("user@yandex.ru"), UserUtil.updateFromTo(new User(USER), updatedTo));
+    }
+
+    @Test
+    public void testGetUnauth() throws Exception {
+        mockMvc.perform(get(REST_URL))
+                .andExpect(status().isUnauthorized());
     }
 }
