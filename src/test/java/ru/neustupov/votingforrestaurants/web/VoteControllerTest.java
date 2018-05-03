@@ -20,7 +20,7 @@ public class VoteControllerTest extends AbstractControllerTest{
     public void testVotes() throws Exception {
         mockMvc.perform(get("/votes"))
                 .andDo(print())
-                .andExpect(status().isOk())/*
+                .andExpect(status().isFound())/*
                 .andExpect(view().name("votes"))
                 .andExpect(forwardedUrl("/WEB-INF/jsp/votes.jsp"))
                 .andExpect(model().attribute("votesList", hasSize(6)))*/;
@@ -31,6 +31,6 @@ public class VoteControllerTest extends AbstractControllerTest{
         mockMvc.perform(post("/ajax/admin/votes")
                 .param("restId", "100002"))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isFound());
     }
 }
