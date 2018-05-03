@@ -19,8 +19,8 @@ public class RootControllerTest extends AbstractControllerTest {
     public void testUsers() throws Exception {
         mockMvc.perform(get("/users"))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(forwardedUrl("/WEB-INF/jsp/users.jsp"));/*
+                .andExpect(status().isFound());/*
+                .andExpect(forwardedUrl("/WEB-INF/jsp/users.jsp"));
                 .andExpect(view().name("users"))
                 .andExpect(forwardedUrl("/WEB-INF/jsp/users.jsp"))
                 .andExpect(model().attribute("users", hasSize(2)))
