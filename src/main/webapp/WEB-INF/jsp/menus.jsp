@@ -37,12 +37,5 @@
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>
-</body>
-<script type="text/javascript">
-    var i18n = [];
-
-    <c:forEach var="key" items='<%=new String[]{"common.deleted","common.saved","common.enabled","common.disabled","common.errorStatus"}%>'>
-    i18n["${key}"] = "<spring:message code="${key}"/>";
-    </c:forEach>
-</script>
+</body><jsp:include page="fragments/i18n.jsp"/>
 </html>

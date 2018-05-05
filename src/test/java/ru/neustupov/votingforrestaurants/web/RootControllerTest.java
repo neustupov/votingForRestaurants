@@ -2,41 +2,50 @@ package ru.neustupov.votingforrestaurants.web;
 
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static ru.neustupov.votingforrestaurants.UserTestData.USER;
-import static ru.neustupov.votingforrestaurants.model.AbstractBaseEntity.START_SEQ;
+import static ru.neustupov.votingforrestaurants.TestUtil.userAuth;
+import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
 
 public class RootControllerTest extends AbstractControllerTest {
 
     @Test
     public void testUsers() throws Exception {
-        mockMvc.perform(get("/users"))
-                .andDo(print())
-                .andExpect(status().isFound());/*
-                .andExpect(forwardedUrl("/WEB-INF/jsp/users.jsp"));
-                .andExpect(view().name("users"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/users.jsp"))
-                .andExpect(model().attribute("users", hasSize(2)))
-                .andExpect(model().attribute("users", hasItem(
-                        allOf(
-                                hasProperty("id", is(START_SEQ)),
-                                hasProperty("name", is(USER.getName()))
-                        )
-                )))*/
-    }
-
-   /* @Test
-    public void testUsersPut() throws Exception {
-        mockMvc.perform(get("/users"))
+        mockMvc.perform(get("/users")
+                .with(userAuth(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isOk())
+                .andExpect(view().name("users"))
                 .andExpect(forwardedUrl("/WEB-INF/jsp/users.jsp"));
-    }*/
+    }
+
+    @Test
+    public void testUnAuth() throws Exception {
+        mockMvc.perform(get("/users"))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost/login"));
+    }
+
+    @Test
+    public void testRootAdmin() throws Exception {
+        mockMvc.perform(get("/")
+                .with(userAuth(ADMIN)))
+                .andDo(print())
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("restaurants"));
+    }
+
+    @Test
+    public void testProfileRestaurants() throws Exception {
+        mockMvc.perform(get("/profileRestaurants")
+                .with(userAuth(ADMIN)))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("profileRestaurants"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/profileRestaurants.jsp"));
+    }
+
+    //TODO need add all tests for other methods
 }
