@@ -37,5 +37,15 @@ public class RootControllerTest extends AbstractControllerTest {
                 .andExpect(redirectedUrl("restaurants"));
     }
 
+    @Test
+    public void testProfileRestaurants() throws Exception {
+        mockMvc.perform(get("/profileRestaurants")
+                .with(userAuth(ADMIN)))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("profileRestaurants"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/profileRestaurants.jsp"));
+    }
+
     //TODO need add all tests for other methods
 }
