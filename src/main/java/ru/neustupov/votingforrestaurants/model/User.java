@@ -1,6 +1,7 @@
 package ru.neustupov.votingforrestaurants.model;
 
 import org.springframework.util.CollectionUtils;
+import ru.neustupov.votingforrestaurants.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -15,12 +16,12 @@ public class User extends AbstractNamedEntity {
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
-    @NotBlank
+    @NotNull(groups = View.Persist.class)
     @Size(max = 100)
     private String email;
 
     @Column(name = "password", nullable = false)
-    @NotBlank
+    @NotNull(groups = View.Persist.class)
     @Size(min = 5, max = 64)
     private String password;
 
@@ -35,6 +36,7 @@ public class User extends AbstractNamedEntity {
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
+    @NotNull(groups = View.Persist.class)
     private Set<Role> roles;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
