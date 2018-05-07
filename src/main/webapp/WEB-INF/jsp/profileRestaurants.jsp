@@ -8,7 +8,7 @@
 <body>
 <script type="text/javascript" src="resources/js/datatablesUtil.js" defer></script>
 <script type="text/javascript" src="resources/js/profileRestaurantDatatables.js" defer></script>
-<jsp:include page="fragments/profileBodyHeader.jsp"/>
+<jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
         <div class="page-header">
