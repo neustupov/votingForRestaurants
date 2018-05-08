@@ -16,14 +16,14 @@
         </div>
         <br/>
         <br/>
-        <a class="btn btn-info mr-2" onclick="add()">
+        <button class="btn btn-info mr-2" onclick="add()">
             <span class="fa fa-plus" aria-hidden="true"></span>
             <spring:message code="restaurants.addRestaurant"/>
-        </a>
-        <a class="btn btn-info mr-2" onclick="getAllVotes()">
+        </button>
+        <button class="btn btn-info mr-2" onclick="getAllVotes()">
             <span class="glyphicon" aria-hidden="true"></span>
             <spring:message code="restaurant.viewAllVotes"/>
-        </a>
+        </button>
         <table class="table table-striped display" id="restDatatable">
             <thead>
             <tr>
