@@ -17,10 +17,10 @@
         </div>
         <br/>
         <br/>
-        <a class="btn btn-info mr-2" data-toggle="modal" onclick="addMeal(${param.menuId})">
+        <button class="btn btn-info mr-2" data-toggle="modal" onclick="addMeal(${param.menuId})">
             <span class="fa fa-plus" aria-hidden="true"></span>
             <spring:message code="meal.addMeal"/>
-        </a>
+        </button>
         <table class="table table-striped display" id="mealDatatable">
             <thead>
             <tr>
@@ -32,10 +32,10 @@
             </thead>
         </table>
         <br/>
-        <a class="btn btn-info mr-2" onclick="redirectToMenus(${param.restId})">
+        <button class="btn btn-info mr-2" onclick="redirectToMenus(${param.restId})">
             <span class="fa fa-mail-reply" aria-hidden="true"></span>
             <spring:message code="meal.backToMenus"/>
-        </a>
+        </button>
     </div>
 </div>
 

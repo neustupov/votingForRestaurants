@@ -40,10 +40,10 @@
         </c:if>
         <br/>
         <p>
-            <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('user@yandex.ru', 'password')">
+            <button type="submit" class="btn btn-info mr-2" onclick="setCredentials('user@yandex.ru', 'password')">
                 <spring:message code="app.enter"/> User
             </button>
-            <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('admin@yandex.ru', 'admin')">
+            <button type="submit" class="btn btn-info mr-2" onclick="setCredentials('admin@yandex.ru', 'admin')">
                 <spring:message code="app.enter"/> Admin
             </button>
         </p>
