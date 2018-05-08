@@ -2,20 +2,28 @@ package ru.neustupov.votingforrestaurants.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.support.SessionStatus;
+import ru.neustupov.votingforrestaurants.AuthorizedUser;
 import ru.neustupov.votingforrestaurants.model.Meal;
 import ru.neustupov.votingforrestaurants.model.Menu;
 import ru.neustupov.votingforrestaurants.service.*;
+import ru.neustupov.votingforrestaurants.to.UserTo;
+import ru.neustupov.votingforrestaurants.web.user.AbstractUserController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
 @Controller
-public class RootController {
+public class RootController extends AbstractUserController {
 
     @Autowired
     private MenuService menuService;
@@ -89,6 +97,27 @@ public class RootController {
     @GetMapping("/votes")
     public String votes() {
         return "votes";
+    }
+
+    @GetMapping("/profile")
+    public String profile() {
+        return "profile";
+    }
+
+    @PostMapping("/profile")
+    public String updateProfile(@Valid UserTo userTo, BindingResult result, SessionStatus status) {
+        if (result.hasErrors()) {
+            return "profile";
+        } else {
+            super.update(userTo, AuthorizedUser.id());
+            AuthorizedUser.get().update(userTo);
+            status.setComplete();
+            if (AuthorizedUser.get().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+                return "redirect:restaurants";
+            } else {
+                return "redirect:profileRestaurants";
+            }
+        }
     }
 
     private int getId(HttpServletRequest request, String param) {
