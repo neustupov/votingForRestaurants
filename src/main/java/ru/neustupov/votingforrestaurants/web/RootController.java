@@ -5,6 +5,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import ru.neustupov.votingforrestaurants.model.Meal;
 import ru.neustupov.votingforrestaurants.model.Menu;
 import ru.neustupov.votingforrestaurants.service.*;
 import ru.neustupov.votingforrestaurants.to.UserTo;
+import ru.neustupov.votingforrestaurants.util.UserUtil;
 import ru.neustupov.votingforrestaurants.web.user.AbstractUserController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,7 +57,7 @@ public class RootController extends AbstractUserController {
     }
 
     @GetMapping("/menus")
-    public String menus(Model model, HttpServletRequest request) {
+    public String menus() {
         return "menus";
     }
 
@@ -117,6 +119,25 @@ public class RootController extends AbstractUserController {
             } else {
                 return "redirect:profileRestaurants";
             }
+        }
+    }
+
+    @GetMapping("/register")
+    public String register(ModelMap model) {
+        model.addAttribute("userTo", new UserTo());
+        model.addAttribute("register", true);
+        return "profile";
+    }
+
+    @PostMapping("/register")
+    public String saveRegister(@Valid UserTo userTo, BindingResult result, SessionStatus status, ModelMap model) {
+        if (result.hasErrors()) {
+            model.addAttribute("register", true);
+            return "profile";
+        } else {
+            super.create(UserUtil.createNewFromTo(userTo));
+            status.setComplete();
+            return "redirect:login?message=app.registered&username=" + userTo.getEmail();
         }
     }
 
