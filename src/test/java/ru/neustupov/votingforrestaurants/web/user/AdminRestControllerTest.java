@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import ru.neustupov.votingforrestaurants.TestUtil;
+import ru.neustupov.votingforrestaurants.UserTestData;
 import ru.neustupov.votingforrestaurants.model.Role;
 import ru.neustupov.votingforrestaurants.model.User;
 import ru.neustupov.votingforrestaurants.web.AbstractControllerTest;
@@ -75,7 +76,7 @@ public class AdminRestControllerTest extends AbstractControllerTest {
         ResultActions action = mockMvc.perform(post(REST_URL)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(expected)))
+                .content(UserTestData.jsonWithPassword(expected, "newPass")))
                 .andExpect(status().isCreated());
 
         User returned = TestUtil.readFromJson(action, User.class);
