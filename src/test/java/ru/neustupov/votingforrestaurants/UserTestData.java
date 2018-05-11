@@ -3,6 +3,7 @@ package ru.neustupov.votingforrestaurants;
 import org.springframework.test.web.servlet.ResultMatcher;
 import ru.neustupov.votingforrestaurants.model.Role;
 import ru.neustupov.votingforrestaurants.model.User;
+import ru.neustupov.votingforrestaurants.web.json.JsonUtil;
 
 import java.time.Instant;
 import java.util.Arrays;
@@ -23,7 +24,7 @@ public class UserTestData {
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@yandex.ru", "admin", Date.from(Instant.now()), EnumSet.of(Role.ROLE_ADMIN, Role.ROLE_USER));
 
     public static void assertMatch(User actual, User expected) {
-        assertThat(actual).isEqualToIgnoringGivenFields(expected, "registered", "roles", "votes");
+        assertThat(actual).isEqualToIgnoringGivenFields(expected, "registered", "roles", "votes", "password");
     }
 
     public static void assertMatch(Iterable<User> actual, User... expected) {
@@ -31,14 +32,18 @@ public class UserTestData {
     }
 
     public static void assertMatch(Iterable<User> actual, Iterable<User> expected) {
-        assertThat(actual).usingElementComparatorIgnoringFields("registered", "votes").isEqualTo(expected);
+        assertThat(actual).usingElementComparatorIgnoringFields("registered", "votes", "password").isEqualTo(expected);
     }
 
     public static ResultMatcher contentJson(User... expected) {
-        return content().json(writeIgnoreProps(Arrays.asList(expected), "registered"));
+        return content().json(writeIgnoreProps(Arrays.asList(expected), "registered", "password"));
     }
 
     public static ResultMatcher contentJson(User expected) {
-        return content().json(writeIgnoreProps(expected, "registered"));
+        return content().json(writeIgnoreProps(expected, "registered", "password"));
+    }
+
+    public static String jsonWithPassword(User user, String passw) {
+        return JsonUtil.writeAdditionProps(user, "password", passw);
     }
 }
