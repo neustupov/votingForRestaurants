@@ -21,8 +21,8 @@ public class User extends AbstractNamedEntity {
     private String email;
 
     @Column(name = "password", nullable = false)
-    @NotNull(groups = View.Persist.class)
-    @Size(min = 5, max = 64)
+    @NotBlank
+    @Size(min = 5, max = 100)
     private String password;
 
     @Column(name = "registered", columnDefinition = "timestamp default now()", nullable = false)
