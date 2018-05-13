@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
@@ -10,7 +11,7 @@
         <a href="/restaurants" class="navbar-brand">
             <img src="resources/images/vote_ico.png">
             <spring:message code="app.title"/></a>
-        <form class="form-inline my-2" role="form" action="spring_security_check" method="post">
+        <form:form class="form-inline my-2" role="form" action="spring_security_check" method="post">
             <div class="form-row align-items-right">
                 <div class="col-auto form-group">
                     <input type="text" placeholder="Email" class="form-control form-control-sm" name="username">
@@ -22,7 +23,7 @@
                     <span class="fa fa-sign-in" aria-hidden="true"></span>
                 </button>
             </div>
-        </form>
+        </form:form>
     </div>
 </nav>
 
