@@ -18,10 +18,10 @@
         <sec:authorize access="isAuthenticated()">
             <form:form class="form-inline my-2" action="logout" method="post">
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <a class="btn btn-info mr-2" href="users"><spring:message code="user.title"/></a>
+                    <a class="btn btn-primary mr-2" href="users"><spring:message code="user.title"/></a>
                 </sec:authorize>
-                <a class="btn btn-info mr-2" href="profile">${userTo.name} <spring:message code="app.profile"/></a>
-                <button class="btn btn-info mr-2" type="submit">
+                <a class="btn btn-primary mr-2" href="profile">${userTo.name} <spring:message code="app.profile"/></a>
+                <button class="btn btn-primary mr-2" type="submit">
                     <span class="fa fa-sign-out" aria-hidden="true"></span>
                 </button>
             </form:form>

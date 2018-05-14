@@ -31,7 +31,7 @@
             </tbody>
         </table>
         <br/>
-        <a class="btn btn-info mr-2" href="/restaurants">
+        <a class="btn btn-primary mr-2" href="/restaurants">
             <span class="fa fa-mail-reply" aria-hidden="true"></span>
             <spring:message code="common.backToRestaurants"/>
         </a>

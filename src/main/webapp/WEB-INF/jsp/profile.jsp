@@ -26,7 +26,7 @@
             <spring:message code="user.password" var="userPassword"/>
             <topjava:inputField label='${userPassword}' name="password" inputType="password"/>
 
-            <button type="submit" class="btn btn-info mr-2">
+            <button type="submit" class="btn btn-primary mr-2">
                 <span class="fa fa-check" aria-hidden="true"></span>
             </button>
         </form:form>
