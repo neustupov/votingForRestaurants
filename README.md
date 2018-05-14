@@ -41,6 +41,6 @@
 <br/>            
 <br/>         
 
-![rest](https://user-images.githubusercontent.com/25206589/39355971-6a1f056c-4a17-11e8-83a1-12ad7f39e25a.png)
+![zxc](https://user-images.githubusercontent.com/25206589/40005707-5b7041c4-57a1-11e8-8b8e-e4f996ff726f.jpg)
 
 ![votes_shema](https://user-images.githubusercontent.com/25206589/39207294-424422ae-4808-11e8-9bf5-12eb61b84e2e.png)
