@@ -13,7 +13,7 @@
     <div class="container">
         <h3><spring:message code="user.title"/></h3>
         <br/>
-        <button class="btn btn-info mr-2" onclick="add()">
+        <button class="btn btn-primary mr-2" onclick="add()">
             <span class="fa fa-plus"></span>
             <spring:message code="common.add"/>
         </button>

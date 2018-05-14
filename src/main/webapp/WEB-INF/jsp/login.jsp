@@ -41,11 +41,11 @@
         </c:if>
         <br/>
         <p>
-            <a class="btn btn-info mr-2" href="register"><spring:message code="app.register"/> &raquo;</a>
-            <button type="submit" class="btn btn-info mr-2" onclick="setCredentials('user@yandex.ru', 'password')">
+            <a class="btn btn-primary mr-2" href="register"><spring:message code="app.register"/> &raquo;</a>
+            <button type="submit" class="btn btn-primary mr-2" onclick="setCredentials('user@yandex.ru', 'password')">
                 <spring:message code="app.enter"/> User
             </button>
-            <button type="submit" class="btn btn-info mr-2" onclick="setCredentials('admin@yandex.ru', 'admin')">
+            <button type="submit" class="btn btn-primary mr-2" onclick="setCredentials('admin@yandex.ru', 'admin')">
                 <spring:message code="app.enter"/> Admin
             </button>
         </p>

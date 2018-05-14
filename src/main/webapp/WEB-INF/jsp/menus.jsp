@@ -15,7 +15,7 @@
         </div>
         <br/>
         <br/>
-        <button class="btn btn-info mr-2" onclick="createMenu(${param.restId})">
+        <button class="btn btn-primary mr-2" onclick="createMenu(${param.restId})">
             <span class="fa fa-plus" aria-hidden="true"></span>
             <spring:message code="menu.addMenu"/>
         </button>
@@ -29,7 +29,7 @@
             </thead>
         </table>
         <br/>
-        <button class="btn btn-info mr-2" onclick="redirectToRestaurants()">
+        <button class="btn btn-primary mr-2" onclick="redirectToRestaurants()">
             <span class="fa fa-mail-reply" aria-hidden="true"></span>
             <spring:message code="common.backToRestaurants"/>
         </button>
