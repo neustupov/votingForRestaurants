@@ -9,6 +9,7 @@ import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -65,14 +66,13 @@ public class RestaurantControllerTest extends AbstractControllerTest {
                         hasProperty("name", is("Russia"))));
     }
 
-    //TODO find the reason for not passing the tests when enabled csrf
-    @Ignore
     @Test
     public void testCreate() throws Exception {
         mockMvc.perform(post("/ajax/admin/restaurants")
                 .param("name", "newRest")
                 .param("id", "")
-                .with(userHttpBasic(ADMIN)))
+                .with(userHttpBasic(ADMIN))
+                .with(csrf()))
                 .andDo(print())
                 .andExpect(status().isFound());
     }

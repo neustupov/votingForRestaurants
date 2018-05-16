@@ -96,6 +96,7 @@ public class RootController extends AbstractUserController {
         return "meals";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/votes")
     public String votes() {
         return "votes";
