@@ -1,5 +1,6 @@
 package ru.neustupov.votingforrestaurants.web;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -9,6 +10,25 @@ import static ru.neustupov.votingforrestaurants.TestUtil.userAuth;
 import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
 
 public class RootControllerTest extends AbstractControllerTest {
+
+    @Test
+    public void testRootAdmin() throws Exception {
+        mockMvc.perform(get("/")
+                .with(userAuth(ADMIN)))
+                .andDo(print())
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("restaurants"));
+    }
+
+    @Ignore
+    @Test
+    public void testGetRegister() throws Exception {
+        mockMvc.perform(get("/register")
+                .with(userAuth(ADMIN)))
+                .andDo(print())
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("restaurants"));
+    }
 
     @Test
     public void testUsers() throws Exception {
@@ -26,15 +46,6 @@ public class RootControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("http://localhost/login"));
-    }
-
-    @Test
-    public void testRootAdmin() throws Exception {
-        mockMvc.perform(get("/")
-                .with(userAuth(ADMIN)))
-                .andDo(print())
-                .andExpect(status().isFound())
-                .andExpect(redirectedUrl("restaurants"));
     }
 
     @Test

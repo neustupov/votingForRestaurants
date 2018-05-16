@@ -9,12 +9,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static ru.neustupov.votingforrestaurants.TestUtil.userHttpBasic;
 import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
 
@@ -74,17 +74,22 @@ public class MealControllerTest extends AbstractControllerTest {
                 .andExpect(model().attribute("restId", "100002"))*/;
     }
 
-    //TODO find the reason for not passing the tests when enabled csrf
     @Ignore
     @Test
     public void testCreate() throws Exception {
         mockMvc.perform(post("/ajax/admin/meals")
                 .with(userHttpBasic(ADMIN))
+                .with(csrf())
                 .param("menuId", "100007")
                 .param("name", "NewMeal")
                 .param("price", "100"))
                 .andDo(print())
                 .andExpect(status().isFound());
+
+        assertThat(mealService.getAll(100007), hasSize(3));
+        assertThat(mealService.getAll(100007), hasItem(
+                allOf(hasProperty("name", is("NewMeal")))
+        ));
     }
 
     //TODO understand what the problem is
@@ -96,8 +101,8 @@ public class MealControllerTest extends AbstractControllerTest {
                 .param("name", "AppleNew")
                 .param("price", "15")
                 .param("id", "")
-                .param("menuId", "100007")/*
-                .param("restId", "100002")*/)
+                .param("menuId", "100007")
+                .with(csrf()))
                 .andDo(print())
                 .andExpect(status().isFound());
 
@@ -112,13 +117,12 @@ public class MealControllerTest extends AbstractControllerTest {
     @Test
     public void testCreateOrUpdateOnlyUpdate() throws Exception {
         mockMvc.perform(post("/ajax/admin/meals/")
-                .with(userHttpBasic(ADMIN))
                 .param("id", "100014")
                 .param("name", "AppleNew")
                 .param("price", "15")
-                .param("mealId", "100014")
                 .param("menuId", "100007")
-                .param("restId", "100002"))
+                .with(userHttpBasic(ADMIN))
+                .with(csrf()))
                 .andDo(print())
                 .andExpect(status().isFound());
 
