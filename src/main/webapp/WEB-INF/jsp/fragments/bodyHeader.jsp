@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark py-0">
     <div class="container">
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <a href="/restaurants" class="navbar-brand">
@@ -18,10 +18,10 @@
         <sec:authorize access="isAuthenticated()">
             <form:form class="form-inline my-2" action="logout" method="post">
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <a class="btn btn-primary mr-2" href="users"><spring:message code="user.title"/></a>
+                    <a class="btn btn-primary mr-1" href="users"><spring:message code="user.title"/></a>
                 </sec:authorize>
-                <a class="btn btn-primary mr-2" href="profile">${userTo.name} <spring:message code="app.profile"/></a>
-                <button class="btn btn-primary mr-2" type="submit">
+                <a class="btn btn-primary mr-1" href="profile">${userTo.name} <spring:message code="app.profile"/></a>
+                <button class="btn btn-primary mr-1" type="submit">
                     <span class="fa fa-sign-out" aria-hidden="true"></span>
                 </button>
             </form:form>
