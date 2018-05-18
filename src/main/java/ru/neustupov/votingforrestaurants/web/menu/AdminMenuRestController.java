@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.neustupov.votingforrestaurants.model.Menu;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class AdminMenuRestController extends AbstractMenuController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Menu> createWithLocation(@RequestBody Menu menu, @RequestParam("restId") int restId) {
+    public ResponseEntity<Menu> createWithLocation(@Valid @RequestBody Menu menu, @RequestParam("restId") int restId) {
         Menu created = super.create(menu, restId);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -54,7 +55,7 @@ public class AdminMenuRestController extends AbstractMenuController {
 
     @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@PathVariable("id") int id, @RequestBody Menu menu, @RequestParam("restId") int restId) {
+    public void update(@PathVariable("id") int id,@Valid @RequestBody Menu menu, @RequestParam("restId") int restId) {
         super.update(id, menu, restId);
     }
 }
