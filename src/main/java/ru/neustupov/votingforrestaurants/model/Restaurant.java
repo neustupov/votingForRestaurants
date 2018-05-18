@@ -1,7 +1,6 @@
 package ru.neustupov.votingforrestaurants.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -22,11 +21,11 @@ public class Restaurant extends AbstractNamedEntity {
         super(null, null);
     }
 
-    public Restaurant(@NotNull String name) {
+    public Restaurant(String name) {
         super(null, name);
     }
 
-    public Restaurant(@NotNull Integer id, @NotNull String name) {
+    public Restaurant(Integer id, String name) {
         super(id, name);
     }
 

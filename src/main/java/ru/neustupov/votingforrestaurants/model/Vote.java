@@ -34,40 +34,40 @@ public class Vote extends AbstractBaseEntity {
         this(v.getId(), v.getDate());
     }
 
-    public Vote(@NotNull Date date) {
+    public Vote(Date date) {
         this.date = date;
     }
 
-    public Vote(@NotNull User user, @NotNull Date date) {
+    public Vote(User user, Date date) {
         this.user = user;
         this.date = date;
     }
 
-    public Vote(@NotNull Integer id, @NotNull Date date) {
+    public Vote(Integer id, Date date) {
         super(id);
         this.date = date;
     }
 
-    public Vote(@NotNull Integer id, @NotNull User user, @NotNull Date date) {
+    public Vote(Integer id, User user, Date date) {
         super(id);
         this.user = user;
         this.date = date;
     }
 
-    public Vote(@NotNull User user, @NotNull Date date, @NotNull Restaurant restaurant) {
+    public Vote(User user, Date date, Restaurant restaurant) {
         this.user = user;
         this.date = date;
         this.restaurant = restaurant;
     }
 
-    public Vote(@NotNull Integer id, @NotNull User user, @NotNull Date date, @NotNull Restaurant restaurant) {
+    public Vote( Integer id, User user, Date date, Restaurant restaurant) {
         super(id);
         this.user = user;
         this.date = date;
         this.restaurant = restaurant;
     }
 
-    public Vote(@NotNull Date date, @NotNull Restaurant restaurant){
+    public Vote(Date date, Restaurant restaurant){
         this.date = date;
         this.restaurant = restaurant;
     }
