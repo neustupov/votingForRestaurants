@@ -6,26 +6,7 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<nav class="navbar navbar-dark bg-dark" role="navigation">
-    <div class="container">
-        <a href="/restaurants" class="navbar-brand">
-            <img src="resources/images/vote_ico.png">
-            <spring:message code="app.title"/></a>
-        <form:form class="form-inline my-2" role="form" action="spring_security_check" method="post">
-            <div class="form-row align-items-right">
-                <div class="col-auto form-group">
-                    <input type="text" placeholder="Email" class="form-control form-control-sm" name="username">
-                </div>
-                <div class="col-auto form-group">
-                    <input type="password" placeholder="Password" class="form-control form-control-sm" name="password">
-                </div>
-                <button type="submit" class="btn btn-success">
-                    <span class="fa fa-sign-in" aria-hidden="true"></span>
-                </button>
-            </div>
-        </form:form>
-    </div>
-</nav>
+<jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="jumbotron">
     <div class="container">
