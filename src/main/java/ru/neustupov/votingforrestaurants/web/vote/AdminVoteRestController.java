@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.neustupov.votingforrestaurants.model.Vote;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class AdminVoteRestController extends AbstractVoteController{
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Vote> createWithLocation(@RequestBody Vote vote, @RequestParam("restId") int restId) {
+    public ResponseEntity<Vote> createWithLocation(@Valid @RequestBody Vote vote, @RequestParam("restId") int restId) {
         Vote created = super.create(vote, restId);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -48,7 +49,7 @@ public class AdminVoteRestController extends AbstractVoteController{
 
     @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@PathVariable("id") int id, @RequestBody  Vote vote, @RequestParam("restId") int restId) {
+    public void update(@PathVariable("id") int id, @Valid @RequestBody  Vote vote, @RequestParam("restId") int restId) {
         super.update(id, vote, restId);
     }
 }

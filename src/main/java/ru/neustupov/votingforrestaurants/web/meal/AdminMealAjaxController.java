@@ -38,20 +38,12 @@ public class AdminMealAjaxController extends AbstractMealController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createOrUpdate(@Valid MealTo mealTo, BindingResult result) {
-
-        ResponseEntity<String> responseEntity = new ResponseEntity<>(HttpStatus.OK);
-
-        if (result.hasErrors()) {
-            return ControllerUtil.bindResultErr(result);
-        }
+    public void createOrUpdate(@Valid MealTo mealTo) {
 
         if (mealTo.isNew()) {
             super.create(MealUtil.createNewFromTo(mealTo), mealTo.getMenuId());
         } else {
             super.update(mealTo.getId(), mealTo, mealTo.getMenuId());
         }
-
-        return responseEntity;
     }
 }

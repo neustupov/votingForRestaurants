@@ -35,20 +35,12 @@ public class AdminRestaurantAjaxController extends AbstractRestaurantController{
     }
 
     @PostMapping
-    public ResponseEntity<String> createOrUpdate(@Valid Restaurant restaurant, BindingResult result) {
-
-        ResponseEntity<String> responseEntity = new ResponseEntity<>(HttpStatus.OK);
-
-        if (result.hasErrors()) {
-            return ControllerUtil.bindResultErr(result);
-        }
+    public void createOrUpdate(@Valid Restaurant restaurant) {
 
         if (restaurant.isNew()) {
             super.create(restaurant);
         }else {
             super.update(restaurant, restaurant.getId());
         }
-
-        return responseEntity;
     }
 }

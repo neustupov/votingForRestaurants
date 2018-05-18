@@ -16,6 +16,11 @@
 #### update User 100001
 `curl -s -X PUT -d '{"name": "UserUpdated","email":"newEmail@yandex.ru","password": "passwordNew","roles": ["ROLE_USER"]}' -H 'Content-Type: application/json' http://localhost:8080/rest/admin/users/100001 --user admin@yandex.ru:admin`
 
+#### validate with Error
+`curl -s -X PUT -d '{"name": "","price":""}' -H 'Content-Type: application/json' http://localhost:8080/rest/admin/meals/100014?menuId=100007 --user admin@yandex.ru:admin`
+
+`curl -s -X POST -d '{}' -H 'Content-Type: application/json' http://localhost:8080/rest/admin/users --user admin@yandex.ru:admin`
+
 ### Test ProfileRestController
 
 #### get Profile
