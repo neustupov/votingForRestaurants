@@ -1,8 +1,15 @@
 package ru.neustupov.votingforrestaurants.util.exception;
 
+import org.springframework.lang.NonNull;
+
 public class NotFoundException extends RuntimeException {
 
-    public NotFoundException(String message) {
+    public NotFoundException(@NonNull String message) {
         super(message);
+    }
+
+    @Override
+    public String toString() {
+        return getMessage();
     }
 }
