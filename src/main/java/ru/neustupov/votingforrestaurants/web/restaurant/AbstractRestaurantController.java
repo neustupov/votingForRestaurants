@@ -18,6 +18,8 @@ public abstract class AbstractRestaurantController {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
+    public static final String EXCEPTION_DUPLICATE_NAME_RESTAURANT = "exception.restaurant.duplicateName";
+
     @Autowired
     private RestaurantService restaurantService;
 

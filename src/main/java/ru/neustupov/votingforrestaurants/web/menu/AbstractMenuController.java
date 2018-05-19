@@ -15,6 +15,8 @@ public abstract class AbstractMenuController {
 
     private static final Logger log = LoggerFactory.getLogger(AbstractMenuController.class);
 
+    public static final String EXCEPTION_DUPLICATE_TODAYS_MENU = "exception.menu.duplicateTodaysMenu";
+
     @Autowired
     private MenuService service;
 

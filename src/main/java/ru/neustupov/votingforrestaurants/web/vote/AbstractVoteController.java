@@ -3,11 +3,17 @@ package ru.neustupov.votingforrestaurants.web.vote;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import ru.neustupov.votingforrestaurants.AuthorizedUser;
 import ru.neustupov.votingforrestaurants.model.Vote;
 import ru.neustupov.votingforrestaurants.service.VoteService;
 import ru.neustupov.votingforrestaurants.util.ValidationUtil;
+import ru.neustupov.votingforrestaurants.util.exception.IllegalRequestDataException;
 
+import java.sql.Date;
+import java.time.DateTimeException;
+import java.time.Instant;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -17,7 +23,12 @@ public abstract class AbstractVoteController {
 
     static final LocalTime STOP_TIME = LocalTime.of(11,00,00,00);
 
+    public static final String EXCEPTION_VOTING_AFTER_ELEVEN = "exception.vote.votingAfterEleven";
+
     private static final Logger log = LoggerFactory.getLogger(AbstractVoteController.class);
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     private VoteService service;
@@ -68,5 +79,20 @@ public abstract class AbstractVoteController {
     public Vote getByUserIdAndDate() {
         int userId = AuthorizedUser.id();
         return service.getByUserIdAndDate(userId);
+    }
+
+    public void createOrUpdate(Integer restId) {
+
+        try {
+            Vote vote = getByUserIdAndDate();
+            if (vote == null) {
+                create(new Vote(Date.from(Instant.now())), restId);
+            } else {
+                update(vote.getId(), vote, restId);
+            }
+        } catch (DateTimeException e) {
+            throw new IllegalRequestDataException(messageSource.getMessage(EXCEPTION_VOTING_AFTER_ELEVEN,
+                    null, LocaleContextHolder.getLocale()));
+        }
     }
 }
