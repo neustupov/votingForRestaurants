@@ -61,4 +61,8 @@ public class ValidationUtil {
             throw new DateTimeException("time is after Stop Time");
         }
     }
+
+    public static String getMessage(Throwable e) {
+        return e.getLocalizedMessage() != null ? e.getLocalizedMessage() : e.getClass().getName();
+    }
 }
