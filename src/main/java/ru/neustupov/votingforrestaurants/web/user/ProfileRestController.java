@@ -2,8 +2,10 @@ package ru.neustupov.votingforrestaurants.web.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.neustupov.votingforrestaurants.AuthorizedUser;
+import ru.neustupov.votingforrestaurants.View;
 import ru.neustupov.votingforrestaurants.model.User;
 import ru.neustupov.votingforrestaurants.to.UserTo;
 
@@ -27,7 +29,7 @@ public class ProfileRestController extends AbstractUserController{
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@Valid @RequestBody UserTo userTo) {
+    public void update(@Validated(View.Web.class) @RequestBody UserTo userTo) {
         super.update(userTo, AuthorizedUser.id());
     }
 }

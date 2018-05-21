@@ -4,7 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.neustupov.votingforrestaurants.View;
 import ru.neustupov.votingforrestaurants.model.Meal;
 import ru.neustupov.votingforrestaurants.to.MealTo;
 import ru.neustupov.votingforrestaurants.util.ControllerUtil;
@@ -38,7 +40,7 @@ public class AdminMealAjaxController extends AbstractMealController {
     }
 
     @PostMapping
-    public void createOrUpdate(@Valid MealTo mealTo) {
+    public void createOrUpdate(@Validated(View.Web.class) MealTo mealTo) {
 
         if (mealTo.isNew()) {
             super.create(MealUtil.createNewFromTo(mealTo), mealTo.getMenuId());

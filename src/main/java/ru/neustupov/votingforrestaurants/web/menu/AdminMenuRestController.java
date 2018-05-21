@@ -3,8 +3,10 @@ package ru.neustupov.votingforrestaurants.web.menu;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.neustupov.votingforrestaurants.View;
 import ru.neustupov.votingforrestaurants.model.Menu;
 
 import javax.validation.Valid;
@@ -43,7 +45,7 @@ public class AdminMenuRestController extends AbstractMenuController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Menu> createWithLocation(@Valid @RequestBody Menu menu, @RequestParam("restId") int restId) {
+    public ResponseEntity<Menu> createWithLocation(@Validated(View.Web.class) @RequestBody Menu menu, @RequestParam("restId") int restId) {
         Menu created = super.create(menu, restId);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
