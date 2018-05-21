@@ -7,13 +7,7 @@ function updateTable() {
 }
 
 $(function () {
-    datatableApi = $("#restDatatable").DataTable({
-        "ajax": {
-            "url": ajaxUrl,
-            "dataSrc": ""
-        },
-        "paging": false,
-        "info": true,
+    datatableApi = $("#restDatatable").DataTable(extendsOpts({
         "columns": [
             {
                 "data": "name"
@@ -47,8 +41,7 @@ $(function () {
                 "desc"
             ]
         ]
-    });
-    makeEditable();
+    }));
 });
 
 function getAllVotes() {

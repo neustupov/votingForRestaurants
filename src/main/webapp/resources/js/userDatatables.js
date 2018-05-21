@@ -6,13 +6,7 @@ function updateTable() {
 }
 
 $(function () {
-    datatableApi = $("#datatable").DataTable({
-        "ajax": {
-            "url": ajaxUrl,
-            "dataSrc": ""
-        },
-        "paging": false,
-        "info": true,
+    datatableApi = $("#datatable").DataTable(extendsOpts({
         "columns": [
             {
                 "data": "name"
@@ -70,8 +64,7 @@ $(function () {
             }
         },
         "initComplete": makeEditable
-    });
-    makeEditable();
+    }));
 });
 
 function enable(chkbox, id) {

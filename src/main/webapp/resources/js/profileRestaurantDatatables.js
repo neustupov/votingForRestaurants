@@ -7,13 +7,7 @@ function updateTable() {
 }
 
 $(function () {
-    datatableApi = $("#profileRestDatatable").DataTable({
-        "ajax": {
-            "url": ajaxUrl,
-            "dataSrc": ""
-        },
-        "paging": false,
-        "info": true,
+    datatableApi = $("#profileRestDatatable").DataTable(extendsOpts({
         "columns": [
             {
                 "data": "name"
@@ -35,8 +29,7 @@ $(function () {
                 "desc"
             ]
         ]
-    });
-    makeEditable();
+    }));
 });
 
 function getProfileTodaysMenuWithMeals(restId) {
