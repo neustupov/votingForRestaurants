@@ -1,6 +1,7 @@
 package ru.neustupov.votingforrestaurants.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.util.CollectionUtils;
 import ru.neustupov.votingforrestaurants.View;
 
@@ -19,6 +20,7 @@ public class User extends AbstractNamedEntity {
     @Email
     @NotNull(groups = View.Persist.class)
     @Size(max = 100)
+    @SafeHtml(groups = {View.Web.class})
     private String email;
 
     @Column(name = "password", nullable = false)

@@ -1,5 +1,7 @@
 package ru.neustupov.votingforrestaurants.to;
 
+import org.hibernate.validator.constraints.SafeHtml;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,6 +10,7 @@ public class MealTo extends BaseTo{
 
     @NotBlank
     @Size(min = 2, max = 100)
+    @SafeHtml
     protected String name;
 
     @NotNull

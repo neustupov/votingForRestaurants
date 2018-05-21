@@ -5,7 +5,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.neustupov.votingforrestaurants.View;
 import ru.neustupov.votingforrestaurants.model.User;
 import ru.neustupov.votingforrestaurants.to.UserTo;
 import ru.neustupov.votingforrestaurants.util.UserUtil;
@@ -40,7 +42,7 @@ public class AdminAjaxController extends AbstractUserController {
     }
 
     @PostMapping
-    public void createOrUpdate(@Valid UserTo userTo) {
+    public void createOrUpdate(@Validated(View.Web.class) UserTo userTo) {
         try {
             if (userTo.isNew()) {
                 super.create(UserUtil.createNewFromTo(userTo));

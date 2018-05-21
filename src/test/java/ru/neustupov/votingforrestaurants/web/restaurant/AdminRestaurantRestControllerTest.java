@@ -139,4 +139,17 @@ public class AdminRestaurantRestControllerTest extends AbstractControllerTest{
                 .andExpect(jsonPath("$.type").value(ErrorType.VALIDATION_ERROR.name()))
                 .andDo(print());
     }
+
+    @Test
+    public void testUpdateHtmlUnsafe() throws Exception {
+        Restaurant invalid = new Restaurant(100002, "<script>alert(123)</script>" );
+        mockMvc.perform(put(REST_URL + RUSSIA_ID)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(invalid))
+                .with(userHttpBasic(ADMIN)))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(jsonPath("$.type").value(ErrorType.VALIDATION_ERROR.name()))
+                .andDo(print());
+    }
 }
