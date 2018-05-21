@@ -6,13 +6,7 @@ function updateTable() {
 }
 
 $(function () {
-    datatableApi = $("#voteDatatable").DataTable({
-        "ajax": {
-            "url": ajaxUrl,
-            "dataSrc": ""
-        },
-        "paging": false,
-        "info": true,
+    datatableApi = $("#voteDatatable").DataTable(extendsOpts({
         "columns": [
             {
                 "data": "user.name"
@@ -41,8 +35,7 @@ $(function () {
                 "asc"
             ]
         ]
-    });
-    makeEditable();
+    }));
 });
 
 function redirectToRestaurants() {
