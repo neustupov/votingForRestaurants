@@ -13,5 +13,5 @@ branches:
   - master
 
 #https://docs.travis-ci.com/user/environment-variables#Default-Environment-Variables
-  env:
-  - VOTES=$TRAVIS_BUILD_DIR
+env:
+- VOTES=$TRAVIS_BUILD_DIR
