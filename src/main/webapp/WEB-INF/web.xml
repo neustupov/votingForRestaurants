@@ -11,6 +11,11 @@
         <param-value>classpath*:spring/spring-app.xml</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>spring.profiles.default</param-name>
+        <param-value>hsqldb</param-value>
+    </context-param>
+
     <!-- Spring MVC -->
     <listener>
         <listener-class>
