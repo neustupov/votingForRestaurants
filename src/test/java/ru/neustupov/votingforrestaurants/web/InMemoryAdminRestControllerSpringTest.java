@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import ru.neustupov.votingforrestaurants.UserTestData;
 import ru.neustupov.votingforrestaurants.model.User;
 import ru.neustupov.votingforrestaurants.repository.mock.InMemoryUserRepository;
+import ru.neustupov.votingforrestaurants.util.exception.ModificationRestrictionException;
 import ru.neustupov.votingforrestaurants.util.exception.NotFoundException;
 import ru.neustupov.votingforrestaurants.web.user.AdminRestController;
 
