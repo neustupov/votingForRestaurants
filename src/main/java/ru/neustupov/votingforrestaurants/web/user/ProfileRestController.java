@@ -10,8 +10,6 @@ import ru.neustupov.votingforrestaurants.View;
 import ru.neustupov.votingforrestaurants.model.User;
 import ru.neustupov.votingforrestaurants.to.UserTo;
 
-import javax.validation.Valid;
-
 @RestController
 @RequestMapping(ProfileRestController.REST_URL)
 public class ProfileRestController extends AbstractUserController{

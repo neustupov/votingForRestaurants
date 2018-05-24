@@ -8,7 +8,6 @@ import ru.neustupov.votingforrestaurants.service.MenuService;
 
 import java.util.List;
 
-import static ru.neustupov.votingforrestaurants.util.ValidationUtil.assureIdConsistent;
 import static ru.neustupov.votingforrestaurants.util.ValidationUtil.checkNew;
 
 public abstract class AbstractMenuController {

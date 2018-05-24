@@ -9,7 +9,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.neustupov.votingforrestaurants.View;
 import ru.neustupov.votingforrestaurants.model.Vote;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
