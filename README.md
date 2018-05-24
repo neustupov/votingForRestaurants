@@ -2,8 +2,9 @@
 
 [![Build Status](https://travis-ci.org/neustupov/votingForRestaurants.svg?branch=master)](https://travis-ci.org/neustupov/votingForRestaurants)
 
-<br/>
-<br/>
+## <a href="https://restvote.herokuapp.com">Пример приложения</a>
+
+</br>
 
 <a href="https://github.com/neustupov/votingForRestaurants">Java Enterprise проект</a> с
         регистрацией/авторизацией и интерфейсом на основе ролей (USER, ADMIN).
