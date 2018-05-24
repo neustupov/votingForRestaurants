@@ -13,7 +13,6 @@ import ru.neustupov.votingforrestaurants.to.UserTo;
 import ru.neustupov.votingforrestaurants.util.UserUtil;
 import ru.neustupov.votingforrestaurants.util.exception.IllegalRequestDataException;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController

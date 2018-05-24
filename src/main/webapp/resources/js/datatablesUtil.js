@@ -2,7 +2,7 @@ var form;
 
 function makeEditable() {
 
-    form = $('#detailsForm');
+    form = $("#detailsForm");
 
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
         failNoty(jqXHR);
@@ -73,7 +73,7 @@ function updateRow(id) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
-        $('#editRow').modal();
+        $("#editRow").modal();
     });
 }
 

@@ -1,6 +1,6 @@
 var ajaxUrl = "/ajax/admin/menus/";
 var datatableApi;
-var globalRestId = document.getElementById('restIdValue').value;
+var globalRestId = document.getElementById("restIdValue").value;
 
 function updateTable(restId) {
     $.get(ajaxUrl + "?restId=" + restId, updateTableByData);
