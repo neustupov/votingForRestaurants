@@ -1,7 +1,7 @@
 package ru.neustupov.votingforrestaurants.web.vote;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
@@ -27,7 +27,7 @@ import static ru.neustupov.votingforrestaurants.UserTestData.USER;
 import static ru.neustupov.votingforrestaurants.UserTestData.USER_ID;
 import static ru.neustupov.votingforrestaurants.VoteTestData.*;
 
-public class AdminVoteRestControllerTest extends AbstractControllerTest {
+class AdminVoteRestControllerTest extends AbstractControllerTest {
 
     private static final String REST_URL = AdminVoteRestController.REST_URL + '/';
 
@@ -35,7 +35,7 @@ public class AdminVoteRestControllerTest extends AbstractControllerTest {
     private VoteService voteService;
 
     @Test
-    public void testGet() throws Exception {
+    void testGet() throws Exception {
         mockMvc.perform(get(REST_URL + VOTE4_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
@@ -45,7 +45,7 @@ public class AdminVoteRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testDelete() throws Exception {
+    void testDelete() throws Exception {
         mockMvc.perform(delete(REST_URL + VOTE4_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
@@ -54,9 +54,9 @@ public class AdminVoteRestControllerTest extends AbstractControllerTest {
     }
 
     // it not working after STOP TIME //
-    @Ignore
+    @Disabled
     @Test
-    public void testUpdate() throws Exception {
+    void testUpdate() throws Exception {
         Vote updated = new Vote(VOTE1);
         updated.setDate(Date.valueOf("2017-06-01"));
         mockMvc.perform(put(REST_URL + VOTE1_ID)
@@ -70,7 +70,7 @@ public class AdminVoteRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testCreate() throws Exception {
+    void testCreate() throws Exception {
         Vote expected = new Vote(USER, Date.valueOf("2017-05-01"), RUSSIA);
         ResultActions action = mockMvc.perform(post(REST_URL)
                 .with(userHttpBasic(ADMIN))
@@ -87,7 +87,7 @@ public class AdminVoteRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testGetAll() throws Exception {
+    void testGetAll() throws Exception {
         TestUtil.print(mockMvc.perform(get(REST_URL)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
@@ -96,7 +96,7 @@ public class AdminVoteRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testGetNotFound() throws Exception {
+    void testGetNotFound() throws Exception {
         mockMvc.perform(get(REST_URL + 1)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isUnprocessableEntity())
@@ -104,7 +104,7 @@ public class AdminVoteRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testDeleteNotFound() throws Exception {
+    void testDeleteNotFound() throws Exception {
         mockMvc.perform(delete(REST_URL + 1)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isUnprocessableEntity())
@@ -112,7 +112,7 @@ public class AdminVoteRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testCreateInvalid() throws Exception {
+    void testCreateInvalid() throws Exception {
         Vote invalid = new Vote(null, null, null, null);
         mockMvc.perform(post(REST_URL)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -125,7 +125,7 @@ public class AdminVoteRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testUpdateInvalid() throws Exception {
+    void testUpdateInvalid() throws Exception {
         Vote invalid = new Vote(null, null, null, null);
         mockMvc.perform(put(REST_URL + VOTE1_ID)
                 .contentType(MediaType.APPLICATION_JSON)

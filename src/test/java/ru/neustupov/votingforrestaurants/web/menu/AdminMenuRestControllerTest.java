@@ -1,6 +1,6 @@
 package ru.neustupov.votingforrestaurants.web.menu;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
@@ -23,7 +23,7 @@ import static ru.neustupov.votingforrestaurants.TestUtil.userHttpBasic;
 import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
 import static ru.neustupov.votingforrestaurants.UserTestData.USER;
 
-public class AdminMenuRestControllerTest extends AbstractControllerTest {
+class AdminMenuRestControllerTest extends AbstractControllerTest {
 
     private static final String REST_URL = AdminMenuRestController.REST_URL + '/';
 
@@ -31,7 +31,7 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest {
     private MenuService menuService;
 
     @Test
-    public void testGet() throws Exception {
+    void testGet() throws Exception {
         mockMvc.perform(get(REST_URL + RUSSIA_MENU_ID1)
                 .with(userHttpBasic(ADMIN))
                 .param("restId", "100002"))
@@ -42,7 +42,7 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testDelete() throws Exception {
+    void testDelete() throws Exception {
         mockMvc.perform(delete(REST_URL + RUSSIA_MENU_ID1)
                 .with(userHttpBasic(ADMIN))
                 .param("restId", "100002"))
@@ -52,7 +52,7 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testCreate() throws Exception {
+    void testCreate() throws Exception {
         Menu expected = new Menu(getCreated());
         ResultActions action = mockMvc.perform(post(REST_URL)
                 .with(userHttpBasic(ADMIN))
@@ -69,7 +69,7 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testGetAll() throws Exception {
+    void testGetAll() throws Exception {
         TestUtil.print(mockMvc.perform(get(REST_URL)
                 .with(userHttpBasic(ADMIN))
                 .param("restId", "100002"))
@@ -79,7 +79,7 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testUpdate() throws Exception {
+    void testUpdate() throws Exception {
         Menu updated = new Menu(getCreated());
         updated.setId(100007);
         updated.setAddDate(Date.valueOf("2017-06-01"));
@@ -94,20 +94,20 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testGetUnauth() throws Exception {
+    void testGetUnauth() throws Exception {
         mockMvc.perform(get(REST_URL))
                 .andExpect(status().isUnauthorized());
     }
 
     @Test
-    public void testGetForbidden() throws Exception {
+    void testGetForbidden() throws Exception {
         mockMvc.perform(get(REST_URL)
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isForbidden());
     }
 
     @Test
-    public void testGetNotFound() throws Exception {
+    void testGetNotFound() throws Exception {
         mockMvc.perform(get(REST_URL + 1)
                 .param("restId", "100002")
                 .with(userHttpBasic(ADMIN)))
@@ -116,7 +116,7 @@ public class AdminMenuRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testDeleteNotFound() throws Exception {
+    void testDeleteNotFound() throws Exception {
         mockMvc.perform(delete(REST_URL + 1)
                 .param("restId", "100002")
                 .with(userHttpBasic(ADMIN)))

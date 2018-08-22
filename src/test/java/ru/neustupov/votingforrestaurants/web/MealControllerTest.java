@@ -1,7 +1,7 @@
 package ru.neustupov.votingforrestaurants.web;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.neustupov.votingforrestaurants.service.MealService;
 
@@ -18,33 +18,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static ru.neustupov.votingforrestaurants.TestUtil.userHttpBasic;
 import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
 
-public class MealControllerTest extends AbstractControllerTest {
+class MealControllerTest extends AbstractControllerTest {
 
     @Autowired
     private MealService mealService;
 
     @Test
-    public void testMeals() throws Exception {
+    void testMeals() throws Exception {
         mockMvc.perform(get("/meals")
                 .with(userHttpBasic(ADMIN))
                 .param("menuId", "100007"))
                 .andDo(print())
-                .andExpect(status().isFound())/*
-                .andExpect(view().name("meals"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/meals.jsp"))
-                .andExpect(model().attribute("mealsList", hasSize(2)))
-                .andExpect(model().attribute("mealsList", hasItem(
-                        allOf(
-                                hasProperty("name", is("Apple")),
-                                hasProperty("price", is(5))
-                        )
-                )))*/;
+                .andExpect(status().isFound());
     }
 
     //TODO understand what the problem is
-    @Ignore
+    @Disabled
     @Test
-    public void testDelete() throws Exception {
+    void testDelete() throws Exception {
         mockMvc.perform(delete("/ajax/admin/meals/100014")
                 .with(userHttpBasic(ADMIN))
                 .param("menuId", "100007"))
@@ -55,7 +46,7 @@ public class MealControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testUpdate() throws Exception {
+    void testUpdate() throws Exception {
         mockMvc.perform(get("/meals/update")
                 .with(userHttpBasic(ADMIN))
                 .param("mealId", "100014")
@@ -74,9 +65,9 @@ public class MealControllerTest extends AbstractControllerTest {
                 .andExpect(model().attribute("restId", "100002"))*/;
     }
 
-    @Ignore
+    @Disabled
     @Test
-    public void testCreate() throws Exception {
+    void testCreate() throws Exception {
         mockMvc.perform(post("/ajax/admin/meals")
                 .with(userHttpBasic(ADMIN))
                 .with(csrf())
@@ -93,9 +84,9 @@ public class MealControllerTest extends AbstractControllerTest {
     }
 
     //TODO understand what the problem is
-    @Ignore
+    @Disabled
     @Test
-    public void testCreateOrUpdateOnlyCreate() throws Exception {
+    void testCreateOrUpdateOnlyCreate() throws Exception {
         mockMvc.perform(post("/ajax/admin/meals")
                 .with(userHttpBasic(ADMIN))
                 .param("name", "AppleNew")
@@ -113,9 +104,9 @@ public class MealControllerTest extends AbstractControllerTest {
     }
 
     //TODO understand what the problem is
-    @Ignore
+    @Disabled
     @Test
-    public void testCreateOrUpdateOnlyUpdate() throws Exception {
+    void testCreateOrUpdateOnlyUpdate() throws Exception {
         mockMvc.perform(post("/ajax/admin/meals/")
                 .param("id", "100014")
                 .param("name", "AppleNew")
