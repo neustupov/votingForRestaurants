@@ -1,6 +1,6 @@
 package ru.neustupov.votingforrestaurants.web.user;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import ru.neustupov.votingforrestaurants.TestUtil;
 import ru.neustupov.votingforrestaurants.model.User;
@@ -19,10 +19,10 @@ import static ru.neustupov.votingforrestaurants.TestUtil.userHttpBasic;
 import static ru.neustupov.votingforrestaurants.UserTestData.*;
 import static ru.neustupov.votingforrestaurants.web.user.ProfileRestController.REST_URL;
 
-public class ProfileRestControllerTest extends AbstractControllerTest {
+class ProfileRestControllerTest extends AbstractControllerTest {
 
     @Test
-    public void testGet() throws Exception {
+    void testGet() throws Exception {
         TestUtil.print(
                 mockMvc.perform(get(REST_URL)
                         .with(userHttpBasic(USER)))
@@ -33,7 +33,7 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testDelete() throws Exception {
+    void testDelete() throws Exception {
         mockMvc.perform(delete(REST_URL)
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isNoContent());
@@ -41,7 +41,7 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testUpdate() throws Exception {
+    void testUpdate() throws Exception {
         UserTo updatedTo = new UserTo(null, "newName", "user@yandex.ru","newPassword");
         mockMvc.perform(put(REST_URL)
                 .with(userHttpBasic(USER))
@@ -54,7 +54,7 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testGetUnauth() throws Exception {
+    void testGetUnauth() throws Exception {
         mockMvc.perform(get(REST_URL))
                 .andExpect(status().isUnauthorized());
     }

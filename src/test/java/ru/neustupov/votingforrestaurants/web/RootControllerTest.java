@@ -1,7 +1,7 @@
 package ru.neustupov.votingforrestaurants.web;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -9,10 +9,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static ru.neustupov.votingforrestaurants.TestUtil.userAuth;
 import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
 
-public class RootControllerTest extends AbstractControllerTest {
+class RootControllerTest extends AbstractControllerTest {
 
     @Test
-    public void testRootAdmin() throws Exception {
+    void testRootAdmin() throws Exception {
         mockMvc.perform(get("/")
                 .with(userAuth(ADMIN)))
                 .andDo(print())
@@ -20,9 +20,9 @@ public class RootControllerTest extends AbstractControllerTest {
                 .andExpect(redirectedUrl("restaurants"));
     }
 
-    @Ignore
+    @Disabled
     @Test
-    public void testGetRegister() throws Exception {
+    void testGetRegister() throws Exception {
         mockMvc.perform(get("/register")
                 .with(userAuth(ADMIN)))
                 .andDo(print())
@@ -31,7 +31,7 @@ public class RootControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testUsers() throws Exception {
+    void testUsers() throws Exception {
         mockMvc.perform(get("/users")
                 .with(userAuth(ADMIN)))
                 .andDo(print())
@@ -41,7 +41,7 @@ public class RootControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testUnAuth() throws Exception {
+    void testUnAuth() throws Exception {
         mockMvc.perform(get("/users"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
@@ -49,7 +49,7 @@ public class RootControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testProfileRestaurants() throws Exception {
+    void testProfileRestaurants() throws Exception {
         mockMvc.perform(get("/profileRestaurants")
                 .with(userAuth(ADMIN)))
                 .andDo(print())

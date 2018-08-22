@@ -1,7 +1,7 @@
 package ru.neustupov.votingforrestaurants.web;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.neustupov.votingforrestaurants.service.RestaurantService;
 
@@ -19,31 +19,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static ru.neustupov.votingforrestaurants.TestUtil.userHttpBasic;
 import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
 
-public class RestaurantControllerTest extends AbstractControllerTest {
+class RestaurantControllerTest extends AbstractControllerTest {
 
     @Autowired
     private RestaurantService restaurantService;
 
     @Test
-    public void testRestaurants() throws Exception {
+    void testRestaurants() throws Exception {
         mockMvc.perform(get("/restaurants"))
                 .andDo(print())
-                .andExpect(status().isFound())/*
-                .andExpect(view().name("restaurants"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/restaurants.jsp"))
-                .andExpect(model().attribute("restaurantsList", hasSize(5)))
-                .andExpect(model().attribute("restaurantsList", hasItem(
-                        allOf(
-                                hasProperty("id", is(100002)),
-                                hasProperty("name", is("Russia"))
-                        )
-                )))*/;
+                .andExpect(status().isFound());
     }
 
     //TODO understand what the problem is
-    @Ignore
+    @Disabled
     @Test
-    public void testDelete() throws Exception {
+    void testDelete() throws Exception {
         mockMvc.perform(delete("/ajax/admin/restaurants/100002"))
                 .andDo(print())
                 .andExpect(status().isFound());
@@ -51,9 +42,9 @@ public class RestaurantControllerTest extends AbstractControllerTest {
         assertThat(restaurantService.getAll(), hasSize(4));
     }
 
-    @Ignore
+    @Disabled
     @Test
-    public void testUpdate() throws Exception {
+    void testUpdate() throws Exception {
         mockMvc.perform(get("/restaurants/update").param("id", "100002"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -67,7 +58,7 @@ public class RestaurantControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testCreate() throws Exception {
+    void testCreate() throws Exception {
         mockMvc.perform(post("/ajax/admin/restaurants")
                 .param("name", "newRest")
                 .param("id", "")
@@ -78,9 +69,9 @@ public class RestaurantControllerTest extends AbstractControllerTest {
     }
 
     //TODO understand what the problem is
-    @Ignore
+    @Disabled
     @Test
-    public void testCreateOrUpdateOnlyCreate() throws Exception {
+    void testCreateOrUpdateOnlyCreate() throws Exception {
         mockMvc.perform(post("/ajax/admin/restaurants")
                 .param("name", "Russia1")
                 .param("id", ""))
@@ -94,9 +85,9 @@ public class RestaurantControllerTest extends AbstractControllerTest {
     }
 
     //TODO understand what the problem is
-    @Ignore
+    @Disabled
     @Test
-    public void testCreateOrUpdateOnlyUpdate() throws Exception {
+    void testCreateOrUpdateOnlyUpdate() throws Exception {
         mockMvc.perform(post("/ajax/admin/restaurants/")
                 .param("name", "RussiaNew")
                 .param("id", "100002"))

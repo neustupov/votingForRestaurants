@@ -1,7 +1,7 @@
 package ru.neustupov.votingforrestaurants.web;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.neustupov.votingforrestaurants.service.MenuService;
 
@@ -14,13 +14,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static ru.neustupov.votingforrestaurants.TestUtil.userHttpBasic;
 import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
 
-public class MenuControllerTest extends AbstractControllerTest {
+class MenuControllerTest extends AbstractControllerTest {
 
     @Autowired
     private MenuService menuService;
 
     @Test
-    public void testMenus() throws Exception {
+    void testMenus() throws Exception {
         mockMvc.perform(get("/menus")
                 .param("restId", "100002")
                 .with(userHttpBasic(ADMIN)))
@@ -37,9 +37,9 @@ public class MenuControllerTest extends AbstractControllerTest {
     }
 
     //TODO understand what the problem is
-    @Ignore
+    @Disabled
     @Test
-    public void testDelete() throws Exception {
+    void testDelete() throws Exception {
         mockMvc.perform(delete("/ajax/admin/menus/100007")
                 .with(userHttpBasic(ADMIN))
                 .param("restId", "100002"))
@@ -50,7 +50,7 @@ public class MenuControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testCreate() throws Exception {
+    void testCreate() throws Exception {
         mockMvc.perform(get("/ajax/admin/menus")
                 .with(userHttpBasic(ADMIN))
                 .param("restId", "100002"))
@@ -59,7 +59,7 @@ public class MenuControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testGetTodaysMenuWithMeals() throws Exception {
+    void testGetTodaysMenuWithMeals() throws Exception {
         mockMvc.perform(get("/getTodaysMenuWithMeals")
                 .with(userHttpBasic(ADMIN))
                 .param("restId", "100002"))

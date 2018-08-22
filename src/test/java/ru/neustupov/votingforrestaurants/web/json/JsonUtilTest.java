@@ -1,7 +1,7 @@
 package ru.neustupov.votingforrestaurants.web.json;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import ru.neustupov.votingforrestaurants.UserTestData;
 import ru.neustupov.votingforrestaurants.model.Meal;
 import ru.neustupov.votingforrestaurants.model.User;
@@ -15,10 +15,10 @@ import static ru.neustupov.votingforrestaurants.MealTestData.APPLE;
 import static ru.neustupov.votingforrestaurants.MealTestData.MEALS;
 import static ru.neustupov.votingforrestaurants.MealTestData.assertMatch;
 
-public class JsonUtilTest {
+class JsonUtilTest {
 
     @Test
-    public void testReadWriteValue() throws Exception {
+    void testReadWriteValue() throws Exception {
         String json = JsonUtil.writeValue(APPLE);
         System.out.println(json);
         Meal meal = JsonUtil.readValue(json, Meal.class);
@@ -26,7 +26,7 @@ public class JsonUtilTest {
     }
 
     @Test
-    public void testReadWriteValues() throws Exception {
+    void testReadWriteValues() throws Exception {
         String json = JsonUtil.writeValue(MEALS);
         System.out.println(json);
         List<Meal> meals = JsonUtil.readValues(json, Meal.class);
@@ -34,13 +34,13 @@ public class JsonUtilTest {
     }
 
     @Test
-    public void testWriteOnlyAccess() throws Exception {
+    void testWriteOnlyAccess() throws Exception {
         String json = JsonUtil.writeValue(UserTestData.USER);
         System.out.println(json);
         assertThat(json, not(containsString("password")));
         String jsonWithPass = UserTestData.jsonWithPassword(UserTestData.USER, "newPass");
         System.out.println(jsonWithPass);
         User user = JsonUtil.readValue(jsonWithPass, User.class);
-        Assert.assertEquals(user.getPassword(), "newPass");
+        Assertions.assertEquals(user.getPassword(), "newPass");
     }
 }

@@ -1,6 +1,6 @@
 package ru.neustupov.votingforrestaurants.web;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.neustupov.votingforrestaurants.service.VoteService;
 
@@ -13,13 +13,13 @@ import static ru.neustupov.votingforrestaurants.TestUtil.userAuth;
 import static ru.neustupov.votingforrestaurants.UserTestData.ADMIN;
 import static ru.neustupov.votingforrestaurants.UserTestData.USER;
 
-public class VoteControllerTest extends AbstractControllerTest{
+class VoteControllerTest extends AbstractControllerTest{
 
     @Autowired
     private VoteService voteService;
 
     @Test
-    public void testVotes() throws Exception {
+    void testVotes() throws Exception {
         mockMvc.perform(get("/votes")
                 .with(userAuth(ADMIN)))
                 .andDo(print())
@@ -28,7 +28,7 @@ public class VoteControllerTest extends AbstractControllerTest{
     }
 
     @Test
-    public void testVotesAccessDenied() throws Exception {
+    void testVotesAccessDenied() throws Exception {
         mockMvc.perform(get("/votes")
                 .with(userAuth(USER)))
                 .andDo(print())
@@ -36,10 +36,8 @@ public class VoteControllerTest extends AbstractControllerTest{
     }
 
     @Test
-    public void testUpdateOrCreateOnlyCreate() throws Exception {
+    void testUpdateOrCreateOnlyCreate() throws Exception {
         mockMvc.perform(post("/ajax/admin/votes")
-                /*.param("restId", "100002")*/
-                /*.with(userHttpBasic(ADMIN))*/
                 .with(csrf()))
                 .andDo(print())
                 .andExpect(status().isFound());
