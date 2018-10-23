@@ -38,7 +38,7 @@
         <postgresql.version>42.1.4</postgresql.version>
 
         <!--Json-->
-        <jackson-json.version>2.9.3</jackson-json.version>
+        <jackson-json.version>2.9.6</jackson-json.version>
 
         <!--    Tests  -->
         <junit.jupiter.version>5.2.0</junit.jupiter.version>
